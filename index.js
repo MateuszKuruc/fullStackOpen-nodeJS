@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
 
 app.use(express.json());
+
+app.use(morgan("tiny"));
 
 let persons = [
   {
@@ -36,56 +39,56 @@ app.get("/api/persons", (request, response) => {
 
 console.log(new Date().toString());
 
-app.get('/info', (request, response) => {
-    const infoMessage = `Phonebook has info for ${persons.length} people`;
-    const timeInfo = new Date().toString();
-    response.send(`<p>${infoMessage}</p><p>${timeInfo}</p>`)
-})
+app.get("/info", (request, response) => {
+  const infoMessage = `Phonebook has info for ${persons.length} people`;
+  const timeInfo = new Date().toString();
+  response.send(`<p>${infoMessage}</p><p>${timeInfo}</p>`);
+});
 
-app.get('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id);
-    const person = persons.find(person => person.id === id);
-    if (person) {
+app.get("/api/persons/:id", (request, response) => {
+  const id = Number(request.params.id);
+  const person = persons.find((person) => person.id === id);
+  if (person) {
     response.json(person);
-    }   else {
-        response.status(404).end()
-    }
-})
+  } else {
+    response.status(404).end();
+  }
+});
 
-app.delete('/api/persons/:id', (request, response) => {
-    const id = Number(request.params.id);
-    persons = persons.filter(person => person.id !== id);
-    response.status(204).end()
-})
+app.delete("/api/persons/:id", (request, response) => {
+  const id = Number(request.params.id);
+  persons = persons.filter((person) => person.id !== id);
+  response.status(204).end();
+});
 
 const generateId = () => {
-    const id = Math.floor((Math.random() * 999999) +1);
-    return id
-}
+  const id = Math.floor(Math.random() * 999999 + 1);
+  return id;
+};
 
-app.post('/api/persons', (request, response) => {
-    const body = request.body;
+app.post("/api/persons", (request, response) => {
+  const body = request.body;
 
-    if (!body.name || !body.number) {
-        return response.status(400).json({
-            error: 'content missing'
-        })
-    }
-    if (persons.some(person => person.name === body.name)) {
-        return response.status(400).json({
-            error: `${body.name} already exists`
-        })
-    }
+  if (!body.name || !body.number) {
+    return response.status(400).json({
+      error: "content missing",
+    });
+  }
+  if (persons.some((person) => person.name === body.name)) {
+    return response.status(400).json({
+      error: `${body.name} already exists`,
+    });
+  }
 
-    const person = {
-        id: generateId(),
-        name: body.name,
-        number: body.number
-    }
+  const person = {
+    id: generateId(),
+    name: body.name,
+    number: body.number,
+  };
 
-    persons = persons.concat(person);
-    response.json(person)
-})
+  persons = persons.concat(person);
+  response.json(person);
+});
 
 const PORT = 3001;
 app.listen(PORT);
