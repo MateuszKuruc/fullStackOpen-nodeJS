@@ -1,0 +1,22 @@
+# fly.toml app configuration file generated for notes-app-study on 2023-07-16T11:39:36+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "notes-app-study"
+primary_region = "waw"
+
+[env]
+  PORT = "8080"
+
+[experimental]
+  auto_rollback = true
+
+[http_service]
+  http_checks = []
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
