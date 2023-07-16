@@ -4,6 +4,7 @@ const cors = require('cors');
 
 app.use(cors());
 app.use(express.json());
+app.use(express.static('build'));
 
 let persons = [
       {
@@ -30,8 +31,6 @@ app.get('/', (request, response) => {
 app.get('/api/persons', (request, response) => {
     response.json(persons)
 })
-
-
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
