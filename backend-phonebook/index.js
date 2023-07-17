@@ -48,16 +48,30 @@ app.delete("/api/persons/:id", (request, response, next) => {
     .catch((error) => next(error));
 });
 
+app.put("/api/persons/:id", (request, response, next) => {
+  const body = request.body;
+    console.log(request.body);
+  const person = {
+    // name: body.name,
+    number: body.number,
+  };
+
+  Person.findByIdAndUpdate(request.params.id, person, { new: true })
+  .then((updatedPerson) => {
+    response.json(updatedPerson);
+  }).catch((error) => next(error));
+});
+
 const errorHandler = (error, request, response, next) => {
-    console.log(error.message);
-    if (error.name = 'CastError') {
-        return response.status(400).send({ error: 'malformatted id' })
-    } 
+  console.log(error.message);
+  if ((error.name = "CastError")) {
+    return response.status(400).send({ error: "malformatted id" });
+  }
 
-    next(error)
-}
+  next(error);
+};
 
-app;use(errorHandler);
+app.use(errorHandler);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
