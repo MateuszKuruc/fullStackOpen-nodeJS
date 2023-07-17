@@ -26,9 +26,9 @@ GET http://localhost:3001/api/persons
 ###
 
 POST http://localhost:3001/api/notes
-content-type: application/json
+Content-Type: application/json
 
 {
-    "content": "pamsi bamsi",
+    "content": "Ensure that everything still works",
     "important": true
 }
