@@ -20,6 +20,26 @@ app.get('/api/persons', (request, response) => {
     })
 })
 
+app.post('/api/persons', (request, response) => {
+    const body = request.body;
+    console.log('request body', request.body);
+
+    if (body.name === undefined || body.number === undefined) {
+        return response.status(400).json({
+            error: 'name or number is missing'
+        })
+    }
+
+    const person = new Person({
+        name: body.name,
+        number: body.number
+    })
+
+    person.save().then(savedPerson => {
+        response.json(savedPerson)
+    })
+})
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
