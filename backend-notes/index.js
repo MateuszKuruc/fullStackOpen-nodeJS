@@ -14,31 +14,6 @@ dotenv.config();
 
 const Note = require('./models/note');
 
-// let notes = [
-//     {
-//       "id": 1,
-//       "content": "HTML is easy",
-//       "important": true
-//     },
-//     {
-//       "id": 2,
-//       "content": "Browser can execute only JavaScript",
-//       "important": true
-//     },
-//     {
-//       "id": 3,
-//       "content": "GET and POST are the most important methods of HTTP protocol",
-//       "important": false
-//     },
-//     {
-//       "content": "mati",
-//       "important": false,
-//       "id": 4
-//     }
-//   ]
-
-
-
 app.get("/", (request, response) => {
   response.send("<h1>Hello World!</h1>");
 });
@@ -102,7 +77,7 @@ app.post("/api/notes", (request, response) => {
   response.json(note);
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 })
