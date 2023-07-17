@@ -32,15 +32,21 @@ app.get("/info", (request, response) => {
   response.send(`<p>${infoMessage}</p><p>${timeInfo}</p>`);
 });
 
-app.get("/api/notes/:id", (request, response) => {
-  const id = Number(request.params.id);
-  const note = notes.find((note) => note.id === id);
-  if (note) {
-    response.json(note);
-  } else {
-    response.status(404).end();
-  }
-});
+// app.get("/api/notes/:id", (request, response) => {
+//   const id = Number(request.params.id);
+//   const note = notes.find((note) => note.id === id);
+//   if (note) {
+//     response.json(note);
+//   } else {
+//     response.status(404).end();
+//   }
+// });
+
+app.get('/api/notes/:id', (request, response) => {
+  Note.findById(request.params.id).then(note => {
+    response.json(note)
+  })
+})
 
 app.delete("/api/notes/:id", (request, response) => {
   const id = Number(request.params.id);
@@ -61,11 +67,11 @@ app.post("/api/notes", (request, response) => {
       error: "content missing",
     });
   }
-  if (notes.some((note) => note.content === body.content)) {
-    return response.status(400).json({
-      error: `${body.content} already exists`,
-    });
-  }
+  // if (notes.some((note) => note.content === body.content)) {
+  //   return response.status(400).json({
+  //     error: `${body.content} already exists`,
+  //   });
+  // }
 
   const note = new Note({
     content: body.content,
