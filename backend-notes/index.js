@@ -56,7 +56,7 @@ const generateId = () => {
 app.post("/api/notes", (request, response) => {
   const body = request.body;
 
-  if (!body.content || !body.important) {
+  if (!body.content === undefined) {
     return response.status(400).json({
       error: "content missing",
     });
@@ -67,15 +67,25 @@ app.post("/api/notes", (request, response) => {
     });
   }
 
-  const note = {
-    id: generateId(),
+  const note = new Note({
     content: body.content,
-    important: body.important,
-  };
+    important: body.important || false
+  })
 
-  notes = notes.concat(note);
-  response.json(note);
-});
+  note.save().then(savedNote => {
+    response.json(savedNote)
+  })
+})
+
+//   const note = {
+//     id: generateId(),
+//     content: body.content,
+//     important: body.important,
+//   };
+
+//   notes = notes.concat(note);
+//   response.json(note);
+// });
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
