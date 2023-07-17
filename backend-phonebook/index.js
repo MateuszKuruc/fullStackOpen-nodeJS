@@ -9,15 +9,24 @@ app.use(express.json());
 app.use(express.static("build"));
 
 const Person = require("./models/person");
+const person = require("./models/person");
 
 app.get("/", (request, response) => {
   response.send("<h1>Hello World</h1");
 });
 
-app.get("/api/persons", (request, response) => {
+app.get('/info', (request, response, error) => {
+    Person.find({}).then(persons => {
+        response.send(`<p>${new Date().toString()}</p><p>Phonebook has info for ${persons.length} people`);
+    })
+    .catch(error => next(error))
+})
+
+app.get("/api/persons", (request, response, error) => {
   Person.find({}).then((persons) => {
     response.json(persons);
-  });
+  })
+  .catch(error => next(error))
 });
 
 app.get('/api/persons/:id', (request, response, error) => {
