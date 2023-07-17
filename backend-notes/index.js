@@ -5,35 +5,38 @@ const cors = require('cors');
 app.use(cors());
 app.use(express.json());
 app.use(express.static('build'));
+
+const dotenv = require('dotenv');
+dotenv.config();
 // morgan.token('body', req => JSON.stringify(req.body))
-
-
-
 // app.use(morgan("tiny"));
 // app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
-let notes = [
-    {
-      "id": 1,
-      "content": "HTML is easy",
-      "important": true
-    },
-    {
-      "id": 2,
-      "content": "Browser can execute only JavaScript",
-      "important": true
-    },
-    {
-      "id": 3,
-      "content": "GET and POST are the most important methods of HTTP protocol",
-      "important": false
-    },
-    {
-      "content": "mati",
-      "important": false,
-      "id": 4
-    }
-  ]
+const Note = require('./models/note');
+
+// let notes = [
+//     {
+//       "id": 1,
+//       "content": "HTML is easy",
+//       "important": true
+//     },
+//     {
+//       "id": 2,
+//       "content": "Browser can execute only JavaScript",
+//       "important": true
+//     },
+//     {
+//       "id": 3,
+//       "content": "GET and POST are the most important methods of HTTP protocol",
+//       "important": false
+//     },
+//     {
+//       "content": "mati",
+//       "important": false,
+//       "id": 4
+//     }
+//   ]
+
 
 
 app.get("/", (request, response) => {
@@ -41,7 +44,9 @@ app.get("/", (request, response) => {
 });
 
 app.get("/api/notes", (request, response) => {
-  response.json(notes);
+  Note.find({}).then(notes => {
+    response.json(notes)
+  })
 });
 
 console.log(new Date().toString());
