@@ -48,7 +48,7 @@ app.delete("/api/persons/:id", (request, response, next) => {
     .catch((error) => next(error));
 });
 
-const errorHandler = (error, request, response, next) {
+const errorHandler = (error, request, response, next) => {
     console.log(error.message);
     if (error.name = 'CastError') {
         return response.status(400).send({ error: 'malformatted id' })
