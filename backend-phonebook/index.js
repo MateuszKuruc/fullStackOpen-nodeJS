@@ -52,7 +52,7 @@ app.put("/api/persons/:id", (request, response, next) => {
   const body = request.body;
     console.log(request.body);
   const person = {
-    // name: body.name,
+    name: body.name,
     number: body.number,
   };
 
