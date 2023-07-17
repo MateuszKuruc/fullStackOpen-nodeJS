@@ -25,3 +25,7 @@ Content-Type: application/json
     "name": "mati",
     "number": "44444"
 }
+
+###
+
+GET http://localhost:3001/api/persons/64b570751198c4577480a401

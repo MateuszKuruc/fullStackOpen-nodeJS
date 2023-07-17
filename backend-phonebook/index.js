@@ -20,6 +20,16 @@ app.get("/api/persons", (request, response) => {
   });
 });
 
+app.get('/api/persons/:id', (request, response, error) => {
+    const body = request.body;
+
+    Person.findById(request.params.id)
+    .then(person => {
+        response.json(person)
+    })
+    .catch(error => next(error))
+})
+
 app.post("/api/persons", (request, response) => {
   const body = request.body;
   console.log("request body", request.body);
