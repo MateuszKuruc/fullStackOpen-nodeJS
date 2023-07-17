@@ -24,14 +24,6 @@ app.get("/api/notes", (request, response) => {
   })
 });
 
-console.log(new Date().toString());
-
-app.get("/info", (request, response) => {
-  const infoMessage = `Phonebook has info for ${notes.length} people`;
-  const timeInfo = new Date().toString();
-  response.send(`<p>${infoMessage}</p><p>${timeInfo}</p>`);
-});
-
 app.get('/api/notes/:id', (request, response, next) => {
   Note.findById(request.params.id).then(note => {
     if (note) {
@@ -53,11 +45,11 @@ app.delete('/api/notes/:id', (request, response, next) => {
   .catch(error => next(error))
 })
 
-app.delete("/api/notes/:id", (request, response) => {
-  const id = Number(request.params.id);
-  notes = notes.filter((note) => note.id !== id);
-  response.status(204).end();
-});
+// app.delete("/api/notes/:id", (request, response) => {
+//   const id = Number(request.params.id);
+//   notes = notes.filter((note) => note.id !== id);
+//   response.status(204).end();
+// });
 
 // const generateId = () => {
 //   const id = Math.floor(Math.random() * 999999 + 1);
