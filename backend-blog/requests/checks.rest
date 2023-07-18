@@ -7,3 +7,15 @@ Content-Type: application/json
     "url": "www.google.com",
     "likes": 666
 }
+
+###
+
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "Another spectacular book",
+    "author": "Pamsiri Kokotti",
+    "url": "www.hays.com",
+    "likes": 92
+}
