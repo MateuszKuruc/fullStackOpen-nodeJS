@@ -43,12 +43,6 @@ app.post("/api/persons", (request, response, next) => {
   const body = request.body;
   console.log("request body", request.body);
 
-//   if (body.name === undefined || body.number === undefined) {
-//     return response.status(400).json({
-//       error: "name or number is missing",
-//     });
-//   }
-
   const person = new Person({
     name: body.name,
     number: body.number,
