@@ -15,29 +15,35 @@ app.get("/", (request, response) => {
   response.send("<h1>Hello World</h1");
 });
 
-app.get('/info', (request, response, error) => {
-    Person.find({}).then(persons => {
-        response.send(`<p>${new Date().toString()}</p><p>Phonebook has info for ${persons.length} people`);
+app.get("/info", (request, response, error) => {
+  Person.find({})
+    .then((persons) => {
+      response.send(
+        `<p>${new Date().toString()}</p><p>Phonebook has info for ${
+          persons.length
+        } people`
+      );
     })
-    .catch(error => next(error))
-})
-
-app.get("/api/persons", (request, response, error) => {
-  Person.find({}).then((persons) => {
-    response.json(persons);
-  })
-  .catch(error => next(error))
+    .catch((error) => next(error));
 });
 
-app.get('/api/persons/:id', (request, response, error) => {
-    const body = request.body;
-
-    Person.findById(request.params.id)
-    .then(person => {
-        response.json(person)
+app.get("/api/persons", (request, response, error) => {
+  Person.find({})
+    .then((persons) => {
+      response.json(persons);
     })
-    .catch(error => next(error))
-})
+    .catch((error) => next(error));
+});
+
+app.get("/api/persons/:id", (request, response, error) => {
+  const body = request.body;
+
+  Person.findById(request.params.id)
+    .then((person) => {
+      response.json(person);
+    })
+    .catch((error) => next(error));
+});
 
 app.post("/api/persons", (request, response, next) => {
   const body = request.body;
@@ -48,13 +54,15 @@ app.post("/api/persons", (request, response, next) => {
     number: body.number,
   });
 
-  person.save().then((savedPerson) => {
-    response.json(savedPerson);
-  })
-  .catch(error => {
-    console.log(error);
-    next(error)
-  })
+  person
+    .save()
+    .then((savedPerson) => {
+      response.json(savedPerson);
+    })
+    .catch((error) => {
+      console.log(error);
+      next(error);
+    });
 });
 
 app.delete("/api/persons/:id", (request, response, next) => {
@@ -66,27 +74,25 @@ app.delete("/api/persons/:id", (request, response, next) => {
 });
 
 app.put("/api/persons/:id", (request, response, next) => {
-//   const body = request.body;
-  const { name, number } = request.body
-//   const person = {
-//     name: body.name,
-//     number: body.number,
-//   };
+  const { name, number } = request.body;
 
-  Person.findByIdAndUpdate(request.params.id, 
-    { name, number }, 
-    { new: true, runValidators: true, context: 'query' })
-  .then((updatedPerson) => {
-    response.json(updatedPerson);
-  }).catch((error) => next(error));
+  Person.findByIdAndUpdate(
+    request.params.id,
+    { name, number },
+    { new: true, runValidators: true, context: "query" }
+  )
+    .then((updatedPerson) => {
+      response.json(updatedPerson);
+    })
+    .catch((error) => next(error));
 });
 
 const errorHandler = (error, request, response, next) => {
   console.log(error.message);
   if ((error.name = "CastError")) {
     return response.status(400).send({ error: "malformatted id" });
-  } else if (error.name === 'ValidationError') {
-    return response.status(400).json({ error: error.message })
+  } else if (error.name === "ValidationError") {
+    return response.status(400).json({ error: error.message });
   }
 
   next(error);
