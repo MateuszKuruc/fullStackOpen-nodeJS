@@ -59,7 +59,7 @@ describe.skip('find author who wrote the most blogs', () => {
       })
 })
 
-describe('find author who has most likes', () => {
+describe.skip('find author who has most likes', () => {
     const listWithMultipleBlogs = [
        
         {

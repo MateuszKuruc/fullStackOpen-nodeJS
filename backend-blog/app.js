@@ -7,10 +7,8 @@ const mongoose = require("mongoose");
 const blogsRouter = require("./controllers/blogs");
 require("express-async-errors");
 
-const mongoUrl = config.MONGODB_URI;
-
 mongoose
-  .connect(mongoUrl)
+  .connect(config.MONGODB_URI)
   .then(() => {
     logger.info("connected to MongoDB");
   })
