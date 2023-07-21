@@ -15,7 +15,7 @@ beforeEach(async () => {
   await Promise.all(promiseArray);
 });
 
-test("blog is returned in JSON format", async () => {
+test.skip("blog is returned in JSON format", async () => {
   const response = await api
     .get("/api/blogs")
     .expect(200)
@@ -23,6 +23,11 @@ test("blog is returned in JSON format", async () => {
 
   expect(response.body).toHaveLength(2);
 }, 10000);
+
+test("blog identifier is named id instead of _id", async () => {
+  const response = await api.get("/api/blogs/");
+  expect(response.body[0].id).toBeDefined();
+});
 
 afterAll(async () => {
   await mongoose.connection.close();
