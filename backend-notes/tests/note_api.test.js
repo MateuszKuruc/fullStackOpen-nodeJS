@@ -1,19 +1,27 @@
 const mongoose = require("mongoose");
 const supertest = require("supertest");
 const app = require("../app");
+
 const api = supertest(app);
-const helper = require("./test_helper");
 
 const Note = require("../models/note");
+const helper = require("./test_helper");
+
+// beforeEach(async () => {
+//   await Note.deleteMany({});
+
+//   const noteObjects = helper.initialNotes.map((note) => new Note(note));
+//   const promiseArray = noteObjects.map((note) => note.save());
+//   await Promise.all(promiseArray);
+// });
 
 beforeEach(async () => {
   await Note.deleteMany({});
 
-  let noteObject = new Note(helper.initialNotes[0]);
-  await noteObject.save();
-
-  noteObject = new Note(helper.initialNotes[1]);
-  await noteObject.save();
+  for (let note of helper.initialNotes) {
+    let noteObject = new Note(note);
+    await noteObject.save();
+  }
 });
 
 test("notes are returned as json", async () => {
@@ -33,10 +41,11 @@ test("a specific note is within the returned notes", async () => {
   const response = await api.get("/api/notes");
 
   const contents = response.body.map((r) => r.content);
+
   expect(contents).toContain("Browser can execute only JavaScript");
 });
 
-test("a valid note can be added", async () => {
+test("a valid note can be added ", async () => {
   const newNote = {
     content: "async/await simplifies making async calls",
     important: true,
@@ -52,7 +61,6 @@ test("a valid note can be added", async () => {
   expect(notesAtEnd).toHaveLength(helper.initialNotes.length + 1);
 
   const contents = notesAtEnd.map((n) => n.content);
-
   expect(contents).toContain("async/await simplifies making async calls");
 });
 
@@ -77,6 +85,8 @@ test("a specific note can be viewed", async () => {
     .get(`/api/notes/${noteToView.id}`)
     .expect(200)
     .expect("Content-Type", /application\/json/);
+
+  //const processedNoteToView = JSON.parse(JSON.stringify(noteToView))
 
   expect(resultNote.body).toEqual(noteToView);
 });
