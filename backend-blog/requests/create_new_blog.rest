@@ -1,0 +1,9 @@
+POST http:/mongodb+srv://mateuszkuruc:defenestracja12@cluster0.xuvl4j3.mongodb.net/testBlogApp?retryWrites=true&w=majority
+Content-Type: application/json
+
+{
+    title: "Blog1",
+    author: "Matiautor",
+    url: "bing.com",
+    likes: 4,
+}
