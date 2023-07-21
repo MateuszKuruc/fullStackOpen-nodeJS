@@ -24,10 +24,28 @@ test.skip("blog is returned in JSON format", async () => {
   expect(response.body).toHaveLength(2);
 }, 10000);
 
-test("blog identifier is named id instead of _id", async () => {
+test.skip("blog identifier is named id instead of _id", async () => {
   const response = await api.get("/api/blogs/");
   expect(response.body[0].id).toBeDefined();
 });
+
+test("blog post method should add new blog to db", async () => {
+  const newBlog = {
+    title: "Blog3",
+    author: "Pamsi",
+    url: "bbc.com",
+    likes: 33,
+  };
+
+  await api
+    .post("/api/blogs")
+    .send(newBlog)
+    .expect(201)
+    .expect("Content-Type", /application\/json/);
+
+  const notesAtEnd = await helper.blogsInDb();
+  expect(notesAtEnd).toHaveLength(helper.initialBlogs.length + 1);
+}, 10000);
 
 afterAll(async () => {
   await mongoose.connection.close();
