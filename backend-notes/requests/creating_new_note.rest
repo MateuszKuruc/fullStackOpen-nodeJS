@@ -3,3 +3,14 @@ POST http://localhost:3001/api/notes Content-Type: application/json
 {
 "important": true
 }
+
+###
+
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+    "username": "root",
+    "name": "Superuser",
+    "password": "salainen"
+}
