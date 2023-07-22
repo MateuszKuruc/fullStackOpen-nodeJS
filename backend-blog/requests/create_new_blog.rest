@@ -7,3 +7,16 @@ Content-Type: application/json
     url: "bing.com",
     likes: 4,
 }
+
+###
+
+PUT http://localhost:3003/api/blogs/64bbe1af1a2d663473159cca
+Content-Type: application/json
+
+{
+        "id": "64bbe1af1a2d663473159cca",
+        "title": "bunbuub",
+        "author": "klubuuuuuwetska",
+        "url": "nobobwwwwwwobo.com",
+        "likes": 324
+}

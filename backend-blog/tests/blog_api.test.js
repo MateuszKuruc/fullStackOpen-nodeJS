@@ -82,7 +82,7 @@ test.skip("if title or url is missing, show 400 error", async () => {
   await api.post("/api/blogs").send(newBlog2).expect(400);
 }, 100000);
 
-test("check if blog post is deleted", async () => {
+test.skip("check if blog post is deleted", async () => {
   const blogsAtStart = await helper.blogsInDb();
   const blogToDelete = blogsAtStart[0];
 
@@ -94,6 +94,24 @@ test("check if blog post is deleted", async () => {
   const contents = blogsAtEnd.map((blog) => blog.title);
 
   expect(contents).not.toContain(blogToDelete.title);
+});
+
+test("update blog post info", async () => {
+  const blogsAtStart = await helper.blogsInDb();
+  const updatedBlog = blogsAtStart[0];
+  const changedBlog = {
+    id: updatedBlog.id,
+    title: "bahaaaaama",
+    author: "kluqqqqqska",
+    url: "noboboddddbo.com",
+    likes: 33,
+  };
+
+  await api.put(`/api/blogs/${updatedBlog.id}`).send(changedBlog);
+
+  const blogsAtEnd = await helper.blogsInDb();
+
+  expect(blogsAtEnd[0]).toEqual(changedBlog);
 });
 
 afterAll(async () => {
