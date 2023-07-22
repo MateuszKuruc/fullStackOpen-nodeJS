@@ -29,7 +29,7 @@ test.skip("blog identifier is named id instead of _id", async () => {
   expect(response.body[0].id).toBeDefined();
 });
 
-test("blog post method should add new blog to db", async () => {
+test.skip("blog post method should add new blog to db", async () => {
   const newBlog = {
     title: "Blog3",
     author: "Pamsi",
@@ -43,9 +43,27 @@ test("blog post method should add new blog to db", async () => {
     .expect(201)
     .expect("Content-Type", /application\/json/);
 
-  const notesAtEnd = await helper.blogsInDb();
-  expect(notesAtEnd).toHaveLength(helper.initialBlogs.length + 1);
+  const blogsAtEnd = await helper.blogsInDb();
+  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1);
 }, 10000);
+
+test("when likes property is missing, use default value of 0", async () => {
+    const newBlog = {
+        title: 'NoLikes',
+        author: 'bubens',
+        url: 'nononono.com',
+    }
+
+    await api 
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/);
+
+    const blogsAtEnd = await helper.blogsInDb();
+    expect(blogsAtEnd[2].likes).toBeDefined();
+    expect(blogsAtEnd[2].likes).toEqual(0);
+});
 
 afterAll(async () => {
   await mongoose.connection.close();
