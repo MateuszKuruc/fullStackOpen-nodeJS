@@ -14,3 +14,14 @@ Content-Type: application/json
     "name": "Superuser",
     "password": "salainen"
 }
+
+###
+
+POST http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+    "content": "User id of the note creator is at the start sent along the request",
+    "important": true,
+    "userId": "21321321ddsf321312qewr3"
+}
