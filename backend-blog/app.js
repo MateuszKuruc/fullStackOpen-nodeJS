@@ -8,6 +8,7 @@ const blogsRouter = require("./controllers/blogs");
 require("express-async-errors");
 const usersRouter = require("./controllers/users");
 
+
 mongoose
   .connect(config.MONGODB_URI)
   .then(() => {
@@ -19,6 +20,8 @@ mongoose
 
 app.use(cors());
 app.use(express.json());
+
+app.use(middleware.errorHandler);
 
 app.use("/api/blogs", blogsRouter);
 app.use("/api/users", usersRouter);
