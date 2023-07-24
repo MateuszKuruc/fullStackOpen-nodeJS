@@ -27,7 +27,20 @@ POST http://localhost:3003/api/users
 Content-Type: application/json
 
 {
-    "username": "ma",
-    "name": "ba",
-    "password": "ma"
+    "username": "matislav",
+    "name": "barrrrrr",
+    "password": "mati123"
+}
+
+###
+
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title": "urtetetesadasdtetet",
+    "author": "sdsdsad",
+    "url": "sdasdsad.com",
+    "likes": 555,
+    "userId": "64bea3bb7c72ff1138a6fb00"
 }

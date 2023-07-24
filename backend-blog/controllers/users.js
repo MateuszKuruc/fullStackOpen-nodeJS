@@ -15,6 +15,11 @@ usersRouter.post("/", async (request, response) => {
         error: 'username or password not suitable'
     })
   }
+  if (!username) {
+    response.status(400).json({
+        error: 'username error'
+    })
+  }
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(password, saltRounds);
 
