@@ -10,9 +10,9 @@ POST http://localhost:3001/api/users
 Content-Type: application/json
 
 {
-    "username": "root",
-    "name": "Superuser",
-    "password": "salainen"
+    "username": "mati",
+    "name": "bubens",
+    "password": "mati123"
 }
 
 ###
@@ -32,6 +32,16 @@ POST http://localhost:3001/api/login
 Content-Type: application/json
 
 {
-    "username": "mluukkai",
-    "password": "salainen"
+    "username": "mati",
+    "password": "mati123"
+}
+
+###
+POST http://localhost:3001/api/notes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hdGkiLCJpZCI6IjY0YmUzYjM1NDkxYTA1NzAxZjkyOTY3NCIsImlhdCI6MTY5MDE5MzE1MH0.jrBDojGr7ILAOKDr3cL4tbHsTLudDM2pwwgVG6nqoMM
+
+{
+    "content": "single page apps use token authorization",
+    "important": true
 }
