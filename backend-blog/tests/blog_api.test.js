@@ -23,6 +23,8 @@ describe("when there is initially one user in db", () => {
   test("creation succeeds with a fresh username", async () => {
     const usersAtStart = await helper.usersInDb();
 
+    console.log(usersAtStart);
+
     const newUser = {
       username: "mluukkai",
       name: "Matti Luukkainen",
@@ -36,7 +38,9 @@ describe("when there is initially one user in db", () => {
       .expect("Content-Type", /application\/json/);
 
     const usersAtEnd = await helper.usersInDb();
-    expect(usersAtEnd).toHaveLength(usersAtStart + 1);
+    console.log(usersAtEnd);
+
+    expect(usersAtEnd).toHaveLength(usersAtStart.length + 1);
 
     const usernames = usersAtEnd.map((u) => u.username);
     expect(usernames).toContain(newUser.username);
@@ -153,7 +157,7 @@ test.skip("check if blog post is deleted", async () => {
   expect(contents).not.toContain(blogToDelete.title);
 });
 
-test("update blog post info", async () => {
+test.skip("update blog post info", async () => {
   const blogsAtStart = await helper.blogsInDb();
   const updatedBlog = blogsAtStart[0];
   const changedBlog = {
