@@ -28,3 +28,7 @@ userSchema.set("toJSON", {
     delete returnedObject.passwordHash;
   },
 });
+
+const User = mongoose.model("User", userSchema);
+
+module.exports = User;
