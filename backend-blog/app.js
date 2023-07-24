@@ -22,6 +22,7 @@ mongoose
 app.use(cors());
 app.use(express.json());
 
+app.use(middleware.tokenExtractor);
 app.use(middleware.errorHandler);
 
 app.use("/api/blogs", blogsRouter);
