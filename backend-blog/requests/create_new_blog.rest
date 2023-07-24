@@ -28,7 +28,7 @@ Content-Type: application/json
 
 {
     "username": "matislav",
-    "name": "barrrrrr",
+    "name": "bambini",
     "password": "mati123"
 }
 
@@ -38,9 +38,19 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "urtetetesadasdtetet",
-    "author": "sdsdsad",
-    "url": "sdasdsad.com",
-    "likes": 555,
-    "userId": "64bea3bb7c72ff1138a6fb00"
+    "title": "it",
+    "author": "stephen king",
+    "url": "ububub.com",
+    "likes": 666,
+    "userId": "64bea944d0675caf798838f7"
+}
+
+###
+
+POST http://localhost:3003/api/login
+Content-Type: application/json
+
+{
+    "username": "matislav",
+    "password": "mati123"
 }
