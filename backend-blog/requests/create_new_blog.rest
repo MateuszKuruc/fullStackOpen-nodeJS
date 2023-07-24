@@ -54,3 +54,16 @@ Content-Type: application/json
     "username": "matislav",
     "password": "mati123"
 }
+
+###
+
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hdGlzbGF2IiwiaWQiOiI2NGJlYTk0NGQwNjc1Y2FmNzk4ODM4ZjciLCJpYXQiOjE2OTAyMjQ2NTV9.gespUjdnzy580fEqfqqoAu4j9uY2aELA43miO-EiHbM
+
+{
+ "title": "Bayern signs Harry Kane!",
+ "author": "Fabrizio Romano",
+ "url": "twitter.com",
+ "likes": 999999
+}
