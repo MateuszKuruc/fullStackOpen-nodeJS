@@ -30,6 +30,15 @@ const App = () => {
       onChange={({ target }) => setUsername(target.value)}
       />
     </div>
+    <div>
+      password
+      <input onSubmit={handleLogin}
+      type='password'
+      value={password}
+      name="Password"
+      onChange={({ target }) => setPassword(target.value)}
+      />
+    </div>
       </form>
       <h2>blogs</h2>
       {blogs.map((blog) => (
