@@ -2,7 +2,8 @@ const blogsRouter = require("express").Router();
 const Blog = require("../models/blog");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const tokenExtractor = require('../utils/middleware');
+const tokenExtractor = require("../utils/middleware");
+const blog = require("../models/blog");
 
 blogsRouter.get("/", async (request, response) => {
   const blogs = await Blog.find({}).populate("user");
@@ -33,7 +34,27 @@ blogsRouter.post("/", async (request, response) => {
 });
 
 blogsRouter.delete("/:id", async (request, response) => {
-  await Blog.findByIdAndRemove(request.params.id);
+  const { id } = request.params;
+
+  const decodedToken = jwt.verify(request.token, process.env.SECRET);
+  if (!decodedToken.id || !request.token) {
+    return response.status(401).json({ errror: "token invalid" });
+  }
+  const user = await User.findById(decodedToken.id);
+  const blog = await Blog.findById(id);
+  console.log('DELETE THIS SHIT YOOOOO', blog.user.toString());
+  console.log('user', user.id);
+  console.log(blog.user.toString() === user.id.toString());
+ 
+  if (user.id.toString() !== blog.user.toString()) {
+    return response.status(401).json({ error: 'No authorization to do that'})
+  }
+  if (!user) {
+    response.status(400).json({ error: 'User does not exist' })
+  }
+
+  const blogToDelete = await Blog.findByIdAndRemove(id);
+  console.log('to delete', blogToDelete);
   response.status(204).end();
 });
 
