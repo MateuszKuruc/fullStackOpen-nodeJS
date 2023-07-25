@@ -15,6 +15,10 @@ const App = () => {
   const handleLogin = (event) => {
     event.preventDefault();
     console.log('logging in with', username, password);
+
+    
+    setUsername('');
+    setPassword('');
   }
 
   return (
@@ -39,6 +43,7 @@ const App = () => {
       onChange={({ target }) => setPassword(target.value)}
       />
     </div>
+    <button type="submit">Login</button>
       </form>
       <h2>blogs</h2>
       {blogs.map((blog) => (
