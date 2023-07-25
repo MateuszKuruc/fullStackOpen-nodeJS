@@ -42,19 +42,19 @@ blogsRouter.delete("/:id", async (request, response) => {
   }
   const user = await User.findById(decodedToken.id);
   const blog = await Blog.findById(id);
-  console.log('DELETE THIS SHIT YOOOOO', blog.user.toString());
-  console.log('user', user.id);
+  console.log("DELETE THIS SHIT YOOOOO", blog.user.toString());
+  console.log("user", user.id);
   console.log(blog.user.toString() === user.id.toString());
- 
+
   if (user.id.toString() !== blog.user.toString()) {
-    return response.status(401).json({ error: 'No authorization to do that'})
+    return response.status(401).json({ error: "No authorization to do that" });
   }
   if (!user) {
-    response.status(400).json({ error: 'User does not exist' })
+    response.status(400).json({ error: "User does not exist" });
   }
 
   const blogToDelete = await Blog.findByIdAndRemove(id);
-  console.log('to delete', blogToDelete);
+  console.log("to delete", blogToDelete);
   response.status(204).end();
 });
 

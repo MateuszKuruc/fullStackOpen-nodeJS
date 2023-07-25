@@ -5,7 +5,7 @@ const tokenExtractor = (request, response, next) => {
   if (authorization && authorization.startsWith("Bearer ")) {
     request.token = authorization.substring(7);
   }
-  next()
+  next();
 };
 
 const requestLogger = (request, response, next) => {
@@ -43,4 +43,5 @@ module.exports = {
   unknownEndpoint,
   errorHandler,
   tokenExtractor,
+  userExtractor,
 };
