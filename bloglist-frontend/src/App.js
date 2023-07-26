@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Blog from "./components/Blog";
 import blogService from "./services/blogs";
 import loginService from "./services/login";
+import Message from "./components/Message";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -11,6 +12,8 @@ const App = () => {
   const [title, setTitle] = useState([]);
   const [author, setAuthor] = useState([]);
   const [url, setUrl] = useState([]);
+  const [message, setMessage] = useState('testmessage1');
+  const [errorMessage, setErrorMessage] = useState('testmessage2');
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -47,6 +50,7 @@ const App = () => {
   const loginForm = () => (
     <form onSubmit={handleLogin}>
       <h1>Login</h1>
+      <Message message={message} />
       <div>
         username
         <input
@@ -131,9 +135,9 @@ const App = () => {
 
     const newBlog = await blogService.create(blogObject);
     setBlogs(blogs.concat(newBlog));
-    setTitle('');
-    setAuthor('');
-    setUrl('');
+    setTitle("");
+    setAuthor("");
+    setUrl("");
   };
 
   return (
