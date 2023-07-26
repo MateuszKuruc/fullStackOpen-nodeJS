@@ -34,6 +34,7 @@ const App = () => {
       });
 
       window.localStorage.setItem("loggedBlogUser", JSON.stringify(user));
+      blogService.setToken(user.id);
       setUser(user);
       setUsername("");
       setPassword("");
@@ -121,6 +122,7 @@ const App = () => {
       author,
       url,
     };
+
   };
 
   return (
