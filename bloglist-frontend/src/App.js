@@ -13,8 +13,8 @@ const App = () => {
   const [title, setTitle] = useState([]);
   const [author, setAuthor] = useState([]);
   const [url, setUrl] = useState([]);
-  const [message, setMessage] = useState('testmessage1');
-  const [errorMessage, setErrorMessage] = useState('testmessage2');
+  const [message, setMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -155,6 +155,10 @@ const App = () => {
     setTitle("");
     setAuthor("");
     setUrl("");
+    setMessage(`a new blog '${newBlog.title}' by ${newBlog.author} was added`)
+    setTimeout(() => {
+      setMessage(null)
+    }, 3000);
   };
 
   return (
