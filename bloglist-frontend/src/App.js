@@ -78,6 +78,9 @@ const App = () => {
   return (
     <div>
       {user === null && loginForm()}
+      {user && <div>
+        <p><i>{user.name} logged in</i></p>
+        </div>}
       {user !== null && displayBlog()}
     </div>
   );
