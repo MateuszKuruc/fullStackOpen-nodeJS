@@ -8,6 +8,9 @@ const App = () => {
   const [username, setUsername] = useState([]);
   const [password, setPassword] = useState([]);
   const [user, setUser] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [author, setAuthor] = useState(null);
+  const [url, setUrl] = useState(null);
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -79,6 +82,34 @@ const App = () => {
     window.localStorage.removeItem("loggedBlogUser");
     setUser(null);
   };
+
+  const newBlogForm = () => (
+    <div>
+      <h1>create new blog</h1>
+      <form onSubmit={handleNewBlog}>
+        <input
+          type="text"
+          value={title}
+          name="Title"
+          onChange={({ target }) => setTitle(target.value)}
+        />
+        <input
+          type="text"
+          value={author}
+          name="Author"
+          onChange={({ target }) => setAuthor(target.value)}
+        />
+        <input
+          type="text"
+          value={url}
+          name="url"
+          onChange={({ target }) => setUrl(target.value)}
+        />
+      </form>
+    </div>
+  );
+
+  const handleNewBlog = () => {};
 
   return (
     <div>
