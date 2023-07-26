@@ -14,7 +14,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBlogUser');
+    const loggedUserJSON = window.localStorage.getItem("loggedBlogUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
@@ -76,17 +76,21 @@ const App = () => {
   );
 
   const handleLogout = () => {
-    window.localStorage.removeItem('loggedBlogUser');
+    window.localStorage.removeItem("loggedBlogUser");
     setUser(null);
-  }
+  };
 
   return (
     <div>
       {user === null && loginForm()}
-      {user && <div>
-        <p><i>{user.name} logged in</i><button onClick={handleLogout}>logout</button></p>
-        
-        </div>}
+      {user && (
+        <div>
+          <p>
+            <i>{user.name} logged in</i>
+            <button onClick={handleLogout}>logout</button>
+          </p>
+        </div>
+      )}
       {user !== null && displayBlog()}
     </div>
   );
