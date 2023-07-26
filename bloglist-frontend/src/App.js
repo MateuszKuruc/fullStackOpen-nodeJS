@@ -8,9 +8,9 @@ const App = () => {
   const [username, setUsername] = useState([]);
   const [password, setPassword] = useState([]);
   const [user, setUser] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [author, setAuthor] = useState(null);
-  const [url, setUrl] = useState(null);
+  const [title, setTitle] = useState([]);
+  const [author, setAuthor] = useState([]);
+  const [url, setUrl] = useState([]);
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -21,7 +21,7 @@ const App = () => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       setUser(user);
-      blogService.setToken(user.token)
+      blogService.setToken(user.token);
     }
   }, []);
 
@@ -90,28 +90,33 @@ const App = () => {
       <h1>create new blog</h1>
       <form onSubmit={addBlog}>
         <div>
+          Title:
           <input
             type="text"
             value={title}
             name="Title"
             onChange={({ target }) => setTitle(target.value)}
           />
-          <input
-            type="text"
-            value={author}
-            name="Author"
-            onChange={({ target }) => setAuthor(target.value)}
-          />
-          <input
-            type="text"
-            value={url}
-            name="url"
-            onChange={({ target }) => setUrl(target.value)}
-          />
+          <div>
+            Author:
+            <input
+              type="text"
+              value={author}
+              name="Author"
+              onChange={({ target }) => setAuthor(target.value)}
+            />
+          </div>
+          <div>
+            Url:
+            <input
+              type="text"
+              value={url}
+              name="url"
+              onChange={({ target }) => setUrl(target.value)}
+            />
+          </div>
         </div>
-        <button type="submit">
-          create
-        </button>
+        <button type="submit">create</button>
       </form>
     </div>
   );
@@ -124,6 +129,8 @@ const App = () => {
       url,
     };
 
+    const newBlog = await blogService.create(blogObject);
+    setBlogs(blogs.concat(newBlog));
   };
 
   return (
@@ -138,6 +145,7 @@ const App = () => {
         </div>
       )}
       {user !== null && displayBlog()}
+      {user !== null && blogForm()}
     </div>
   );
 };
