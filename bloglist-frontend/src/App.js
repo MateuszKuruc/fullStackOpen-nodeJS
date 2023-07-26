@@ -83,33 +83,45 @@ const App = () => {
     setUser(null);
   };
 
-  const newBlogForm = () => (
+  const blogForm = () => (
     <div>
       <h1>create new blog</h1>
-      <form onSubmit={handleNewBlog}>
-        <input
-          type="text"
-          value={title}
-          name="Title"
-          onChange={({ target }) => setTitle(target.value)}
-        />
-        <input
-          type="text"
-          value={author}
-          name="Author"
-          onChange={({ target }) => setAuthor(target.value)}
-        />
-        <input
-          type="text"
-          value={url}
-          name="url"
-          onChange={({ target }) => setUrl(target.value)}
-        />
+      <form onSubmit={addBlog}>
+        <div>
+          <input
+            type="text"
+            value={title}
+            name="Title"
+            onChange={({ target }) => setTitle(target.value)}
+          />
+          <input
+            type="text"
+            value={author}
+            name="Author"
+            onChange={({ target }) => setAuthor(target.value)}
+          />
+          <input
+            type="text"
+            value={url}
+            name="url"
+            onChange={({ target }) => setUrl(target.value)}
+          />
+        </div>
+        <button type="submit">
+          create
+        </button>
       </form>
     </div>
   );
 
-  const handleNewBlog = () => {};
+  const addBlog = async (event) => {
+    event.preventDefault();
+    const blogObject = {
+      title,
+      author,
+      url,
+    };
+  };
 
   return (
     <div>
