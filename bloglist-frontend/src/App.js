@@ -131,6 +131,9 @@ const App = () => {
 
     const newBlog = await blogService.create(blogObject);
     setBlogs(blogs.concat(newBlog));
+    setTitle('');
+    setAuthor('');
+    setUrl('');
   };
 
   return (
