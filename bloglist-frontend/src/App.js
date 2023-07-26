@@ -43,8 +43,18 @@ const App = () => {
       setUser(user);
       setUsername("");
       setPassword("");
+      setErrorMessage(null)
+      setMessage(`${user.name} logged in`);
+      setTimeout(() => {
+        setMessage(null)
+      }, 3000);
     } catch (exception) {
       console.log("error", exception);
+      setMessage(null)
+      setErrorMessage('Wrong credentials!')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 3000);
     }
   };
 
@@ -79,7 +89,7 @@ const App = () => {
   const displayBlog = () => (
     <div>
       <h2>blogs</h2>
-      <Message message="message" />
+      <Message message={message} />
       <ErrorMessage message={errorMessage} />
       {blogs.map((blog) => (
         <Blog key={blog.id} blog={blog} />
@@ -89,7 +99,11 @@ const App = () => {
 
   const handleLogout = () => {
     window.localStorage.removeItem("loggedBlogUser");
+    setMessage(`${user.name} logged out`);
     setUser(null);
+    setTimeout(() => {
+      setMessage(null);
+    }, 3000);
   };
 
   const blogForm = () => (
