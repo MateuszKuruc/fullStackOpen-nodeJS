@@ -4,6 +4,7 @@ import blogService from "./services/blogs";
 import loginService from "./services/login";
 import Message from "./components/Message";
 import ErrorMessage from "./components/ErrorMessage";
+import LoginForm from "./components/LoginForm";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -15,6 +16,7 @@ const App = () => {
   const [url, setUrl] = useState([]);
   const [message, setMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [loginVisible, setLoginVisible] = useState(false);
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -43,54 +45,54 @@ const App = () => {
       setUser(user);
       setUsername("");
       setPassword("");
-      setErrorMessage(null)
+      setErrorMessage(null);
       setMessage(`${user.name} logged in`);
+      console.log('user logged in, should see message');
       setTimeout(() => {
-        setMessage(null)
+        setMessage(null);
       }, 3000);
     } catch (exception) {
       console.log("error", exception);
-      setMessage(null)
-      setErrorMessage('Wrong credentials!')
+      setMessage(null);
+      setErrorMessage("Wrong credentials!");
       setTimeout(() => {
-        setErrorMessage(null)
+        setErrorMessage(null);
       }, 3000);
     }
   };
 
-  const loginForm = () => (
-    <form onSubmit={handleLogin}>
-      <h1>Login</h1>
-      <Message message={message} />
-      <ErrorMessage message={errorMessage} />
+  const loginForm = () => {
+    const hideWhenVisible = { display: loginVisible ? "none" : "" };
+    const showWhenVisible = { display: loginVisible ? "" : "none" };
+
+    return (
       <div>
-        username
-        <input
-          type="text"
-          value={username}
-          name="Username"
-          onChange={({ target }) => setUsername(target.value)}
-        />
+        <div style={hideWhenVisible}>
+          <button onClick={() => setLoginVisible(true)}>log in</button>
+          {/* <Message message={message} />
+          <ErrorMessage errorMessage={errorMessage} /> */}
+        </div>
+        <div style={showWhenVisible}>
+          <LoginForm
+            message={message}
+            error={errorMessage}
+            username={username}
+            password={password}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            handleSubmit={handleLogin}
+          />
+          <button onClick={() => setLoginVisible(false)}>cancel</button>
+        </div>
       </div>
-      <div>
-        password
-        <input
-          onSubmit={handleLogin}
-          type="password"
-          value={password}
-          name="Password"
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
-  );
+    );
+  };
 
   const displayBlog = () => (
     <div>
       <h2>blogs</h2>
       <Message message={message} />
-      <ErrorMessage message={errorMessage} />
+      <ErrorMessage error={errorMessage} />
       {blogs.map((blog) => (
         <Blog key={blog.id} blog={blog} />
       ))}
@@ -155,9 +157,9 @@ const App = () => {
     setTitle("");
     setAuthor("");
     setUrl("");
-    setMessage(`a new blog '${newBlog.title}' by ${newBlog.author} was added`)
+    setMessage(`a new blog '${newBlog.title}' by ${newBlog.author} was added`);
     setTimeout(() => {
-      setMessage(null)
+      setMessage(null);
     }, 3000);
   };
 
@@ -167,6 +169,7 @@ const App = () => {
       {user && (
         <div>
           <p>
+            {/* <Message message={message} /> */}
             <i>{user.name} logged in</i>
             <button onClick={handleLogout}>logout</button>
           </p>

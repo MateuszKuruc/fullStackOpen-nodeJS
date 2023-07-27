@@ -1,11 +1,11 @@
-const ErrorMessage = ({ message }) => {
-  if (message === null) {
+const errorMessage = ({ error }) => {
+  if (error === null) {
     return null;
   }
 
-  if (message !== null) {
-    return <div className="error">{message}</div>;
+  if (error !== null) {
+    return <div className="error">{error}</div>;
   }
 };
 
-export default ErrorMessage;
+export default errorMessage;
