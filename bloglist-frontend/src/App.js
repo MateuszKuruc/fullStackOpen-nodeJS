@@ -6,6 +6,7 @@ import Message from "./components/Message";
 import ErrorMessage from "./components/ErrorMessage";
 import LoginForm from "./components/LoginForm";
 import Togglable from "./components/Togglable";
+import BlogForm from "./components/BlogForm";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -17,7 +18,6 @@ const App = () => {
   const [url, setUrl] = useState([]);
   const [message, setMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [loginVisible, setLoginVisible] = useState(false);
 
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
@@ -159,7 +159,19 @@ const App = () => {
         </div>
       )}
       {user !== null && displayBlog()}
-      {user !== null && blogForm()}
+      {user && 
+      <Togglable buttonLabel='create new blog'>
+        <BlogForm 
+        title={title}
+        author={author}
+        url={url}
+        handleTitleChange={({ target }) => setTitle(target.value)}
+        handleAuthorChange={({ target }) => setAuthor(target.value)}
+        handleUrlChange={({ target }) => setUrl(target.value)}
+        handleSubmit={addBlog}
+        />
+      </Togglable>
+      }
     </div>
   );
 };
