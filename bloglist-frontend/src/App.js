@@ -12,10 +12,8 @@ const App = () => {
   const [blogs, setBlogs] = useState([]);
   const [username, setUsername] = useState([]);
   const [password, setPassword] = useState([]);
+
   const [user, setUser] = useState(null);
-  // const [title, setTitle] = useState([]);
-  // const [author, setAuthor] = useState([]);
-  // const [url, setUrl] = useState([]);
   const [message, setMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -86,25 +84,6 @@ const App = () => {
       setBlogs(blogs.concat(returnedBlog))
     })
   }
-
-  // const addBlog = async (event) => {
-  //   event.preventDefault();
-  //   const blogObject = {
-  //     title,
-  //     author,
-  //     url,
-  //   };
-
-  //   const newBlog = await blogService.create(blogObject);
-  //   setBlogs(blogs.concat(newBlog));
-  //   setTitle("");
-  //   setAuthor("");
-  //   setUrl("");
-  //   setMessage(`a new blog '${newBlog.title}' by ${newBlog.author} was added`);
-  //   setTimeout(() => {
-  //     setMessage(null);
-  //   }, 3000);
-  // };
 
   return (
     <div>
