@@ -10,8 +10,12 @@ const blogStyle = {
   return (
     <div style={blogStyle}>
       <div>
-        {blog.title} {blog.author}
+        {blog.title} {blog.author} 
+        <button>view</button>
       </div>
+      url: {blog.url}
+      likes: {blog.likes}
+      user: {blog.user.username} 
     </div>
   );
 };
