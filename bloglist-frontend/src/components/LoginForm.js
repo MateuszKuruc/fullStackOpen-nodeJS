@@ -6,16 +6,11 @@ const LoginForm = ({
   handleUsernameChange,
   handlePasswordChange,
   username,
-  password,
-  message,
-  error
+  password
 }) => {
   return (
     <div>
       <h2>Login</h2>
-      <Message message={message} />
-      <ErrorMessage error={error} />
-
       <form onSubmit={handleSubmit}>
         <div>
           username

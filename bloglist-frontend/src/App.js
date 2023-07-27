@@ -5,6 +5,7 @@ import loginService from "./services/login";
 import Message from "./components/Message";
 import ErrorMessage from "./components/ErrorMessage";
 import LoginForm from "./components/LoginForm";
+import Togglable from "./components/Togglable";
 
 const App = () => {
   const [blogs, setBlogs] = useState([]);
@@ -47,7 +48,6 @@ const App = () => {
       setPassword("");
       setErrorMessage(null);
       setMessage(`${user.name} logged in`);
-      console.log('user logged in, should see message');
       setTimeout(() => {
         setMessage(null);
       }, 3000);
@@ -61,38 +61,11 @@ const App = () => {
     }
   };
 
-  const loginForm = () => {
-    const hideWhenVisible = { display: loginVisible ? "none" : "" };
-    const showWhenVisible = { display: loginVisible ? "" : "none" };
-
-    return (
-      <div>
-        <div style={hideWhenVisible}>
-          <button onClick={() => setLoginVisible(true)}>log in</button>
-          {/* <Message message={message} />
-          <ErrorMessage errorMessage={errorMessage} /> */}
-        </div>
-        <div style={showWhenVisible}>
-          <LoginForm
-            message={message}
-            error={errorMessage}
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
-          />
-          <button onClick={() => setLoginVisible(false)}>cancel</button>
-        </div>
-      </div>
-    );
-  };
-
   const displayBlog = () => (
     <div>
       <h2>blogs</h2>
-      <Message message={message} />
-      <ErrorMessage error={errorMessage} />
+      {/* <Message message={message} />
+      <ErrorMessage error={errorMessage} /> */}
       {blogs.map((blog) => (
         <Blog key={blog.id} blog={blog} />
       ))}
@@ -165,11 +138,23 @@ const App = () => {
 
   return (
     <div>
-      {user === null && loginForm()}
+      <Message message={message} />
+      <ErrorMessage error={errorMessage} />
+      {user === null &&
+      <Togglable buttonLabel='logineiro'>
+        <LoginForm 
+         message={message}
+         error={errorMessage}
+         username={username}
+         password={password}
+         handleUsernameChange={({ target }) => setUsername(target.value)}
+         handlePasswordChange={({ target }) => setPassword(target.value)}
+         handleSubmit={handleLogin}
+        />
+      </Togglable>}
       {user && (
         <div>
           <p>
-            {/* <Message message={message} /> */}
             <i>{user.name} logged in</i>
             <button onClick={handleLogout}>logout</button>
           </p>
