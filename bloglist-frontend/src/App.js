@@ -17,8 +17,6 @@ const App = () => {
   const [message, setMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
-console.log(blogs);
-
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
   }, []);
@@ -61,14 +59,15 @@ console.log(blogs);
     }
   };
 
-  const displayBlog = () => (
+  const displayBlog = () => {
+     return (
     <div>
       <h2>blogs</h2>
       {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} />
+        <Blog key={blog.id} blog={blog} user={user}/>
       ))}
     </div>
-  );
+)};
 
   const handleLogout = () => {
     window.localStorage.removeItem("loggedBlogUser");
@@ -82,7 +81,7 @@ console.log(blogs);
   const addBlog = (blogObject) => {
     blogService.create(blogObject).then((returnedBlog) => {
       setBlogs(blogs.concat(returnedBlog));
-      setMessage(`${blogObject.title} blog by ${blogObject.author} created`)
+      setMessage(`'${blogObject.title}' blog by ${blogObject.author} created`)
       setTimeout(() => {
         setMessage(null);
       }, 3000);
