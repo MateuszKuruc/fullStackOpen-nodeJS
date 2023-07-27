@@ -17,11 +17,15 @@ const App = () => {
   const [message, setMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
+  console.log("blogs:", blogs);
+
   useEffect(() => {
     blogService.getAll().then((blogs) => setBlogs(blogs));
+    console.log("use effect1");
   }, []);
 
   useEffect(() => {
+    console.log("use effect2");
     const loggedUserJSON = window.localStorage.getItem("loggedBlogUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
@@ -59,16 +63,6 @@ const App = () => {
     }
   };
 
-  const displayBlog = () => {
-     return (
-    <div>
-      <h2>blogs</h2>
-      {blogs.map((blog) => (
-        <Blog key={blog.id} blog={blog} user={user}/>
-      ))}
-    </div>
-)};
-
   const handleLogout = () => {
     window.localStorage.removeItem("loggedBlogUser");
     setMessage(`${user.name} logged out`);
@@ -81,11 +75,24 @@ const App = () => {
   const addBlog = (blogObject) => {
     blogService.create(blogObject).then((returnedBlog) => {
       setBlogs(blogs.concat(returnedBlog));
-      setMessage(`'${blogObject.title}' blog by ${blogObject.author} created`)
+      setMessage(`'${blogObject.title}' blog by ${blogObject.author} created`);
       setTimeout(() => {
         setMessage(null);
       }, 3000);
     });
+  };
+
+  const handleLikes = (updatedObject) => {
+    blogService
+      .update(updatedObject)
+      .then((returnedBlog) => {
+        setBlogs(blogs.concat(returnedBlog));
+        setMessage(`'${updatedObject.title}' blog's like added!`);
+        setTimeout(() => {
+          setMessage(null);
+        }, 3000);
+      })
+      .catch((error) => console.log(error.response.data));
   };
 
   return (
@@ -111,7 +118,19 @@ const App = () => {
           </p>
         </div>
       )}
-      {user !== null && displayBlog()}
+      {user && (
+        <div>
+          <h2>blogs</h2>
+          {blogs.map((blog) => (
+            <Blog
+              key={blog.id}
+              blog={blog}
+              user={user}
+              handleLikes={handleLikes}
+            />
+          ))}
+        </div>
+      )}
       {user && (
         <Togglable buttonLabel="create new blog">
           <BlogForm createBlog={addBlog} />
