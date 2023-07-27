@@ -10,7 +10,6 @@ const Blog = ({ blog, user, handleLikes }) => {
   };
 
   const [details, setDetails] = useState(false);
-  // const [update, setUpdate] = useState([])
 
   const detailsShown = { display: details ? "" : "none" };
   const toggleDetails = () => {
@@ -24,15 +23,15 @@ const Blog = ({ blog, user, handleLikes }) => {
       author: blog.author,
       title: blog.title,
       url: blog.url,
-      id: blog.id
-    })
-  }
+      id: blog.id,
+    });
+  };
 
   return (
     <div style={blogStyle}>
       <div>
         {blog.title} {blog.author}
-        <button onClick={toggleDetails}>{details ? 'hide' : 'view'}</button>
+        <button onClick={toggleDetails}>{details ? "hide" : "view"}</button>
       </div>
       <div style={detailsShown}>
         <div>url: {blog.url}</div>
