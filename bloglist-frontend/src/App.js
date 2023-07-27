@@ -143,8 +143,6 @@ const App = () => {
       {user === null &&
       <Togglable buttonLabel='logineiro'>
         <LoginForm 
-         message={message}
-         error={errorMessage}
          username={username}
          password={password}
          handleUsernameChange={({ target }) => setUsername(target.value)}
