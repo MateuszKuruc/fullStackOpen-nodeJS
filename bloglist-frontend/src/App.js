@@ -78,27 +78,30 @@ const App = () => {
   };
 
   const addBlog = (blogObject) => {
-    blogService
-    .create(blogObject)
-    .then(returnedBlog => {
-      setBlogs(blogs.concat(returnedBlog))
-    })
-  }
+    blogService.create(blogObject).then((returnedBlog) => {
+      setBlogs(blogs.concat(returnedBlog));
+      setMessage(`${blogObject.title} blog by ${blogObject.author} created`)
+      setTimeout(() => {
+        setMessage(null);
+      }, 3000);
+    });
+  };
 
   return (
     <div>
       <Message message={message} />
       <ErrorMessage error={errorMessage} />
-      {user === null &&
-      <Togglable buttonLabel='logineiro'>
-        <LoginForm 
-         username={username}
-         password={password}
-         handleUsernameChange={({ target }) => setUsername(target.value)}
-         handlePasswordChange={({ target }) => setPassword(target.value)}
-         handleSubmit={handleLogin}
-        />
-      </Togglable>}
+      {user === null && (
+        <Togglable buttonLabel="logineiro">
+          <LoginForm
+            username={username}
+            password={password}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            handleSubmit={handleLogin}
+          />
+        </Togglable>
+      )}
       {user && (
         <div>
           <p>
@@ -108,24 +111,13 @@ const App = () => {
         </div>
       )}
       {user !== null && displayBlog()}
-      {user && 
-      <Togglable buttonLabel='create new blog'>
-        <BlogForm createBlog={addBlog}
-        // title={title}
-        // author={author}
-        // url={url}
-        // handleTitleChange={({ target }) => setTitle(target.value)}
-        // handleAuthorChange={({ target }) => setAuthor(target.value)}
-        // handleUrlChange={({ target }) => setUrl(target.value)}
-        // handleSubmit={addBlog}
-        
-        />
-      </Togglable>
-      }
+      {user && (
+        <Togglable buttonLabel="create new blog">
+          <BlogForm createBlog={addBlog} />
+        </Togglable>
+      )}
     </div>
   );
 };
 
 export default App;
-
-
