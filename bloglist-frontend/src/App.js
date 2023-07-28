@@ -85,7 +85,7 @@ const App = () => {
   const handleLikes = (updatedObject) => {
     blogService
       .update(updatedObject)
-      .then((returnedBlog) => {
+      .then(() => {
         // setBlogs(blogs.concat(returnedBlog));
         blogService.getAll().then((blogs) => setBlogs(blogs));
         // setMessage(`'${updatedObject.title}' blog's like added!`);
