@@ -29,10 +29,8 @@ const Blog = ({ blog, handleLikes, deleteBlog }) => {
 
   const removeBlog = () => {
     if (window.confirm(`Remove blog '${blog.title} by ${blog.author}?`))
-    deleteBlog(
-      blog
-    )
-  }
+      deleteBlog(blog);
+  };
 
   return (
     <div style={blogStyle}>
