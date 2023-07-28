@@ -3,8 +3,8 @@ import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import Blog from "./Blog";
 
-describe("component renders blog's title and author, but no url or likes", () => {
-  test("renders blog title", () => {
+describe("check Blog component", () => {
+  test("renders blog's title and author, but no url or likes", () => {
     const blog = {
       title: "test title",
       author: "test author",
@@ -20,5 +20,5 @@ describe("component renders blog's title and author, but no url or likes", () =>
 
     screen.debug();
   });
-});
 
+});
