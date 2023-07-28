@@ -1,6 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Blog from "./Blog";
 
 describe("check Blog component", () => {
@@ -21,4 +22,5 @@ describe("check Blog component", () => {
     screen.debug();
   });
 
+  test("renders blog url and like number when button clicked", () => {});
 });
