@@ -88,12 +88,14 @@ const App = () => {
       .then(() => {
         // setBlogs(blogs.concat(returnedBlog));
         blogService.getAll().then((blogs) => setBlogs(blogs));
-        // setMessage(`'${updatedObject.title}' blog's like added!`);
-        // setTimeout(() => {
-        //   setMessage(null);
-        // }, 3000);
       })
       .catch((error) => console.log(error.response.data));
+  };
+
+  const deleteBlog = (blogObject) => {
+    blogService.remove(blogObject).then(() => {
+      blogService.getAll().then((blogs) => setBlogs(blogs));
+    });
   };
 
   return (
@@ -125,7 +127,12 @@ const App = () => {
           {blogs
             .sort((a, b) => b.likes - a.likes)
             .map((blog) => (
-              <Blog key={blog.id} blog={blog} handleLikes={handleLikes} />
+              <Blog
+                key={blog.id}
+                blog={blog}
+                handleLikes={handleLikes}
+                deleteBlog={deleteBlog}
+              />
             ))}
         </div>
       )}
