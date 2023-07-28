@@ -88,10 +88,10 @@ const App = () => {
       .then((returnedBlog) => {
         // setBlogs(blogs.concat(returnedBlog));
         blogService.getAll().then((blogs) => setBlogs(blogs));
-        setMessage(`'${updatedObject.title}' blog's like added!`);
-        setTimeout(() => {
-          setMessage(null);
-        }, 3000);
+        // setMessage(`'${updatedObject.title}' blog's like added!`);
+        // setTimeout(() => {
+        //   setMessage(null);
+        // }, 3000);
       })
       .catch((error) => console.log(error.response.data));
   };
