@@ -5,14 +5,14 @@ import userEvent from "@testing-library/user-event";
 import Blog from "./Blog";
 
 describe("check Blog component", () => {
-  test("renders blog's title and author, but no url or likes", () => {
-    const blog = {
-      title: "test title",
-      author: "test author",
-      url: "test url",
-      likes: 333,
-    };
+  const blog = {
+    title: "test title",
+    author: "test author",
+    url: "test url",
+    likes: 333,
+  };
 
+  test("renders blog's title and author, but no url or likes", () => {
     const { container } = render(<Blog blog={blog} />);
     const displayedDiv = container.querySelector(".basicInfo");
     expect(displayedDiv).toHaveStyle("display: block");
@@ -22,5 +22,5 @@ describe("check Blog component", () => {
     screen.debug();
   });
 
-  test("renders blog url and like number when button clicked", () => {});
+  test("renders blog url and like number when button clicked", async () => {});
 });
