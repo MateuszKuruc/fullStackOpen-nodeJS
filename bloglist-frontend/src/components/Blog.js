@@ -9,7 +9,7 @@ const Blog = ({ blog, handleLikes }) => {
     marginBottom: 5,
   };
 
-  const [details, setDetails] = useState(false);
+  const [details, setDetails] = useState(true);
 
   const detailsShown = { display: details ? "" : "none" };
   const toggleDetails = () => {
