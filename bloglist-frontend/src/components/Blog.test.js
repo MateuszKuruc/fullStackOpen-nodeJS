@@ -24,8 +24,6 @@ describe("check Blog component", () => {
   });
 
   test("renders blog url and like number when button clicked", async () => {
-    render(<Blog blog={blog} />);
-
     const hiddenDiv = container.querySelector(".moreInfo");
 
     const user = userEvent.setup();
@@ -35,4 +33,6 @@ describe("check Blog component", () => {
 
     screen.debug();
   });
+
+  test("if the like button is clicked twice, event handler is called twice", async () => {});
 });
