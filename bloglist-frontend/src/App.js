@@ -1,103 +1,103 @@
-import { useState, useEffect, useRef } from "react";
-import Blog from "./components/Blog";
-import blogService from "./services/blogs";
-import loginService from "./services/login";
-import Message from "./components/Message";
-import ErrorMessage from "./components/ErrorMessage";
-import LoginForm from "./components/LoginForm";
-import Togglable from "./components/Togglable";
-import BlogForm from "./components/BlogForm";
+import { useState, useEffect, useRef } from 'react'
+import Blog from './components/Blog'
+import blogService from './services/blogs'
+import loginService from './services/login'
+import Message from './components/Message'
+import ErrorMessage from './components/ErrorMessage'
+import LoginForm from './components/LoginForm'
+import Togglable from './components/Togglable'
+import BlogForm from './components/BlogForm'
 
 const App = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [username, setUsername] = useState([]);
-  const [password, setPassword] = useState([]);
+  const [blogs, setBlogs] = useState([])
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
-  const [user, setUser] = useState(null);
-  const [message, setMessage] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [user, setUser] = useState(null)
+  const [message, setMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null)
 
- const blogFormRef = useRef();
-
-  useEffect(() => {
-    blogService.getAll().then((blogs) => setBlogs(blogs));
-    console.log("use effect1");
-  }, []);
+  const blogFormRef = useRef()
 
   useEffect(() => {
-    console.log("use effect2");
-    const loggedUserJSON = window.localStorage.getItem("loggedBlogUser");
+    blogService.getAll().then((blogs) => setBlogs(blogs))
+    console.log('use effect1')
+  }, [])
+
+  useEffect(() => {
+    console.log('use effect2')
+    const loggedUserJSON = window.localStorage.getItem('loggedBlogUser')
     if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON);
-      setUser(user);
-      blogService.setToken(user.token);
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+      blogService.setToken(user.token)
     }
-  }, []);
+  }, [])
 
   const handleLogin = async (event) => {
-    event.preventDefault();
+    event.preventDefault()
 
     try {
       const user = await loginService.login({
         username,
         password,
-      });
+      })
 
-      window.localStorage.setItem("loggedBlogUser", JSON.stringify(user));
-      blogService.setToken(user.token);
-      setUser(user);
-      setUsername("");
-      setPassword("");
-      setErrorMessage(null);
-      setMessage(`${user.name} logged in`);
+      window.localStorage.setItem('loggedBlogUser', JSON.stringify(user))
+      blogService.setToken(user.token)
+      setUser(user)
+      setUsername('')
+      setPassword('')
+      setErrorMessage(null)
+      setMessage(`${user.name} logged in`)
       setTimeout(() => {
-        setMessage(null);
-      }, 3000);
+        setMessage(null)
+      }, 3000)
     } catch (exception) {
-      console.log("error", exception);
-      setMessage(null);
-      setErrorMessage("Wrong credentials!");
+      console.log('error', exception)
+      setMessage(null)
+      setErrorMessage('Wrong credentials!')
       setTimeout(() => {
-        setErrorMessage(null);
-      }, 3000);
+        setErrorMessage(null)
+      }, 3000)
     }
-  };
+  }
 
   const handleLogout = () => {
-    window.localStorage.removeItem("loggedBlogUser");
-    setMessage(`${user.name} logged out`);
-    setUser(null);
+    window.localStorage.removeItem('loggedBlogUser')
+    setMessage(`${user.name} logged out`)
+    setUser(null)
     setTimeout(() => {
-      setMessage(null);
-    }, 3000);
-  };
+      setMessage(null)
+    }, 3000)
+  }
 
   const addBlog = (blogObject) => {
-    blogFormRef.current.toggleVisibility();
+    blogFormRef.current.toggleVisibility()
     blogService.create(blogObject).then((returnedBlog) => {
-      setBlogs(blogs.concat(returnedBlog));
-      setMessage(`'${blogObject.title}' blog by ${blogObject.author} created`);
+      setBlogs(blogs.concat(returnedBlog))
+      setMessage(`'${blogObject.title}' blog by ${blogObject.author} created`)
       setTimeout(() => {
-        setMessage(null);
-      }, 3000);
-    });
-  };
+        setMessage(null)
+      }, 3000)
+    })
+  }
 
   const handleLikes = (updatedObject) => {
     blogService
       .update(updatedObject)
       .then(() => {
         // setBlogs(blogs.concat(returnedBlog));
-        blogService.getAll().then((blogs) => setBlogs(blogs));
+        blogService.getAll().then((blogs) => setBlogs(blogs))
       })
-      .catch((error) => console.log(error.response.data));
-  };
+      .catch((error) => console.log(error.response.data))
+  }
 
   const deleteBlog = (blogObject) => {
     blogService.remove(blogObject).then(() => {
-      blogService.getAll().then((blogs) => setBlogs(blogs));
-    });
-  };
+      blogService.getAll().then((blogs) => setBlogs(blogs))
+    })
+  }
 
   return (
     <div>
@@ -143,7 +143,7 @@ const App = () => {
         </Togglable>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
