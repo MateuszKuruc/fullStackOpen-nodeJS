@@ -3,7 +3,7 @@ const usersRouter = require("express").Router();
 const User = require("../models/user");
 
 usersRouter.get("/", async (request, response) => {
-  const users = await User.find({}).populate('blogs', {
+  const users = await User.find({}).populate("blogs", {
     author: 1,
     title: 1,
     url: 1,
@@ -17,13 +17,13 @@ usersRouter.post("/", async (request, response) => {
 
   if (password.length < 3 || username.length < 3) {
     response.status(400).json({
-        error: 'username or password not suitable'
-    })
+      error: "username or password not suitable",
+    });
   }
   if (!username) {
     response.status(400).json({
-        error: 'username error'
-    })
+      error: "username error",
+    });
   }
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(password, saltRounds);
@@ -35,6 +35,12 @@ usersRouter.post("/", async (request, response) => {
   });
 
   const savedUser = await user.save();
+  savedUser.populate("blogs", {
+    author: 1,
+    title: 1,
+    url: 1,
+    likes: 1,
+  });
 
   response.status(201).json(savedUser);
 });
