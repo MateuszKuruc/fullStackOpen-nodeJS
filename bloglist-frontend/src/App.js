@@ -86,7 +86,8 @@ const App = () => {
     blogService
       .update(updatedObject)
       .then((returnedBlog) => {
-        setBlogs(blogs.concat(returnedBlog));
+        // setBlogs(blogs.concat(returnedBlog));
+        blogService.getAll().then((blogs) => setBlogs(blogs));
         setMessage(`'${updatedObject.title}' blog's like added!`);
         setTimeout(() => {
           setMessage(null);
@@ -121,14 +122,9 @@ const App = () => {
       {user && (
         <div>
           <h2>blogs</h2>
-          {blogs.map((blog) => (
-            <Blog
-              key={blog.id}
-              blog={blog}
-              user={user}
-              handleLikes={handleLikes}
-            />
-          ))}
+          {blogs.map((blog) => 
+            <Blog key={blog.id} blog={blog} handleLikes={handleLikes} />
+          )}
         </div>
       )}
       {user && (
