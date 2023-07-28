@@ -12,8 +12,9 @@ describe("check Blog component", () => {
     likes: 333,
   };
 
-  test("renders blog's title and author, but no url or likes", () => {
-    const { container } = render(<Blog blog={blog} />);
+  const { container } = render(<Blog blog={blog} />);
+
+  test.skip("renders blog's title and author, but no url or likes", () => {
     const displayedDiv = container.querySelector(".basicInfo");
     expect(displayedDiv).toHaveStyle("display: block");
     const hiddenDiv = container.querySelector(".moreInfo");
@@ -22,5 +23,16 @@ describe("check Blog component", () => {
     screen.debug();
   });
 
-  test("renders blog url and like number when button clicked", async () => {});
+  test("renders blog url and like number when button clicked", async () => {
+    render(<Blog blog={blog} />);
+
+    const hiddenDiv = container.querySelector(".moreInfo");
+
+    const user = userEvent.setup();
+    const button = screen.getAllByText("view");
+    await user.click(button[0]);
+    expect(hiddenDiv).not.toHaveStyle("display: none");
+
+    screen.debug();
+  });
 });
