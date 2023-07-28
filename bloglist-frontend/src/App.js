@@ -73,6 +73,7 @@ const App = () => {
   };
 
   const addBlog = (blogObject) => {
+    blogFormRef.current.toggleVisibility();
     blogService.create(blogObject).then((returnedBlog) => {
       setBlogs(blogs.concat(returnedBlog));
       setMessage(`'${blogObject.title}' blog by ${blogObject.author} created`);
