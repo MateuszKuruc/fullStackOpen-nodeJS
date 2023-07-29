@@ -7,6 +7,10 @@ const BlogForm = ({ createBlog }) => {
 
   const addBlog = (event) => {
     event.preventDefault();
+    if (title.length === 0 || author.length === 0 || url.length === 0) {
+      return;
+    }
+
     createBlog({
       title,
       author,
