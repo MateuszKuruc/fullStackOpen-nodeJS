@@ -5,9 +5,6 @@ import userEvent from "@testing-library/user-event";
 import Blog from "./Blog";
 
 describe("check Blog component", () => {
-  //   let container;
-  //   beforeEach(() => (container = render(<Blog blog={blog} />).container));
-
   const blog = {
     title: "test title",
     author: "test author",
