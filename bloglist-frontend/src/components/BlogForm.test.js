@@ -11,24 +11,26 @@ describe("check BlogForm component", () => {
     url: "url test1",
   };
   test("form calls the event handler with the right details when new blog is created", async () => {
-    const addBlog = jest.fn();
+    const createBlog = jest.fn();
+    const user = userEvent.setup();
 
-    render(<BlogForm createBlog={addBlog} />);
-    const submitButton = screen.getByText("save");
-    
+    render(<BlogForm createBlog={createBlog} />);
+
+    const titleInput = screen.getByPlaceholderText("enter title");
+    const authorInput = screen.getByPlaceholderText("enter author");
+    const urlInput = screen.getByPlaceholderText("enter url");
+
+    await user.type(titleInput, "title test1");
+    await user.type(authorInput, "author test1");
+    await user.type(urlInput, "url test1");
+
+    const submitButton = await screen.getByText("save");
+    fireEvent.click(submitButton);
+
     screen.debug();
+
+    expect(createBlog).toHaveBeenCalledWith(blog);
+    expect(createBlog).toHaveBeenCalled();
+    expect(createBlog.mock.calls).toHaveLength(1);
   });
 });
-
-// test("clicking the like button twice calls the handler twice", () => {
-//   const addLike = jest.fn();
-
-//   render(<Blog blog={blog} handleLikes={addLike} />);
-
-//   const likeButton = screen.getByText("like");
-
-//   fireEvent.click(likeButton);
-//   fireEvent.click(likeButton);
-
-//   expect(addLike.mock.calls).toHaveLength(2);
-// });
