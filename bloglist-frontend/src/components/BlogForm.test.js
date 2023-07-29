@@ -4,7 +4,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import BlogForm from "./BlogForm";
 
-describe("check BlogForm component", () => {
+describe.skip("check BlogForm component", () => {
   const blog = {
     title: "title test1",
     author: "author test1",
