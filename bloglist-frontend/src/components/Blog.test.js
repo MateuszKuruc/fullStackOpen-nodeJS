@@ -38,9 +38,9 @@ describe("check Blog component", () => {
   test("clicking the like button twice calls the handler twice", () => {
     const addLike = jest.fn();
 
-    const component = render(<Blog blog={blog} handleLikes={addLike} />);
+    render(<Blog blog={blog} handleLikes={addLike} />);
 
-    const likeButton = component.getByText("like");
+    const likeButton = screen.getByText("like");
 
     fireEvent.click(likeButton);
     fireEvent.click(likeButton);
