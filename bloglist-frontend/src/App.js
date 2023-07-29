@@ -87,7 +87,6 @@ const App = () => {
     blogService
       .update(updatedObject)
       .then(() => {
-        // setBlogs(blogs.concat(returnedBlog));
         blogService.getAll().then((blogs) => setBlogs(blogs));
       })
       .catch((error) => console.log(error.response.data));
