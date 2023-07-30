@@ -35,12 +35,6 @@ usersRouter.post("/", async (request, response) => {
   });
 
   const savedUser = await user.save();
-  savedUser.populate("blog", {
-    author: 1,
-    title: 1,
-    url: 1,
-    likes: 1,
-  });
 
   response.status(201).json(savedUser);
 });
