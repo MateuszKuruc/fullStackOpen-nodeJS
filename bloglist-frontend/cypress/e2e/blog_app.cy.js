@@ -66,6 +66,11 @@ describe("Blog app", function () {
         cy.get("#like-button").click();
         cy.contains("likes: 1");
       });
+
+      it("user can delete a blog", function () {
+        cy.contains("view").click();
+        cy.get("#delete-button").click();
+      });
     });
   });
 });
