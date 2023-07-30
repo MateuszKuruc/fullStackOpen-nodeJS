@@ -43,12 +43,29 @@ describe("Blog app", function () {
     beforeEach(function () {
       cy.login({ username: "mati", password: "mati123" });
     });
-    it("A blog can be created", function () {
+
+    it("a blog can be created", function () {
       cy.contains("create new blog").click();
       cy.get("#title").type("blog1");
       cy.get("#author").type("author1");
       cy.get("#url").type("url1");
       cy.get("#save-button").click();
+    });
+
+    describe("and a blog exists", function () {
+      beforeEach(function () {
+        cy.createNote({
+          title: "blog1",
+          author: "author1",
+          url: "url1",
+        });
+      });
+
+      it("user can like a blog", function () {
+        cy.contains("view").click();
+        cy.get("#like-button").click();
+        cy.contains("likes: 1");
+      });
     });
   });
 });
