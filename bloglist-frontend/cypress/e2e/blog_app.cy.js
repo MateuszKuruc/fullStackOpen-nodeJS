@@ -38,13 +38,17 @@ describe("Blog app", function () {
         .and("have.css", "border-style", "solid");
     });
   });
+
   describe("when logged in", function () {
     beforeEach(function () {
       cy.login({ username: "mati", password: "mati123" });
     });
-    it('A blog can be created', function() {
-      contains('create new blog').click();
-      get
-    })
+    it("A blog can be created", function () {
+      cy.contains("create new blog").click();
+      cy.get("#title").type("blog1");
+      cy.get("#author").type("author1");
+      cy.get("#url").type("url1");
+      cy.get("#save-button").click();
+    });
   });
 });
