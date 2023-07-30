@@ -103,7 +103,7 @@ const App = () => {
       <Message message={message} />
       <ErrorMessage error={errorMessage} />
       {user === null && (
-        <Togglable buttonLabel="logineiro">
+        <Togglable buttonLabel="login">
           <LoginForm
             username={username}
             password={password}

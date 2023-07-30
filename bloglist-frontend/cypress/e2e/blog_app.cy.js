@@ -11,14 +11,14 @@ describe("Blog app", function () {
   });
 
   it("login form is shown", function () {
-    cy.contains("logineiro").click();
+    cy.contains("login").click();
     cy.contains("username");
     cy.contains("password");
   });
 
   describe("login", function () {
     it("succeeds with correct credentials", function () {
-      cy.contains("logineiro").click();
+      cy.contains("login").click();
       cy.get("#username").type("mati");
       cy.get("#password").type("mati123");
       cy.get("#login-button").click();
@@ -27,5 +27,12 @@ describe("Blog app", function () {
     });
   });
 
-  it("fails with wrong credentials", function () {});
+  it("fails with wrong credentials", function () {
+    cy.contains("login").click();
+    cy.get("#username").type("mati");
+    cy.get("#password").type("wrong");
+    cy.get("#login-button").click();
+
+    cy.contains("Wrong credentials");
+  });
 });
