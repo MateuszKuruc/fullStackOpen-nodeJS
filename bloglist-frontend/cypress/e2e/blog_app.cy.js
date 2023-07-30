@@ -6,6 +6,7 @@ describe("Blog app", function () {
       username: "mati",
       password: "mati123",
     };
+    cy.request("POST", "http://localhost:3003/api/users/", user);
     cy.visit("http://localhost:3000");
   });
 
@@ -18,8 +19,11 @@ describe("Blog app", function () {
   describe("login", function () {
     it("succeeds with correct credentials", function () {
       cy.contains("logineiro").click();
-      cy.contains("enter username").type("mati");
-      cy.contains("enter password").type("mati123");
+      cy.get("#username").type("mati");
+      cy.get("#password").type("mati123");
+      cy.get("#login-button").click();
+
+      cy.contains("matislav logged in");
     });
   });
 
