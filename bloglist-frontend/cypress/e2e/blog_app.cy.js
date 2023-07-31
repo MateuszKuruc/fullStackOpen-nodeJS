@@ -71,6 +71,44 @@ describe("Blog app", function () {
         cy.contains("view").click();
         cy.get("#delete-button").click();
       });
+
+      it.only("blogs are ordered by likes number", function () {
+        cy.createNote({
+          title: "number2",
+          author: "runner up",
+          url: "2nd",
+        });
+        cy.createNote({
+          title: "blog with most likes",
+          author: "matislav",
+          url: "twitter.com",
+        });
+
+        cy.contains("blog with most likes")
+          .contains("view")
+          .click()
+          .parent()
+          .parent()
+          .find("button")
+          .contains("like")
+          .as("winner")
+          .click();
+
+        cy.contains("number2")
+          .contains("view")
+          .click()
+          .parent()
+          .parent()
+          .find("button")
+          .contains("like")
+          .as("second")
+          .click();
+
+        cy.get("@winner").click();
+
+        cy.get(".completeBlog").eq(0).should("contain", "blog with most likes");
+        cy.get(".completeBlog").eq(1).should("contain", "number2");
+      });
     });
   });
 });
