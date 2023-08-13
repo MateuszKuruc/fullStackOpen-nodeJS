@@ -10,8 +10,9 @@ import BlogForm from "./components/BlogForm";
 
 import { useDispatch } from "react-redux";
 
-const App = () => {
+import { createMessage, removeMessage } from "./reducers/messageReducer";
 
+const App = () => {
   const dispatch = useDispatch();
 
   const [blogs, setBlogs] = useState([]);
@@ -58,11 +59,11 @@ const App = () => {
       // setTimeout(() => {
       //   setMessage(null);
       // }, 3000);
-      dispatch
+      dispatch(createMessage(`${user.name} logged in`));
     } catch (exception) {
       console.log("error", exception);
       // setMessage(null);
-      dispatch
+      dispatch(removeMessage(""));
       setErrorMessage("Wrong credentials!");
       setTimeout(() => {
         setErrorMessage(null);
@@ -73,12 +74,12 @@ const App = () => {
   const handleLogout = () => {
     window.localStorage.removeItem("loggedBlogUser");
     // setMessage(`${user.name} logged out`);
-    dispatch
+    dispatch(createMessage(`${user.name} logged out`));
     setUser(null);
     // setTimeout(() => {
     //   setMessage(null);
     // }, 3000);
-    dispatch
+    dispatch(removeMessage(""));
   };
 
   const addBlog = (blogObject) => {
@@ -90,7 +91,7 @@ const App = () => {
       // setTimeout(() => {
       //   setMessage(null);
       // }, 3000);
-      dispatch
+      dispatch;
     });
   };
 
