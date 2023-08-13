@@ -1,4 +1,8 @@
+import { useSelector } from "react-redux";
+
 const Message = ({ message }) => {
+  const message = useSelector(state => state.message)
+
   if (message === null) {
     return null;
   }
