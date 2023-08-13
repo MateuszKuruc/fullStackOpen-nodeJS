@@ -60,6 +60,9 @@ const App = () => {
       //   setMessage(null);
       // }, 3000);
       dispatch(createMessage(`${user.name} logged in`));
+      setTimeout(() => {
+        dispatch(removeMessage(""));
+      }, 3000);
     } catch (exception) {
       console.log("error", exception);
       // setMessage(null);
