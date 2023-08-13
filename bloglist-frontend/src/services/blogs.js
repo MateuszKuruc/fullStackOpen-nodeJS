@@ -38,5 +38,4 @@ const remove = async (blogObject) => {
   return response.data;
 };
 
-
 export default { getAll, create, setToken, update, remove };

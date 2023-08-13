@@ -73,6 +73,7 @@ const App = () => {
   };
 
   const addBlog = (blogObject) => {
+    console.log("blog object", blogObject);
     blogFormRef.current.toggleVisibility();
     blogService.create(blogObject).then((returnedBlog) => {
       setBlogs(blogs.concat(returnedBlog));
