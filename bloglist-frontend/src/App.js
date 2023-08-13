@@ -8,13 +8,18 @@ import LoginForm from "./components/LoginForm";
 import Togglable from "./components/Togglable";
 import BlogForm from "./components/BlogForm";
 
+import { useDispatch } from "react-redux";
+
 const App = () => {
+
+  const dispatch = useDispatch();
+
   const [blogs, setBlogs] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [user, setUser] = useState(null);
-  const [message, setMessage] = useState(null);
+  // const [message, setMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const blogFormRef = useRef();
@@ -49,13 +54,15 @@ const App = () => {
       setUsername("");
       setPassword("");
       setErrorMessage(null);
-      setMessage(`${user.name} logged in`);
-      setTimeout(() => {
-        setMessage(null);
-      }, 3000);
+      // setMessage(`${user.name} logged in`);
+      // setTimeout(() => {
+      //   setMessage(null);
+      // }, 3000);
+      dispatch
     } catch (exception) {
       console.log("error", exception);
-      setMessage(null);
+      // setMessage(null);
+      dispatch
       setErrorMessage("Wrong credentials!");
       setTimeout(() => {
         setErrorMessage(null);
@@ -65,11 +72,13 @@ const App = () => {
 
   const handleLogout = () => {
     window.localStorage.removeItem("loggedBlogUser");
-    setMessage(`${user.name} logged out`);
+    // setMessage(`${user.name} logged out`);
+    dispatch
     setUser(null);
-    setTimeout(() => {
-      setMessage(null);
-    }, 3000);
+    // setTimeout(() => {
+    //   setMessage(null);
+    // }, 3000);
+    dispatch
   };
 
   const addBlog = (blogObject) => {
@@ -77,10 +86,11 @@ const App = () => {
     blogFormRef.current.toggleVisibility();
     blogService.create(blogObject).then((returnedBlog) => {
       setBlogs(blogs.concat(returnedBlog));
-      setMessage(`'${blogObject.title}' blog by ${blogObject.author} created`);
-      setTimeout(() => {
-        setMessage(null);
-      }, 3000);
+      // setMessage(`'${blogObject.title}' blog by ${blogObject.author} created`);
+      // setTimeout(() => {
+      //   setMessage(null);
+      // }, 3000);
+      dispatch
     });
   };
 
@@ -101,7 +111,8 @@ const App = () => {
 
   return (
     <div>
-      <Message message={message} />
+      {/* <Message message={message} /> */}
+      <Message />
       <ErrorMessage error={errorMessage} />
       {user === null && (
         <Togglable buttonLabel="login">
