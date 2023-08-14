@@ -10,7 +10,6 @@ import BlogForm from "./components/BlogForm";
 
 import { useDispatch } from "react-redux";
 
-import { createMessage, removeMessage } from "./reducers/messageReducer";
 import { setMessage } from "./reducers/messageReducer";
 
 const App = () => {
@@ -21,7 +20,6 @@ const App = () => {
   const [password, setPassword] = useState("");
 
   const [user, setUser] = useState(null);
-  // const [message, setMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
 
   const blogFormRef = useRef();
@@ -56,19 +54,9 @@ const App = () => {
       setUsername("");
       setPassword("");
       setErrorMessage(null);
-      // setMessage(`${user.name} logged in`);
-      // setTimeout(() => {
-      //   setMessage(null);
-      // }, 3000);
-      // dispatch(createMessage(`${user.name} logged in`));
-      // setTimeout(() => {
-      //   dispatch(removeMessage(""));
-      // }, 3000);
       dispatch(setMessage(`${user.name} logged in`, 3));
     } catch (exception) {
       console.log("error", exception);
-      // setMessage(null);
-      dispatch(removeMessage(""));
       setErrorMessage("Wrong credentials!");
       setTimeout(() => {
         setErrorMessage(null);
@@ -78,13 +66,8 @@ const App = () => {
 
   const handleLogout = () => {
     window.localStorage.removeItem("loggedBlogUser");
-    // setMessage(`${user.name} logged out`);
-    dispatch(createMessage(`${user.name} logged out`));
     setUser(null);
-    // setTimeout(() => {
-    //   setMessage(null);
-    // }, 3000);
-    dispatch(removeMessage(""));
+    dispatch(setMessage(`${user.name} logged out`, 3));
   };
 
   const addBlog = (blogObject) => {
@@ -92,11 +75,12 @@ const App = () => {
     blogFormRef.current.toggleVisibility();
     blogService.create(blogObject).then((returnedBlog) => {
       setBlogs(blogs.concat(returnedBlog));
-      // setMessage(`'${blogObject.title}' blog by ${blogObject.author} created`);
-      // setTimeout(() => {
-      //   setMessage(null);
-      // }, 3000);
-      dispatch;
+      dispatch(
+        setMessage(
+          `'${blogObject.title}' blog by ${blogObject.author} created`,
+          3
+        )
+      );
     });
   };
 
@@ -117,7 +101,6 @@ const App = () => {
 
   return (
     <div>
-      {/* <Message message={message} /> */}
       <Message />
       <ErrorMessage error={errorMessage} />
       {user === null && (
