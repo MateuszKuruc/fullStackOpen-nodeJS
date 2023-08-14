@@ -23,11 +23,6 @@ const App = () => {
   const blogList = [...blogs];
   console.log("list", blogList);
 
-  // useEffect(() => {
-  //   const blogList = [...blogs];
-  //   console.log("list", blogList);
-  // }, [blogs]);
-
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");
@@ -38,14 +33,9 @@ const App = () => {
 
   useEffect(() => {
     dispatch(initializeBlogs());
-
-    // blogService.getAll().then((blogs) => setBlogs(blogs));
-    // console.log("use effect1");
-    // console.log(blogs);
   }, [dispatch]);
 
   useEffect(() => {
-    // console.log("use effect2");
     const loggedUserJSON = window.localStorage.getItem("loggedBlogUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
@@ -81,35 +71,6 @@ const App = () => {
     dispatch(setMessage(`${user.name} logged out`, 3));
   };
 
-  // const addBlog = (blogObject) => {
-  //   console.log("blog object", blogObject);
-  //   blogFormRef.current.toggleVisibility();
-  //   blogService.create(blogObject).then((returnedBlog) => {
-  //     setBlogs(blogs.concat(returnedBlog));
-  //     dispatch(
-  //       setMessage(
-  //         `'${blogObject.title}' blog by ${blogObject.author} created`,
-  //         3
-  //       )
-  //     );
-  //   });
-  // };
-
-  // const handleLikes = (updatedObject) => {
-  //   blogService
-  //     .update(updatedObject)
-  //     .then(() => {
-  //       blogService.getAll().then((blogs) => setBlogs(blogs));
-  //     })
-  //     .catch((error) => console.log(error.response.data));
-  // };
-
-  // const deleteBlog = (blogObject) => {
-  //   blogService.remove(blogObject).then(() => {
-  //     blogService.getAll().then((blogs) => setBlogs(blogs));
-  //   });
-  // };
-
   return (
     <div>
       <Message />
@@ -139,13 +100,7 @@ const App = () => {
           {blogList
             .sort((a, b) => b.likes - a.likes)
             .map((blog) => (
-              <Blog
-                key={blog.id}
-                blog={blog}
-                // handleLikes={handleLikes}
-                // deleteBlog={deleteBlog}
-                user={user}
-              />
+              <Blog key={blog.id} blog={blog} user={user} />
             ))}
         </div>
       )}
