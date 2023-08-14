@@ -17,16 +17,19 @@ import { initializeBlogs } from "./reducers/blogReducer";
 import { useSelector } from "react-redux";
 
 const App = () => {
-  // continue with below:
-
   const blogs = useSelector((state) => state.blogs);
+
   console.log(blogs);
   const blogList = [...blogs];
   console.log("list", blogList);
 
+  // useEffect(() => {
+  //   const blogList = [...blogs];
+  //   console.log("list", blogList);
+  // }, [blogs]);
+
   const dispatch = useDispatch();
 
-  // const [blogs, setBlogs] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);

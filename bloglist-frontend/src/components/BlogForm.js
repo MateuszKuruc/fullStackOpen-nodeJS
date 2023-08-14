@@ -1,21 +1,45 @@
 import { useState } from "react";
+import { createBlog } from "../reducers/blogReducer";
+import { useDispatch } from "react-redux";
+import { setMessage } from "../reducers/messageReducer";
 
-const BlogForm = ({ createBlog }) => {
+const BlogForm = () => {
+  const dispatch = useDispatch();
+
   const [title, setTitle] = useState([]);
   const [author, setAuthor] = useState([]);
   const [url, setUrl] = useState([]);
 
-  const addBlog = (event) => {
+  // const addBlog = (event) => {
+  //   event.preventDefault();
+  //   if (title.length === 0 || author.length === 0 || url.length === 0) {
+  //     return;
+  //   }
+
+  //   createBlog({
+  //     title,
+  //     author,
+  //     url,
+  //   });
+  //   setTitle("");
+  //   setAuthor("");
+  //   setUrl("");
+  // };
+
+  const addBlog = async (event) => {
     event.preventDefault();
     if (title.length === 0 || author.length === 0 || url.length === 0) {
       return;
     }
 
-    createBlog({
-      title,
-      author,
-      url,
-    });
+    dispatch(createBlog({ title, author, url }));
+
+    dispatch(setMessage(`New note '${title}' has been added!`), 3);
+    // createBlog({
+    //   title,
+    //   author,
+    //   url,
+    // });
     setTitle("");
     setAuthor("");
     setUrl("");
@@ -52,7 +76,9 @@ const BlogForm = ({ createBlog }) => {
             onChange={({ target }) => setUrl(target.value)}
           />
         </div>
-        <button id='save-button' type="submit">save</button>
+        <button id="save-button" type="submit">
+          save
+        </button>
       </form>
     </div>
   );
