@@ -1,11 +1,14 @@
-const errorMessage = ({ error }) => {
-  if (error === null) {
+import { useSelector } from "react-redux";
+
+const ErrorMessage = () => {
+  const errorMessage = useSelector((state) => state.errorMessage);
+  if (errorMessage === "") {
     return null;
   }
 
-  if (error !== null) {
-    return <div className="error">{error}</div>;
+  if (errorMessage !== "") {
+    return <div className="error">{errorMessage}</div>;
   }
 };
 
-export default errorMessage;
+export default ErrorMessage;

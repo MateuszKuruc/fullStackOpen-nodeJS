@@ -11,6 +11,7 @@ import BlogForm from "./components/BlogForm";
 import { useDispatch } from "react-redux";
 
 import { setMessage } from "./reducers/messageReducer";
+import { setErrorMessage } from "./reducers/errorMessageReducer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const App = () => {
   const [password, setPassword] = useState("");
 
   const [user, setUser] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  // const [errorMessage, setErrorMessage] = useState(null);
 
   const blogFormRef = useRef();
 
@@ -53,14 +54,15 @@ const App = () => {
       setUser(user);
       setUsername("");
       setPassword("");
-      setErrorMessage(null);
+      // setErrorMessage(null);
       dispatch(setMessage(`${user.name} logged in`, 3));
     } catch (exception) {
       console.log("error", exception);
-      setErrorMessage("Wrong credentials!");
-      setTimeout(() => {
-        setErrorMessage(null);
-      }, 3000);
+      // setErrorMessage("Wrong credentials!");
+      // setTimeout(() => {
+      //   setErrorMessage(null);
+      // }, 3000);
+      dispatch(setErrorMessage("Wrong credentials", 3));
     }
   };
 
@@ -102,7 +104,7 @@ const App = () => {
   return (
     <div>
       <Message />
-      <ErrorMessage error={errorMessage} />
+      <ErrorMessage />
       {user === null && (
         <Togglable buttonLabel="login">
           <LoginForm

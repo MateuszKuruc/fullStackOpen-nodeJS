@@ -5,7 +5,7 @@ import errorMessageReducer from "./reducers/errorMessageReducer";
 const store = configureStore({
   reducer: {
     message: messageReducer,
-    erroMessage: errorMessageReducer,
+    errorMessage: errorMessageReducer,
   },
 });
 
