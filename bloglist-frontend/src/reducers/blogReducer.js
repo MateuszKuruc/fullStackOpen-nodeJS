@@ -12,7 +12,7 @@ const blogSlice = createSlice({
 });
 
 export default blogSlice.reducer;
-export const setBlogs = blogSlice.actions;
+export const { setBlogs } = blogSlice.actions;
 
 export const initializeBlogs = () => {
   return async (dispatch) => {

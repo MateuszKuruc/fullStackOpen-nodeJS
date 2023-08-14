@@ -18,7 +18,11 @@ import { useSelector } from "react-redux";
 
 const App = () => {
   // continue with below:
-  const blogs = useSelector(state => state.blogs)
+
+  const blogs = useSelector((state) => state.blogs);
+  console.log(blogs);
+  const blogList = [...blogs];
+  console.log("list", blogList);
 
   const dispatch = useDispatch();
 
@@ -30,9 +34,11 @@ const App = () => {
   const blogFormRef = useRef();
 
   useEffect(() => {
-    dispatch(initializeBlogs);
+    dispatch(initializeBlogs());
+
     // blogService.getAll().then((blogs) => setBlogs(blogs));
     // console.log("use effect1");
+    // console.log(blogs);
   }, [dispatch]);
 
   useEffect(() => {
@@ -127,14 +133,14 @@ const App = () => {
       {user && (
         <div>
           <h2>blogs</h2>
-          {blogs
+          {blogList
             .sort((a, b) => b.likes - a.likes)
             .map((blog) => (
               <Blog
                 key={blog.id}
                 blog={blog}
-                handleLikes={handleLikes}
-                deleteBlog={deleteBlog}
+                // handleLikes={handleLikes}
+                // deleteBlog={deleteBlog}
                 user={user}
               />
             ))}
@@ -142,7 +148,8 @@ const App = () => {
       )}
       {user && (
         <Togglable buttonLabel="create new blog" ref={blogFormRef}>
-          <BlogForm createBlog={addBlog} />
+          {/* <BlogForm createBlog={addBlog} /> */}
+          <BlogForm />
         </Togglable>
       )}
     </div>
