@@ -11,6 +11,7 @@ import BlogForm from "./components/BlogForm";
 import { useDispatch } from "react-redux";
 
 import { createMessage, removeMessage } from "./reducers/messageReducer";
+import { setMessage } from "./reducers/messageReducer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,10 +60,11 @@ const App = () => {
       // setTimeout(() => {
       //   setMessage(null);
       // }, 3000);
-      dispatch(createMessage(`${user.name} logged in`));
-      setTimeout(() => {
-        dispatch(removeMessage(""));
-      }, 3000);
+      // dispatch(createMessage(`${user.name} logged in`));
+      // setTimeout(() => {
+      //   dispatch(removeMessage(""));
+      // }, 3000);
+      dispatch(setMessage(`${user.name} logged in`, 3));
     } catch (exception) {
       console.log("error", exception);
       // setMessage(null);

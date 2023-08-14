@@ -18,3 +18,12 @@ const messageSlice = createSlice({
 export const { createMessage, removeMessage } = messageSlice.actions;
 
 export default messageSlice.reducer;
+
+export const setMessage = (content, time) => {
+  return async (dispatch) => {
+    dispatch(createMessage(content));
+    setTimeout(() => {
+      dispatch(removeMessage(""));
+    }, time * 1000);
+  };
+};
