@@ -13,10 +13,16 @@ import { useDispatch } from "react-redux";
 import { setMessage } from "./reducers/messageReducer";
 import { setErrorMessage } from "./reducers/errorMessageReducer";
 
+import { initializeBlogs } from "./reducers/blogReducer";
+import { useSelector } from "react-redux";
+
 const App = () => {
+  // continue with below:
+  const blogs = useSelector(state => state.blogs)
+
   const dispatch = useDispatch();
 
-  const [blogs, setBlogs] = useState([]);
+  // const [blogs, setBlogs] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState(null);
@@ -24,12 +30,13 @@ const App = () => {
   const blogFormRef = useRef();
 
   useEffect(() => {
-    blogService.getAll().then((blogs) => setBlogs(blogs));
-    console.log("use effect1");
-  }, []);
+    dispatch(initializeBlogs);
+    // blogService.getAll().then((blogs) => setBlogs(blogs));
+    // console.log("use effect1");
+  }, [dispatch]);
 
   useEffect(() => {
-    console.log("use effect2");
+    // console.log("use effect2");
     const loggedUserJSON = window.localStorage.getItem("loggedBlogUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
@@ -65,34 +72,34 @@ const App = () => {
     dispatch(setMessage(`${user.name} logged out`, 3));
   };
 
-  const addBlog = (blogObject) => {
-    console.log("blog object", blogObject);
-    blogFormRef.current.toggleVisibility();
-    blogService.create(blogObject).then((returnedBlog) => {
-      setBlogs(blogs.concat(returnedBlog));
-      dispatch(
-        setMessage(
-          `'${blogObject.title}' blog by ${blogObject.author} created`,
-          3
-        )
-      );
-    });
-  };
+  // const addBlog = (blogObject) => {
+  //   console.log("blog object", blogObject);
+  //   blogFormRef.current.toggleVisibility();
+  //   blogService.create(blogObject).then((returnedBlog) => {
+  //     setBlogs(blogs.concat(returnedBlog));
+  //     dispatch(
+  //       setMessage(
+  //         `'${blogObject.title}' blog by ${blogObject.author} created`,
+  //         3
+  //       )
+  //     );
+  //   });
+  // };
 
-  const handleLikes = (updatedObject) => {
-    blogService
-      .update(updatedObject)
-      .then(() => {
-        blogService.getAll().then((blogs) => setBlogs(blogs));
-      })
-      .catch((error) => console.log(error.response.data));
-  };
+  // const handleLikes = (updatedObject) => {
+  //   blogService
+  //     .update(updatedObject)
+  //     .then(() => {
+  //       blogService.getAll().then((blogs) => setBlogs(blogs));
+  //     })
+  //     .catch((error) => console.log(error.response.data));
+  // };
 
-  const deleteBlog = (blogObject) => {
-    blogService.remove(blogObject).then(() => {
-      blogService.getAll().then((blogs) => setBlogs(blogs));
-    });
-  };
+  // const deleteBlog = (blogObject) => {
+  //   blogService.remove(blogObject).then(() => {
+  //     blogService.getAll().then((blogs) => setBlogs(blogs));
+  //   });
+  // };
 
   return (
     <div>
