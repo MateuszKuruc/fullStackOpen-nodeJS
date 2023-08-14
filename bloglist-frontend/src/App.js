@@ -19,9 +19,7 @@ const App = () => {
   const [blogs, setBlogs] = useState([]);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const [user, setUser] = useState(null);
-  // const [errorMessage, setErrorMessage] = useState(null);
 
   const blogFormRef = useRef();
 
@@ -54,14 +52,9 @@ const App = () => {
       setUser(user);
       setUsername("");
       setPassword("");
-      // setErrorMessage(null);
       dispatch(setMessage(`${user.name} logged in`, 3));
     } catch (exception) {
       console.log("error", exception);
-      // setErrorMessage("Wrong credentials!");
-      // setTimeout(() => {
-      //   setErrorMessage(null);
-      // }, 3000);
       dispatch(setErrorMessage("Wrong credentials", 3));
     }
   };
