@@ -9,7 +9,6 @@ const blogSlice = createSlice({
       return action.payload;
     },
     appendBlog(state, action) {
-      //   [...state, action.payload];
       state.push(action.payload);
     },
   },
