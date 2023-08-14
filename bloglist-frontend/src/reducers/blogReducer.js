@@ -12,13 +12,10 @@ const blogSlice = createSlice({
       state.push(action.payload);
     },
     addLike(state, action) {
-      return action.payload;
+      return state.map((b) =>
+        b.id === action.payload.id ? action.payload : b
+      );
     },
-    // setVotes(state, action) {
-    //   return state.map((b) =>
-    //     b.id === action.payload.id ? action.payload : b
-    //   );
-    // },
   },
 });
 
@@ -55,17 +52,3 @@ export const removeBlog = (object) => {
     dispatch(setBlogs(blogs));
   };
 };
-
-// export const getVote = (id) => {
-//   return async (dispatch) => {
-//     const blogs = await blogService.getAll();
-//     const blogToChange = blogs.find((b) => b.id === id);
-//     const changedBlog = {
-//       ...blogToChange,
-//       likes: blogToChange.likes + 1,
-//     };
-//     await blogService.update(changedBlog);
-
-//     dispatch(setVotes(changedBlog));
-//   };
-// };

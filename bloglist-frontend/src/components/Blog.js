@@ -34,9 +34,19 @@ const Blog = ({ blog }) => {
   // };
 
   const addLike = () => {
-    console.log("blog before", blog);
-    console.log("blog after", { ...blog, likes: blog.likes + 1 });
-    dispatch(handleLikes({ ...blog, likes: blog.likes + 1 }));
+    // console.log("blog before", blog);
+    // console.log("blog after", { ...blog, likes: blog.likes + 1 });
+    const updatedBlog = {
+      user: blog.user.id,
+      likes: Number(blog.likes + 1),
+      author: blog.author,
+      title: blog.title,
+      url: blog.url,
+      id: blog.id,
+    };
+    console.log("updated blog", updatedBlog);
+    // dispatch(handleLikes({ ...blog, likes: blog.likes + 1 }));
+    dispatch(handleLikes(updatedBlog));
   };
 
   // const removeBlog = () => {
