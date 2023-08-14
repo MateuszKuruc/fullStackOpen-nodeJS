@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { handleLikes } from "../reducers/blogReducer";
 import { useDispatch } from "react-redux";
-// import { getVote } from "../reducers/blogReducer";
 import { removeBlog } from "../reducers/blogReducer";
 
 const Blog = ({ blog }) => {
@@ -22,20 +21,7 @@ const Blog = ({ blog }) => {
     setDetails(!details);
   };
 
-  // const addLike = () => {
-  //   handleLikes({
-  //     user: blog.user.id,
-  //     likes: Number(blog.likes + 1),
-  //     author: blog.author,
-  //     title: blog.title,
-  //     url: blog.url,
-  //     id: blog.id,
-  //   });
-  // };
-
   const addLike = () => {
-    // console.log("blog before", blog);
-    // console.log("blog after", { ...blog, likes: blog.likes + 1 });
     const updatedBlog = {
       user: blog.user.id,
       likes: Number(blog.likes + 1),
@@ -44,25 +30,13 @@ const Blog = ({ blog }) => {
       url: blog.url,
       id: blog.id,
     };
-    console.log("updated blog", updatedBlog);
-    // dispatch(handleLikes({ ...blog, likes: blog.likes + 1 }));
+
     dispatch(handleLikes(updatedBlog));
   };
 
-  // const removeBlog = () => {
-  //   if (window.confirm(`Remove blog '${blog.title} by ${blog.author}?`))
-  //     deleteBlog(blog);
-  // };
-
   const deleteBlog = () => {
-    // removeBlog(blog);
     dispatch(removeBlog(blog));
   };
-
-  // const vote = (blog) => {
-  //   const blogId = blog.id;
-  //   dispatch(getVote(blogId));
-  // };
 
   return (
     <div style={blogStyle} className="completeBlog">
@@ -75,7 +49,6 @@ const Blog = ({ blog }) => {
         <div>
           likes: {blog.likes}{" "}
           <button id="like-button" onClick={addLike}>
-            {/* <button id="like-button" onClick={() => vote(blog)}> */}
             like
           </button>
         </div>

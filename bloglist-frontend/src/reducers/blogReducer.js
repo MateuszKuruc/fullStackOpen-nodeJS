@@ -32,7 +32,6 @@ export const initializeBlogs = () => {
 export const createBlog = (content) => {
   return async (dispatch) => {
     const newBlog = await blogService.create(content);
-    console.log("new blog", newBlog);
     dispatch(appendBlog(newBlog));
   };
 };
@@ -40,7 +39,6 @@ export const createBlog = (content) => {
 export const handleLikes = (content) => {
   return async (dispatch) => {
     const updatedBlog = await blogService.update(content);
-    console.log("updated", updatedBlog);
     dispatch(addLike(updatedBlog));
   };
 };

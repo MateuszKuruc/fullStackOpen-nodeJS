@@ -27,7 +27,6 @@ const update = async (updatedObject) => {
     `${baseUrl}/${updatedObject.id}`,
     updatedObject
   );
-  console.log("update response", response.data);
   return response.data;
 };
 
