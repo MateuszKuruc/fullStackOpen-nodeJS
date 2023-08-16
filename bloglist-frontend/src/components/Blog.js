@@ -2,6 +2,7 @@ import { useState } from "react";
 import { handleLikes } from "../reducers/blogReducer";
 import { useDispatch } from "react-redux";
 import { removeBlog } from "../reducers/blogReducer";
+import { setMessage } from "../reducers/messageReducer";
 
 const Blog = ({ blog }) => {
   const dispatch = useDispatch();
@@ -32,10 +33,12 @@ const Blog = ({ blog }) => {
     };
 
     dispatch(handleLikes(updatedBlog));
+    dispatch(setMessage(`You liked '${blog.title}' by ${blog.author}!`, 3));
   };
 
   const deleteBlog = () => {
     dispatch(removeBlog(blog));
+    dispatch(setMessage(`The blog '${blog.title}' has been deleted`, 3));
   };
 
   return (
