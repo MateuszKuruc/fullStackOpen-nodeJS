@@ -18,6 +18,8 @@ import { useSelector } from "react-redux";
 
 import { setLogin } from "./reducers/loginReducer";
 
+import { initializeUsers } from "./reducers/usersReducer";
+
 const App = () => {
   const blogs = useSelector((state) => state.blogs);
   const login = useSelector((state) => state.login);
@@ -34,6 +36,10 @@ const App = () => {
   const [password, setPassword] = useState("");
 
   const blogFormRef = useRef();
+
+  useEffect(() => {
+    dispatch(initializeUsers());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(initializeBlogs());
