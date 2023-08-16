@@ -30,8 +30,6 @@ const App = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log("login", login);
-
   const blogFormRef = useRef();
 
   useEffect(() => {
