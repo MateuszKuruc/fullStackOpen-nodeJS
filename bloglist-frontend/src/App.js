@@ -24,6 +24,7 @@ const App = () => {
   const login = useSelector((state) => state.login);
 
   const blogList = [...blogs];
+  console.log(blogList);
 
   const dispatch = useDispatch();
 
@@ -38,7 +39,7 @@ const App = () => {
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedBlogUser");
-    console.log("logged user storage", loggedUserJSON);
+
     if (loggedUserJSON) {
       const loggedUser = JSON.parse(loggedUserJSON);
       blogService.setToken(loggedUser.token);

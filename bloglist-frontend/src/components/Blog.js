@@ -4,7 +4,15 @@ import { useDispatch } from "react-redux";
 import { removeBlog } from "../reducers/blogReducer";
 import { setMessage } from "../reducers/messageReducer";
 
+import { useSelector } from "react-redux/es/hooks/useSelector";
+
 const Blog = ({ blog }) => {
+  const activeUser = useSelector((state) => state.login.username);
+
+  if (activeUser !== blog.user.username) {
+    return null;
+  }
+
   const dispatch = useDispatch();
 
   const blogStyle = {
