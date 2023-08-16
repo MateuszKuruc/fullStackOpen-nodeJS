@@ -16,18 +16,22 @@ import { setErrorMessage } from "./reducers/errorMessageReducer";
 import { initializeBlogs } from "./reducers/blogReducer";
 import { useSelector } from "react-redux";
 
+import { setLogin } from "./reducers/loginReducer";
+
 const App = () => {
   const blogs = useSelector((state) => state.blogs);
 
-  console.log(blogs);
+  const login = useSelector((state) => state.login);
+
   const blogList = [...blogs];
-  console.log("list", blogList);
 
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+
+  console.log("login and user", login);
 
   const blogFormRef = useRef();
 
@@ -37,28 +41,36 @@ const App = () => {
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("loggedBlogUser");
+    console.log("logged user storage", loggedUserJSON);
     if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON);
-      setUser(user);
-      blogService.setToken(user.token);
+      const loggedUser = JSON.parse(loggedUserJSON);
+      // console.log("logged user parsed", loggedUser);
+      // setUser(loggedUser);
+      // console.log("user again", loggedUser);
+      blogService.setToken(loggedUser.token);
+
+      dispatch(setLogin(loggedUser));
     }
-  }, []);
+  }, [dispatch]);
 
   const handleLogin = async (event) => {
     event.preventDefault();
 
     try {
-      const user = await loginService.login({
+      const loggedUser = await loginService.login({
         username,
         password,
       });
 
-      window.localStorage.setItem("loggedBlogUser", JSON.stringify(user));
-      blogService.setToken(user.token);
-      setUser(user);
+      window.localStorage.setItem("loggedBlogUser", JSON.stringify(loggedUser));
+      blogService.setToken(loggedUser.token);
+
+      // setUser(loggedUser);
+      dispatch(setLogin(loggedUser));
+
       setUsername("");
       setPassword("");
-      dispatch(setMessage(`${user.name} logged in`, 3));
+      dispatch(setMessage(`${loggedUser.name} logged in`, 3));
     } catch (exception) {
       console.log("error", exception);
       dispatch(setErrorMessage("Wrong credentials", 3));
@@ -67,15 +79,18 @@ const App = () => {
 
   const handleLogout = () => {
     window.localStorage.removeItem("loggedBlogUser");
-    setUser(null);
-    dispatch(setMessage(`${user.name} logged out`, 3));
+    // setUser(null);
+    dispatch(setLogin(null));
+
+    // dispatch(setMessage(`${user.name} logged out`, 3));
+    dispatch(setMessage(`${login.name} logged out`, 3));
   };
 
   return (
     <div>
       <Message />
       <ErrorMessage />
-      {user === null && (
+      {login === null && (
         <Togglable buttonLabel="login">
           <LoginForm
             username={username}
@@ -86,25 +101,25 @@ const App = () => {
           />
         </Togglable>
       )}
-      {user && (
+      {login && (
         <div>
           <p>
-            <i>{user.name} logged in</i>
+            <i>{login.name} logged in</i>
             <button onClick={handleLogout}>logout</button>
           </p>
         </div>
       )}
-      {user && (
+      {login && (
         <div>
           <h2>blogs</h2>
           {blogList
             .sort((a, b) => b.likes - a.likes)
             .map((blog) => (
-              <Blog key={blog.id} blog={blog} user={user} />
+              <Blog key={blog.id} blog={blog} user={login} />
             ))}
         </div>
       )}
-      {user && (
+      {login && (
         <Togglable buttonLabel="create new blog" ref={blogFormRef}>
           <BlogForm />
         </Togglable>
