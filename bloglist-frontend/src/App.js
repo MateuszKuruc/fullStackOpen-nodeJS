@@ -29,9 +29,8 @@ const App = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [user, setUser] = useState(null);
 
-  console.log("login and user", login);
+  console.log("login", login);
 
   const blogFormRef = useRef();
 
@@ -44,14 +43,11 @@ const App = () => {
     console.log("logged user storage", loggedUserJSON);
     if (loggedUserJSON) {
       const loggedUser = JSON.parse(loggedUserJSON);
-      // console.log("logged user parsed", loggedUser);
-      // setUser(loggedUser);
-      // console.log("user again", loggedUser);
       blogService.setToken(loggedUser.token);
 
       dispatch(setLogin(loggedUser));
     }
-  }, [dispatch]);
+  }, []);
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -65,7 +61,6 @@ const App = () => {
       window.localStorage.setItem("loggedBlogUser", JSON.stringify(loggedUser));
       blogService.setToken(loggedUser.token);
 
-      // setUser(loggedUser);
       dispatch(setLogin(loggedUser));
 
       setUsername("");
@@ -79,10 +74,8 @@ const App = () => {
 
   const handleLogout = () => {
     window.localStorage.removeItem("loggedBlogUser");
-    // setUser(null);
     dispatch(setLogin(null));
 
-    // dispatch(setMessage(`${user.name} logged out`, 3));
     dispatch(setMessage(`${login.name} logged out`, 3));
   };
 
