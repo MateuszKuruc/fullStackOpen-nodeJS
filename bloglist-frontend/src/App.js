@@ -20,8 +20,10 @@ import { setLogin } from "./reducers/loginReducer";
 
 const App = () => {
   const blogs = useSelector((state) => state.blogs);
-
   const login = useSelector((state) => state.login);
+  const users = useSelector((state) => state.users);
+
+  console.log("users", users);
 
   const blogList = [...blogs];
   console.log(blogList);
