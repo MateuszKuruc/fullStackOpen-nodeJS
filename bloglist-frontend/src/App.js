@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Blog from "./components/Blog";
+import User from "./components/User";
 import blogService from "./services/blogs";
 import loginService from "./services/login";
 import Message from "./components/Message";
@@ -25,10 +26,10 @@ const App = () => {
   const login = useSelector((state) => state.login);
   const users = useSelector((state) => state.users);
 
-  console.log("users", users);
-
   const blogList = [...blogs];
-  console.log(blogList);
+  const usersList = [...users];
+
+  console.log("usersList", users);
 
   const dispatch = useDispatch();
 
@@ -107,6 +108,14 @@ const App = () => {
             <i>{login.name} logged in</i>
             <button onClick={handleLogout}>logout</button>
           </p>
+        </div>
+      )}
+      {usersList && (
+        <div>
+          <h2>users</h2>
+          {usersList.map((user) => (
+            <User key={user.id} user={user} />
+          ))}
         </div>
       )}
       {login && (
