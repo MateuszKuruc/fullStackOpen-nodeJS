@@ -9,6 +9,10 @@ const UserDetails = ({ users }) => {
   const user = users.find((user) => user.id === id);
   console.log("user found", user);
 
+  if (!user) {
+    return null;
+  }
+
   return (
     <div>
       <h2>{user.name}</h2>

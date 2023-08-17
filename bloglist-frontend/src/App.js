@@ -113,20 +113,12 @@ const App = () => {
           </p>
         </div>
       )}
-      {/* {usersList && (
-        <div>
-          <h2>users</h2>
-          {usersList.map((user) => (
-            <User key={user.id} user={user} />
-          ))}
-        </div>
-      )} */}
+
       <Routes>
         <Route path="/users/:id" element={<UserDetails users={usersList} />} />
       </Routes>
       <Users users={usersList} />
 
-      {/* <UserDetails /> */}
       {login && (
         <div>
           <h2>blogs</h2>
@@ -142,9 +134,6 @@ const App = () => {
           <BlogForm />
         </Togglable>
       )}
-      {/* <Routes>
-        <Route path="/users/:id" element={<UserDetails users={usersList} />} />
-      </Routes> */}
     </div>
   );
 };
