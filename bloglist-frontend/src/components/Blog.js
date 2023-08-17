@@ -1,16 +1,7 @@
 import { useState } from "react";
-// import { handleLikes } from "../reducers/blogReducer";
-// import { useDispatch } from "react-redux";
-// import { removeBlog } from "../reducers/blogReducer";
-// import { setMessage } from "../reducers/messageReducer";
-
-// import { useSelector } from "react-redux/es/hooks/useSelector";
-
 import { Link } from "react-router-dom";
 
 const Blog = ({ blogs }) => {
-  // const activeUser = useSelector((state) => state.login.username);
-
   // if (activeUser !== blog.user.username) {
   //   return null;
   // }

@@ -145,12 +145,6 @@ const App = () => {
           }
         />
       </Routes>
-
-      {/* {login && (
-        <Togglable buttonLabel="create new blog" ref={blogFormRef}>
-          <BlogForm />
-        </Togglable>
-      )} */}
     </div>
   );
 };
