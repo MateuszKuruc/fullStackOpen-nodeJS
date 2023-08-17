@@ -32,8 +32,6 @@ const App = () => {
   const blogList = [...blogs];
   const usersList = [...users];
 
-  console.log("usersList", users);
-
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");

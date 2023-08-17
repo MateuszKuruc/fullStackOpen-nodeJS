@@ -8,7 +8,6 @@ const BlogDetails = ({ blogs }) => {
 
   const id = useParams().id;
   const blog = blogs.find((blog) => blog.id === id);
-  console.log("blog found", blog);
 
   if (!blog) {
     return null;

@@ -6,9 +6,7 @@ import { Link } from "react-router-dom";
 
 const UserDetails = ({ users }) => {
   const id = useParams().id;
-  console.log("id", id);
   const user = users.find((user) => user.id === id);
-  console.log("user found", user);
 
   if (!user) {
     return null;
@@ -19,7 +17,9 @@ const UserDetails = ({ users }) => {
       <h2>{user.name}</h2>
       <ul>
         {user.blogs.map((blog) => (
-          <li key={blog.id}><Link to={`/blogs/${blog.id}`}>{blog.title}</Link></li>
+          <li key={blog.id}>
+            <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
+          </li>
         ))}
       </ul>
     </div>
