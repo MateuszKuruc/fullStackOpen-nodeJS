@@ -4,14 +4,16 @@ import { useDispatch } from "react-redux";
 import { removeBlog } from "../reducers/blogReducer";
 import { setMessage } from "../reducers/messageReducer";
 
-import { useSelector } from "react-redux/es/hooks/useSelector";
+// import { useSelector } from "react-redux/es/hooks/useSelector";
+
+import { Link } from "react-router-dom";
 
 const Blog = ({ blog }) => {
-  const activeUser = useSelector((state) => state.login.username);
+  // const activeUser = useSelector((state) => state.login.username);
 
-  if (activeUser !== blog.user.username) {
-    return null;
-  }
+  // if (activeUser !== blog.user.username) {
+  //   return null;
+  // }
 
   const dispatch = useDispatch();
 
@@ -52,7 +54,9 @@ const Blog = ({ blog }) => {
   return (
     <div style={blogStyle} className="completeBlog">
       <div className="basicInfo">
-        {blog.title} {blog.author}
+        <Link to={`/blogs/${blog.id}`}>
+          {blog.title} {blog.author}
+        </Link>
         <button onClick={toggleDetails}>{details ? "hide" : "view"}</button>
       </div>
       <div style={detailsShown} className="moreInfo">

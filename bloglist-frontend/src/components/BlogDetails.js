@@ -13,6 +13,7 @@ const BlogDetails = ({ blogs }) => {
     <div>
       <h2>{blog.title}</h2>
       <a href={blog.url}>{blog.url}</a>
+      <p>likes: {blog.likes}</p>
     </div>
   );
 };
