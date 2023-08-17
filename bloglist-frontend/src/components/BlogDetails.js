@@ -4,6 +4,7 @@ import { handleLikes } from "../reducers/blogReducer";
 import { setMessage } from "../reducers/messageReducer";
 import { removeBlog } from "../reducers/blogReducer";
 import { useNavigate } from "react-router-dom";
+import { setErrorMessage } from "../reducers/errorMessageReducer";
 
 const BlogDetails = ({ blogs }) => {
   const navigate = useNavigate();
@@ -30,9 +31,20 @@ const BlogDetails = ({ blogs }) => {
     dispatch(setMessage(`You liked '${blog.title}' by ${blog.author}!`, 3));
   };
 
-  const deleteBlog = () => {
-    dispatch(removeBlog(blog));
-    dispatch(setMessage(`The blog '${blog.title}' has been deleted`, 3));
+  const deleteBlog = async () => {
+    try {
+      await dispatch(removeBlog(blog));
+      dispatch(setMessage(`The blog '${blog.title}' has been deleted`, 3));
+    } catch (error) {
+      console.log("error", error);
+      dispatch(
+        setErrorMessage(
+          "You are not authorised to delete other users' blogs!",
+          3
+        )
+      );
+    }
+
     navigate("/blogs");
   };
 
