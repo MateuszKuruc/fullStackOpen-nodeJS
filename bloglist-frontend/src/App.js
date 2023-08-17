@@ -21,7 +21,8 @@ import { useSelector } from "react-redux";
 import { setLogin } from "./reducers/loginReducer";
 
 import { initializeUsers } from "./reducers/usersReducer";
-// import UserDetails from "./components/UserDetails";
+import UserDetails from "./components/UserDetails";
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   const blogs = useSelector((state) => state.blogs);
@@ -120,7 +121,11 @@ const App = () => {
           ))}
         </div>
       )} */}
+      <Routes>
+        <Route path="/users/:id" element={<UserDetails users={usersList} />} />
+      </Routes>
       <Users users={usersList} />
+
       {/* <UserDetails /> */}
       {login && (
         <div>
@@ -137,6 +142,9 @@ const App = () => {
           <BlogForm />
         </Togglable>
       )}
+      {/* <Routes>
+        <Route path="/users/:id" element={<UserDetails users={usersList} />} />
+      </Routes> */}
     </div>
   );
 };
