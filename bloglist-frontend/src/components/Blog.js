@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { handleLikes } from "../reducers/blogReducer";
+// import { handleLikes } from "../reducers/blogReducer";
 import { useDispatch } from "react-redux";
 import { removeBlog } from "../reducers/blogReducer";
 import { setMessage } from "../reducers/messageReducer";
@@ -32,19 +32,19 @@ const Blog = ({ blog }) => {
     setDetails(!details);
   };
 
-  const addLike = () => {
-    const updatedBlog = {
-      user: blog.user.id,
-      likes: Number(blog.likes + 1),
-      author: blog.author,
-      title: blog.title,
-      url: blog.url,
-      id: blog.id,
-    };
+  // const addLike = () => {
+  //   const updatedBlog = {
+  //     user: blog.user.id,
+  //     likes: Number(blog.likes + 1),
+  //     author: blog.author,
+  //     title: blog.title,
+  //     url: blog.url,
+  //     id: blog.id,
+  //   };
 
-    dispatch(handleLikes(updatedBlog));
-    dispatch(setMessage(`You liked '${blog.title}' by ${blog.author}!`, 3));
-  };
+  //   dispatch(handleLikes(updatedBlog));
+  //   dispatch(setMessage(`You liked '${blog.title}' by ${blog.author}!`, 3));
+  // };
 
   const deleteBlog = () => {
     dispatch(removeBlog(blog));
@@ -61,12 +61,13 @@ const Blog = ({ blog }) => {
       </div>
       <div style={detailsShown} className="moreInfo">
         <div>url: {blog.url}</div>
-        <div>
+        {/* <div>
           likes: {blog.likes}{" "}
           <button id="like-button" onClick={addLike}>
             like
           </button>
-        </div>
+        </div> */}
+        <div>likes: {blog.likes}</div>
         <div>user: {blog.user.username}</div>
         <button id="delete-button" onClick={deleteBlog}>
           remove
