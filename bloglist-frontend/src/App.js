@@ -8,6 +8,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import LoginForm from "./components/LoginForm";
 import Togglable from "./components/Togglable";
 import BlogForm from "./components/BlogForm";
+// import {  Routes, Route, Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 
@@ -20,6 +21,7 @@ import { useSelector } from "react-redux";
 import { setLogin } from "./reducers/loginReducer";
 
 import { initializeUsers } from "./reducers/usersReducer";
+// import UserDetails from "./components/UserDetails";
 
 const App = () => {
   const blogs = useSelector((state) => state.blogs);
@@ -110,14 +112,16 @@ const App = () => {
           </p>
         </div>
       )}
-      {usersList && (
+      {/* {usersList && (
         <div>
           <h2>users</h2>
           {usersList.map((user) => (
             <User key={user.id} user={user} />
           ))}
         </div>
-      )}
+      )} */}
+      <User users={usersList} />
+      {/* <UserDetails /> */}
       {login && (
         <div>
           <h2>blogs</h2>
