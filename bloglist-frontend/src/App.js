@@ -64,20 +64,19 @@ const App = () => {
     event.preventDefault();
 
     try {
-      const userLogged = await loginService.login({
+      const loggedUser = await loginService.login({
         username,
         password,
       });
-      console.log("loggeduser", userLogged);
 
-      window.localStorage.setItem("loggedBlogUser", JSON.stringify(userLogged));
-      blogService.setToken(userLogged.token);
+      window.localStorage.setItem("loggedBlogUser", JSON.stringify(loggedUser));
+      blogService.setToken(loggedUser.token);
 
-      dispatch(setLogin(userLogged));
+      dispatch(setLogin(loggedUser));
 
       setUsername("");
       setPassword("");
-      dispatch(setMessage(`${userLogged.name} logged in`, 3));
+      dispatch(setMessage(`${loggedUser.name} logged in`, 3));
     } catch (exception) {
       console.log("error logging", exception);
       dispatch(setErrorMessage("Wrong credentials", 3));
