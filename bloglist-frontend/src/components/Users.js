@@ -1,6 +1,8 @@
 // import { Link, Routes, Route } from "react-router-dom";
 // import UserDetails from "./UserDetails";
 
+import { Link } from "react-router-dom";
+
 // const User = ({ user }) => {
 //   console.log("user in user", user);
 //   return (
@@ -27,17 +29,19 @@
 //   );
 // };
 
-const User = ({ users }) => {
+const Users = ({ users }) => {
   console.log("users", users);
   return (
     <div>
       <ul>
         {users.map((user) => (
-          <li key={user.id}>{user.username} {user.blogs.length}</li>
+          <li key={user.id}>
+            <Link to={`/users/${user.id}`}>{user.username},</Link> blogs created: {user.blogs.length}
+          </li>
         ))}
       </ul>
     </div>
   );
 };
 
-export default User;
+export default Users;

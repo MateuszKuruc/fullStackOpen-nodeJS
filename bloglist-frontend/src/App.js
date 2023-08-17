@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import Blog from "./components/Blog";
-import User from "./components/User";
+import Users from "./components/Users";
 import blogService from "./services/blogs";
 import loginService from "./services/login";
 import Message from "./components/Message";
@@ -120,7 +120,7 @@ const App = () => {
           ))}
         </div>
       )} */}
-      <User users={usersList} />
+      <Users users={usersList} />
       {/* <UserDetails /> */}
       {login && (
         <div>
