@@ -93,7 +93,7 @@ const App = () => {
     <div>
       <Message />
       <ErrorMessage />
-      {login === null && (
+      {/* {login === null && (
         <Togglable buttonLabel="login">
           <LoginForm
             username={username}
@@ -103,7 +103,7 @@ const App = () => {
             handleSubmit={handleLogin}
           />
         </Togglable>
-      )}
+      )} */}
       {login && (
         <div>
           <p>
@@ -114,12 +114,33 @@ const App = () => {
       )}
 
       <Routes>
+        <Route
+          path="/"
+          element={
+            login === null && (
+              <Togglable buttonLabel="login">
+                <LoginForm
+                  username={username}
+                  password={password}
+                  handleUsernameChange={({ target }) =>
+                    setUsername(target.value)
+                  }
+                  handlePasswordChange={({ target }) =>
+                    setPassword(target.value)
+                  }
+                  handleSubmit={handleLogin}
+                />
+              </Togglable>
+            )
+          }
+        />
         <Route path="/users/:id" element={<UserDetails users={usersList} />} />
         <Route path="/blogs/:id" element={<BlogDetails blogs={blogList} />} />
+        <Route path="/users" element={<Users users={usersList} />} />
+        <Route path="/blogs" element={login && <Blog blogs={blogList} />} />
       </Routes>
-      <Users users={usersList} />
 
-      {login && (
+      {/* {login && (
         <div>
           <h2>blogs</h2>
           {blogList
@@ -128,7 +149,11 @@ const App = () => {
               <Blog key={blog.id} blog={blog} user={login} />
             ))}
         </div>
-      )}
+      )} */}
+
+      {/* {login && (
+        <Blog blogs={blogList} />
+      )} */}
 
       {login && (
         <Togglable buttonLabel="create new blog" ref={blogFormRef}>
