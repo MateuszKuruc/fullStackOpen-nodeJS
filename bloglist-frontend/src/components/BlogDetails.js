@@ -2,8 +2,11 @@ import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { handleLikes } from "../reducers/blogReducer";
 import { setMessage } from "../reducers/messageReducer";
+import { removeBlog } from "../reducers/blogReducer";
+import { useNavigate } from "react-router-dom";
 
 const BlogDetails = ({ blogs }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const id = useParams().id;
@@ -27,6 +30,12 @@ const BlogDetails = ({ blogs }) => {
     dispatch(setMessage(`You liked '${blog.title}' by ${blog.author}!`, 3));
   };
 
+  const deleteBlog = () => {
+    dispatch(removeBlog(blog));
+    dispatch(setMessage(`The blog '${blog.title}' has been deleted`, 3));
+    navigate("/blogs");
+  };
+
   return (
     <div>
       <h2>{blog.title}</h2>
@@ -40,6 +49,9 @@ const BlogDetails = ({ blogs }) => {
         </p>
       </div>
       <p>added by {blog.author}</p>
+      <button id="delete-button" onClick={deleteBlog}>
+        Remove blog
+      </button>
     </div>
   );
 };
