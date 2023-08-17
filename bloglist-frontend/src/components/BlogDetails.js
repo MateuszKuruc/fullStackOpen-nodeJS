@@ -30,14 +30,16 @@ const BlogDetails = ({ blogs }) => {
   return (
     <div>
       <h2>{blog.title}</h2>
-      <a href={blog.url}>{blog.url}</a>
+      <a target="_blank" rel="noopener noreferrer" href={"https://" + blog.url}>
+        {blog.url}
+      </a>
       <div>
         <p>
           likes: {blog.likes}
           <button onClick={addLike}>like</button>
         </p>
       </div>
-      <p>added by</p>
+      <p>added by {blog.author}</p>
     </div>
   );
 };
