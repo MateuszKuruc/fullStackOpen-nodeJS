@@ -22,9 +22,11 @@ import { setLogin } from "./reducers/loginReducer";
 
 import { initializeUsers } from "./reducers/usersReducer";
 import UserDetails from "./components/UserDetails";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 const App = () => {
+  const navigate = useNavigate();
+
   const blogs = useSelector((state) => state.blogs);
   const login = useSelector((state) => state.login);
   const users = useSelector((state) => state.users);
@@ -87,24 +89,13 @@ const App = () => {
     dispatch(setLogin(null));
 
     dispatch(setMessage(`${login.name} logged out`, 3));
+    navigate("/");
   };
 
   return (
     <div>
       <Message />
       <ErrorMessage />
-
-      {/* {login === null && (
-        <Togglable buttonLabel="login">
-          <LoginForm
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
-          />
-        </Togglable>
-      )} */}
       {login && (
         <div>
           <p>
@@ -140,29 +131,26 @@ const App = () => {
         <Route path="/users/:id" element={<UserDetails users={usersList} />} />
         <Route path="/blogs/:id" element={<BlogDetails blogs={blogList} />} />
         <Route path="/users" element={<Users users={usersList} />} />
-        <Route path="/blogs" element={<Blog blogs={blogList} />} />
+        <Route
+          path="/blogs"
+          element={
+            login && (
+              <>
+                <Blog blogs={blogList} />
+                <Togglable buttonLabel="create new blog" ref={blogFormRef}>
+                  <BlogForm />
+                </Togglable>
+              </>
+            )
+          }
+        />
       </Routes>
 
       {/* {login && (
-        <div>
-          <h2>blogs</h2>
-          {blogList
-            .sort((a, b) => b.likes - a.likes)
-            .map((blog) => (
-              <Blog key={blog.id} blog={blog} user={login} />
-            ))}
-        </div>
-      )} */}
-
-      {/* {login && (
-        <Blog blogs={blogList} />
-      )} */}
-
-      {login && (
         <Togglable buttonLabel="create new blog" ref={blogFormRef}>
           <BlogForm />
         </Togglable>
-      )}
+      )} */}
     </div>
   );
 };
