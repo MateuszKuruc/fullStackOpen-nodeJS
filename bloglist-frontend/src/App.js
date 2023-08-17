@@ -22,7 +22,7 @@ import { setLogin } from "./reducers/loginReducer";
 
 import { initializeUsers } from "./reducers/usersReducer";
 import UserDetails from "./components/UserDetails";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 const App = () => {
   const blogs = useSelector((state) => state.blogs);
@@ -93,6 +93,7 @@ const App = () => {
     <div>
       <Message />
       <ErrorMessage />
+
       {/* {login === null && (
         <Togglable buttonLabel="login">
           <LoginForm
@@ -107,6 +108,8 @@ const App = () => {
       {login && (
         <div>
           <p>
+            <Link to="/blogs">Blogs</Link>
+            <Link to="/users">Users</Link>
             <i>{login.name} logged in</i>
             <button onClick={handleLogout}>logout</button>
           </p>
@@ -137,7 +140,7 @@ const App = () => {
         <Route path="/users/:id" element={<UserDetails users={usersList} />} />
         <Route path="/blogs/:id" element={<BlogDetails blogs={blogList} />} />
         <Route path="/users" element={<Users users={usersList} />} />
-        <Route path="/blogs" element={login && <Blog blogs={blogList} />} />
+        <Route path="/blogs" element={<Blog blogs={blogList} />} />
       </Routes>
 
       {/* {login && (

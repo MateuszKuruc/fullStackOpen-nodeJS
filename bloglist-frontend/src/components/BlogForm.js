@@ -2,8 +2,10 @@ import { useState } from "react";
 import { createBlog } from "../reducers/blogReducer";
 import { useDispatch } from "react-redux";
 import { setMessage } from "../reducers/messageReducer";
+import { useNavigate } from "react-router-dom";
 
 const BlogForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState([]);
@@ -18,11 +20,12 @@ const BlogForm = () => {
 
     dispatch(createBlog({ title, author, url }));
 
-    dispatch(setMessage(`New note '${title}' has been added!`, 3));
+    dispatch(setMessage(`New blog '${title}' has been added!`, 3));
 
     setTitle("");
     setAuthor("");
     setUrl("");
+    navigate("/blogs");
   };
 
   return (
