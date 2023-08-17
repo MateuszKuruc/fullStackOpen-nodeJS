@@ -29,9 +29,6 @@ const Blog = ({ blogs }) => {
               <Link to={`/blogs/${blog.id}`}>
                 {blog.title} {blog.author}
               </Link>
-              {/* <button onClick={toggleDetails}>
-                {details ? "hide" : "view"}
-              </button> */}
             </div>
             <div style={detailsShown} className="moreInfo">
               <div>url: {blog.url}</div>
