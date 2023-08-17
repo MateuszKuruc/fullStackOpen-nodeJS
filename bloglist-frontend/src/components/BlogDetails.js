@@ -12,7 +12,7 @@ const BlogDetails = ({ blogs }) => {
 
   const id = useParams().id;
   const blog = blogs.find((blog) => blog.id === id);
-
+  console.log("blog", blog);
   if (!blog) {
     return null;
   }
@@ -61,6 +61,13 @@ const BlogDetails = ({ blogs }) => {
         </p>
       </div>
       <p>added by {blog.author}</p>
+      <div>
+        <h3>comments</h3>
+
+        {blog.comments.map((comment) => (
+          <div key={blog.id}>{comment}</div>
+        ))}
+      </div>
       <button id="delete-button" onClick={deleteBlog}>
         Remove blog
       </button>

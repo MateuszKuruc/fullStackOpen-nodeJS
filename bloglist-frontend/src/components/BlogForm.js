@@ -25,6 +25,7 @@ const BlogForm = () => {
     setTitle("");
     setAuthor("");
     setUrl("");
+
     navigate("/blogs");
   };
 
