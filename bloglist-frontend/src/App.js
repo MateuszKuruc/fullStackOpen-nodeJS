@@ -8,6 +8,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import LoginForm from "./components/LoginForm";
 import Togglable from "./components/Togglable";
 import BlogForm from "./components/BlogForm";
+import BlogDetails from "./components/BlogDetails";
 
 import { useDispatch } from "react-redux";
 
@@ -115,6 +116,7 @@ const App = () => {
 
       <Routes>
         <Route path="/users/:id" element={<UserDetails users={usersList} />} />
+        <Route path="/blogs/:id" element={<BlogDetails blogs={blogList} />} />
       </Routes>
       <Users users={usersList} />
 
@@ -128,6 +130,9 @@ const App = () => {
             ))}
         </div>
       )}
+
+      {/* {login && <Blog blogs={blogList} />} */}
+
       {login && (
         <Togglable buttonLabel="create new blog" ref={blogFormRef}>
           <BlogForm />
