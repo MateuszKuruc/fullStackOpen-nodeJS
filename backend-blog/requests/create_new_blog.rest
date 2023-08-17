@@ -75,3 +75,12 @@ Content-Type: application/json
     "url": "wwwwww",
     "id": "64c28d2d66cfde78e4014013"
 }
+
+###
+
+POST http://localhost:3003/api/blogs/64de4b567755dfaf5a1c13c4/comments
+Content-Type: application/json
+
+{
+    "content": "test comment to be sent and attached to blog post anonymously"
+}
