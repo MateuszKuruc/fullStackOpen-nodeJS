@@ -2,12 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Blog = ({ blogs }) => {
-  // if (activeUser !== blog.user.username) {
-  //   return null;
-  // }
-
-  // const dispatch = useDispatch();
-
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -25,6 +19,9 @@ const Blog = ({ blogs }) => {
 
   return (
     <div>
+      <button onClick={toggleDetails}>
+        {details ? "Hide details" : "View details"}
+      </button>
       {blogs.map((blog) => (
         <div key={blog.id}>
           <div style={blogStyle} className="completedBlog">
@@ -32,9 +29,9 @@ const Blog = ({ blogs }) => {
               <Link to={`/blogs/${blog.id}`}>
                 {blog.title} {blog.author}
               </Link>
-              <button onClick={toggleDetails}>
+              {/* <button onClick={toggleDetails}>
                 {details ? "hide" : "view"}
-              </button>
+              </button> */}
             </div>
             <div style={detailsShown} className="moreInfo">
               <div>url: {blog.url}</div>
