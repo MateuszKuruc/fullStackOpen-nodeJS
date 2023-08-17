@@ -62,21 +62,22 @@ const App = () => {
     event.preventDefault();
 
     try {
-      const loggedUser = await loginService.login({
+      const userLogged = await loginService.login({
         username,
         password,
       });
+      console.log("loggeduser", userLogged);
 
-      window.localStorage.setItem("loggedBlogUser", JSON.stringify(loggedUser));
-      blogService.setToken(loggedUser.token);
+      window.localStorage.setItem("loggedBlogUser", JSON.stringify(userLogged));
+      blogService.setToken(userLogged.token);
 
-      dispatch(setLogin(loggedUser));
+      dispatch(setLogin(userLogged));
 
       setUsername("");
       setPassword("");
-      dispatch(setMessage(`${loggedUser.name} logged in`, 3));
+      dispatch(setMessage(`${userLogged.name} logged in`, 3));
     } catch (exception) {
-      console.log("error", exception);
+      console.log("error logging", exception);
       dispatch(setErrorMessage("Wrong credentials", 3));
     }
   };
