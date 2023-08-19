@@ -73,11 +73,27 @@ blogsRouter.put("/:id", async (request, response) => {
   response.json(updatedBlog);
 });
 
-blogsRouter.post("/:id/comments", async (request, response) => {
-  const content = request.body;
-  if (content) {
-    response.json(content);
-  }
-});
+// blogsRouter.post("/:id/comments", async (request, response) => {
+//   const content = request.body;
+//   if (content) {
+//     response.json(content);
+//   }
+// });
+
+// blogsRouter.post("/:id/comments", async (request, response) => {
+//   const comment = request.body.comment;
+//   const id = request.params.id;
+//   const blog = {
+//     ...blog,
+//     comments: comment,
+//   };
+//   console.log("blog, id, comment", blog, id, comment);
+
+//   const blogToUpdate = await Blog.findByIdAndUpdate(request.params.id, blog, {
+//     new: true,
+//   });
+
+//   response.json(blogToUpdate);
+// });
 
 module.exports = blogsRouter;
