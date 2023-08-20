@@ -12,8 +12,14 @@ commentsRouter.get("/:id/comments", async (request, response) => {
 });
 
 commentsRouter.post("/:id/comments", async (request, response) => {
-  const body = await request.body;
-  
+  const body = request.body;
+  const blogId = request.params.id;
+
+  const blog = Blog.findById(blogId);
+  const comment = new Comment({
+    comment: body.comment,
+    blog: blog.id,
+  });
 });
 
 module.exports = commentsRouter;
