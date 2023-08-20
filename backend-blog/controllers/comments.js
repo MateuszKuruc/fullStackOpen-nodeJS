@@ -13,16 +13,17 @@ commentsRouter.get("/:id/comments", async (request, response) => {
 
 commentsRouter.post("/:id/comments", async (request, response) => {
   const body = request.body;
-  const blogId = request.params.id;
 
-  const blog = Blog.findById(blogId);
+  const blog = await Blog.findById(request.params.id);
+  console.log("blog from db", blog);
+
   const comment = new Comment({
     comment: body.comment,
     blog: blog.id,
   });
 
   const savedComment = await comment.save();
-  blog.comments.concat(savedComment.comment);
+  blog.comments = blog.comments.concat(savedComment);
 
   await blog.save();
 

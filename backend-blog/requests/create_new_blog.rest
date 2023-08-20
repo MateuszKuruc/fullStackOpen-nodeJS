@@ -78,9 +78,18 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3003/api/blogs/64de4b567755dfaf5a1c13c4/comments
+POST http://localhost:3003/api/blogs/64e29d321fb6f754b34f7f12/comments
 Content-Type: application/json
 
 {
-    "comment": "test comment to be sent and attached to blog post anonymously"
+    "comment": "11test comment to be sent and attached to blog post anonymously"
+}
+
+###
+
+POST http://localhost:3003/api/blogs/64e29d321fb6f754b34f7f12/comments
+Content-Type: application/json
+
+{
+    "comment": "test comment 2"
 }
