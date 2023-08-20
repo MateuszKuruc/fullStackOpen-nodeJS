@@ -26,7 +26,7 @@ commentsRouter.post("/:id/comments", async (request, response) => {
 
   await blog.save();
 
-  response.json(savedComment);
+  response.status(201).json(savedComment);
 });
 
 module.exports = commentsRouter;
