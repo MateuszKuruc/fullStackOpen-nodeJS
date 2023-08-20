@@ -15,9 +15,7 @@ blogsRouter.post("/", async (request, response) => {
   if (!request.likes) {
     body.likes = 0;
   }
-  // if (!request.comments) {
-  //   body.comments = "";
-  // }
+
   const decodedToken = jwt.verify(request.token, process.env.SECRET);
   if (!decodedToken.id) {
     return response.status(401).json({ errror: "token invalid" });
@@ -30,7 +28,6 @@ blogsRouter.post("/", async (request, response) => {
     url: body.url,
     likes: body.likes,
     user: user.id,
-    // comments: body.comments,
     comments: [],
   });
 
@@ -73,28 +70,5 @@ blogsRouter.put("/:id", async (request, response) => {
 
   response.json(updatedBlog);
 });
-
-// blogsRouter.post("/:id/comments", async (request, response) => {
-//   const content = request.body;
-//   if (content) {
-//     response.json(content);
-//   }
-// });
-
-// blogsRouter.post("/:id/comments", async (request, response) => {
-//   const comment = request.body.comment;
-//   const id = request.params.id;
-//   const blog = {
-//     ...blog,
-//     comments: comment,
-//   };
-//   console.log("blog, id, comment", blog, id, comment);
-
-//   const blogToUpdate = await Blog.findByIdAndUpdate(request.params.id, blog, {
-//     new: true,
-//   });
-
-//   response.json(blogToUpdate);
-// });
 
 module.exports = blogsRouter;
