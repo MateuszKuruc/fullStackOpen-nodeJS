@@ -15,9 +15,9 @@ blogsRouter.post("/", async (request, response) => {
   if (!request.likes) {
     body.likes = 0;
   }
-  if (!request.comments) {
-    body.comments = [];
-  }
+  // if (!request.comments) {
+  //   body.comments = "";
+  // }
   const decodedToken = jwt.verify(request.token, process.env.SECRET);
   if (!decodedToken.id) {
     return response.status(401).json({ errror: "token invalid" });
@@ -30,7 +30,8 @@ blogsRouter.post("/", async (request, response) => {
     url: body.url,
     likes: body.likes,
     user: user.id,
-    comments: body.comments,
+    // comments: body.comments,
+    comments: [],
   });
 
   const savedBlog = await blog.save();
