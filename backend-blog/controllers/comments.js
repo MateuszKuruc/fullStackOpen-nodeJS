@@ -20,6 +20,13 @@ commentsRouter.post("/:id/comments", async (request, response) => {
     comment: body.comment,
     blog: blog.id,
   });
+
+  const savedComment = await comment.save();
+  blog.comments.concat(savedComment.comment);
+
+  await blog.save();
+
+  response.json(savedComment);
 });
 
 module.exports = commentsRouter;
