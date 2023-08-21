@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import { Alert } from "@mui/material";
 
 const Message = () => {
   const message = useSelector((state) => state.message);
@@ -8,7 +9,11 @@ const Message = () => {
   }
 
   if (message !== null) {
-    return <div className="message">{message}</div>;
+    return (
+      <div>
+        <Alert severity="success">{message}</Alert>
+      </div>
+    );
   }
 };
 
