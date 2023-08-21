@@ -10,10 +10,12 @@ import { useEffect } from "react";
 import { initializeComments } from "../reducers/commentReducer";
 import { useSelector } from "react-redux";
 import { createComment } from "../reducers/commentReducer";
+import { useState } from "react";
 
 const BlogDetails = ({ blogs }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [comment, setComment] = useState([]);
 
   useEffect(() => {
     dispatch(initializeComments());
@@ -66,14 +68,16 @@ const BlogDetails = ({ blogs }) => {
     navigate("/blogs");
   };
 
-  const addComment = async () => {
+  const addComment = async (event) => {
+    event.preventDefault();
     const newComment = {
-      comment: "numero uno",
+      comment: comment,
       // blog: blog.id,
     };
     // console.log("new comment", newComment);
     dispatch(createComment(newComment, blog.id));
-    console.log("comments after adding comment", comments);
+    setComment("");
+    // console.log("comments after adding comment", comments);
     navigate(`/blogs/${blog.id}`);
   };
 
@@ -90,6 +94,9 @@ const BlogDetails = ({ blogs }) => {
         </p>
       </div>
       <p>added by {blog.author}</p>
+      <button id="delete-button" onClick={deleteBlog}>
+        Remove blog
+      </button>
       <div>
         <h3>comments</h3>
 
@@ -97,11 +104,19 @@ const BlogDetails = ({ blogs }) => {
           <div key={comment.id}>{comment.comment}</div>
         ))}
 
-        <button onClick={addComment}>Add comment</button>
+        {/* <button onClick={addComment}>Add comment</button> */}
+        <form onSubmit={addComment}>
+          <button type="submit">Add comment</button>
+          <div>
+            <input
+              value={comment}
+              id="comment"
+              placeholder="enter comment"
+              onChange={({ target }) => setComment(target.value)}
+            />
+          </div>
+        </form>
       </div>
-      <button id="delete-button" onClick={deleteBlog}>
-        Remove blog
-      </button>
     </div>
   );
 };
