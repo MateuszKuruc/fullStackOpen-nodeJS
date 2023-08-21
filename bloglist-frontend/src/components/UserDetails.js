@@ -12,7 +12,7 @@ const UserDetails = ({ users }) => {
 
   return (
     <div>
-      <Typography variant="h2">{user.name}</Typography>
+      <Typography variant="h3">{user.name}</Typography>
       <Typography variant="h5">Blog list:</Typography>
       <List>
         <Typography style={{ fontStyle: "italic" }}>
