@@ -7,9 +7,7 @@ const getAll = (id) => {
 };
 
 const create = async (newComment, blogId) => {
-  //   console.log("newcomment request", newComment, "blogid:", blogId);
   const request = await axios.post(`${baseUrl}/${blogId}/comments`, newComment);
-  //   console.log("create request", request.data);
   return request.data;
 };
 

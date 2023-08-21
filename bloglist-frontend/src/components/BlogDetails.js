@@ -25,17 +25,13 @@ const BlogDetails = ({ blogs }) => {
 
   const id = useParams().id;
   const blog = blogs.find((blog) => blog.id === id);
-  console.log("blog", blog);
   if (!blog) {
     return null;
   }
 
-  console.log("comments", comments, "blog:", blog);
-
   const commentsToDisplay = comments.filter(
     (comment) => comment.blog.id === blog.id
   );
-  console.log("this blog comments", commentsToDisplay);
 
   const addLike = () => {
     const updatedBlog = {
