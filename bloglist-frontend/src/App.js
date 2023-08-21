@@ -105,17 +105,13 @@ const App = () => {
               color="inherit"
               aria-label="menu"
             ></IconButton>
-            <Button color="inherit">
-              <Link to="/blogs" style={{ padding: 10 }}>
-                Blogs
-              </Link>
+            <Button color="inherit" component={Link} to="/blogs">
+              Blogs
             </Button>
-            <Button color="inherit">
-              <Link to="/users" style={{ padding: 10 }}>
-                Users
-              </Link>
+            <Button color="inherit" component={Link} to="/users">
+              Users
             </Button>
-            <span style={{ padding: 10, fontStyle: "italic" }}>
+            <span style={{ fontStyle: "italic" }}>
               <b>{login.name}</b> logged in
             </span>
             <Button color="inherit" onClick={handleLogout}>
