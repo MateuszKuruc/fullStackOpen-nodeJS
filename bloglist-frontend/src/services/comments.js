@@ -6,4 +6,11 @@ const getAll = (id) => {
   return request.then((response) => response.data);
 };
 
-export default { getAll };
+const create = async (newComment, blogId) => {
+  console.log("newcomment request", newComment, "blogid:", blogId);
+  const request = await axios.post(`${baseUrl}/${blogId}/comments`, newComment);
+  console.log("create request", request.data);
+  return request.data;
+};
+
+export default { getAll, create };

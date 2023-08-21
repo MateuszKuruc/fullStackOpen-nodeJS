@@ -9,6 +9,7 @@ import { setErrorMessage } from "../reducers/errorMessageReducer";
 import { useEffect } from "react";
 import { initializeComments } from "../reducers/commentReducer";
 import { useSelector } from "react-redux";
+import { createComment } from "../reducers/commentReducer";
 
 const BlogDetails = ({ blogs }) => {
   const navigate = useNavigate();
@@ -65,6 +66,15 @@ const BlogDetails = ({ blogs }) => {
     navigate("/blogs");
   };
 
+  const addComment = async () => {
+    const newComment = {
+      comment: "numero uno",
+      // blog: blog.id,
+    };
+    console.log("new comment", newComment);
+    dispatch(createComment(newComment, blog.id));
+  };
+
   return (
     <div>
       <h2>{blog.title}</h2>
@@ -84,6 +94,8 @@ const BlogDetails = ({ blogs }) => {
         {commentsToDisplay.map((comment) => (
           <div key={comment.id}>{comment.comment}</div>
         ))}
+
+        <button onClick={addComment}>Add comment</button>
       </div>
       <button id="delete-button" onClick={deleteBlog}>
         Remove blog

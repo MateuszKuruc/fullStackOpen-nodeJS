@@ -24,8 +24,10 @@ export const initializeComments = () => {
   };
 };
 
-// export const createComment = () => {
-//     return async dispatch => {
-//         const
-//     }
-// }
+export const createComment = (comment, blogId) => {
+  return async (dispatch) => {
+    const newComment = await commentService.create(comment, blogId);
+
+    dispatch(appendComment(newComment));
+  };
+};
