@@ -37,18 +37,21 @@ const BlogForm = () => {
       <form onSubmit={addBlog}>
         <div>
           <TextField
+            style={{ marginBottom: 10 }}
             label="Title"
             onChange={({ target }) => setTitle(target.value)}
           />
         </div>
         <div>
           <TextField
+            style={{ marginBottom: 10 }}
             label="Author"
             onChange={({ target }) => setAuthor(target.value)}
           />
         </div>
         <div>
           <TextField
+            style={{ marginBottom: 5 }}
             label="URL"
             onChange={({ target }) => setUrl(target.value)}
           />
