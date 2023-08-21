@@ -29,5 +29,7 @@ export const createComment = (comment, blogId) => {
     const newComment = await commentService.create(comment, blogId);
 
     dispatch(appendComment(newComment));
+    const comments = await commentService.getAll();
+    dispatch(setComments(comments));
   };
 };

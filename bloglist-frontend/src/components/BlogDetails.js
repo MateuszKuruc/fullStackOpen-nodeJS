@@ -71,8 +71,10 @@ const BlogDetails = ({ blogs }) => {
       comment: "numero uno",
       // blog: blog.id,
     };
-    console.log("new comment", newComment);
+    // console.log("new comment", newComment);
     dispatch(createComment(newComment, blog.id));
+    console.log("comments after adding comment", comments);
+    navigate(`/blogs/${blog.id}`);
   };
 
   return (
