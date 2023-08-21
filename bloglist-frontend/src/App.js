@@ -24,7 +24,25 @@ import { initializeUsers } from "./reducers/usersReducer";
 import UserDetails from "./components/UserDetails";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
-import { Container, AppBar, IconButton, Button, Toolbar } from "@mui/material";
+import {
+  Container,
+  AppBar,
+  IconButton,
+  Button,
+  Toolbar,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material";
+const matiTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#FF4081",
+    },
+    secondary: {
+      main: "#FFAB40",
+    },
+  },
+});
 
 const App = () => {
   const navigate = useNavigate();
@@ -94,77 +112,82 @@ const App = () => {
   };
 
   return (
-    <Container>
-      <Message />
-      <ErrorMessage />
-      {login && (
-        <AppBar position="static" style={{ padding: 10, marginBottom: 16 }}>
-          <Toolbar>
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-            ></IconButton>
-            <Button color="inherit" component={Link} to="/blogs">
-              Blogs
-            </Button>
-            <Button color="inherit" component={Link} to="/users">
-              Users
-            </Button>
-            <span style={{ fontStyle: "italic" }}>
-              <b>{login.name}</b> logged in
-            </span>
-            <Button color="inherit" onClick={handleLogout}>
-              Logout
-            </Button>
-          </Toolbar>
-        </AppBar>
-      )}
+    <ThemeProvider theme={matiTheme}>
+      <Container>
+        <Message />
+        <ErrorMessage />
+        {login && (
+          <AppBar position="static" style={{ padding: 10, marginBottom: 16 }}>
+            <Toolbar>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+              ></IconButton>
+              <Button color="inherit" component={Link} to="/blogs">
+                Blogs
+              </Button>
+              <Button color="inherit" component={Link} to="/users">
+                Users
+              </Button>
+              <span style={{ fontStyle: "italic" }}>
+                <b>{login.name}</b> logged in
+              </span>
+              <Button color="inherit" onClick={handleLogout}>
+                Logout
+              </Button>
+            </Toolbar>
+          </AppBar>
+        )}
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            login === null && (
-              <div>
-                <h2>Welcome to the blog app!</h2>
-                <p>
-                  <i>log in to begin</i>
-                </p>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              login === null && (
+                <div>
+                  <h2>Welcome to the blog app!</h2>
+                  <p>
+                    <i>log in to begin</i>
+                  </p>
 
-                <Togglable buttonLabel="login">
-                  <LoginForm
-                    handleUsernameChange={({ target }) =>
-                      setUsername(target.value)
-                    }
-                    handlePasswordChange={({ target }) =>
-                      setPassword(target.value)
-                    }
-                    handleSubmit={handleLogin}
-                  />
-                </Togglable>
-              </div>
-            )
-          }
-        />
-        <Route path="/users/:id" element={<UserDetails users={usersList} />} />
-        <Route path="/blogs/:id" element={<BlogDetails blogs={blogList} />} />
-        <Route path="/users" element={<Users users={usersList} />} />
-        <Route
-          path="/blogs"
-          element={
-            login && (
-              <>
-                <Blog blogs={blogList} />
-                <Togglable buttonLabel="create new blog" ref={blogFormRef}>
-                  <BlogForm />
-                </Togglable>
-              </>
-            )
-          }
-        />
-      </Routes>
-    </Container>
+                  <Togglable buttonLabel="login">
+                    <LoginForm
+                      handleUsernameChange={({ target }) =>
+                        setUsername(target.value)
+                      }
+                      handlePasswordChange={({ target }) =>
+                        setPassword(target.value)
+                      }
+                      handleSubmit={handleLogin}
+                    />
+                  </Togglable>
+                </div>
+              )
+            }
+          />
+          <Route
+            path="/users/:id"
+            element={<UserDetails users={usersList} />}
+          />
+          <Route path="/blogs/:id" element={<BlogDetails blogs={blogList} />} />
+          <Route path="/users" element={<Users users={usersList} />} />
+          <Route
+            path="/blogs"
+            element={
+              login && (
+                <>
+                  <Blog blogs={blogList} />
+                  <Togglable buttonLabel="create new blog" ref={blogFormRef}>
+                    <BlogForm />
+                  </Togglable>
+                </>
+              )
+            }
+          />
+        </Routes>
+      </Container>
+    </ThemeProvider>
   );
 };
 
