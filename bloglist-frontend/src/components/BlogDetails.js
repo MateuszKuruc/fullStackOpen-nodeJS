@@ -66,12 +66,22 @@ const BlogDetails = ({ blogs }) => {
 
   const addComment = async (event) => {
     event.preventDefault();
-    const newComment = {
-      comment: comment,
-    };
-    dispatch(createComment(newComment, blog.id));
-    setComment("");
-    navigate(`/blogs/${blog.id}`);
+    if (comment.length > 3) {
+      const newComment = {
+        comment: comment,
+      };
+      dispatch(createComment(newComment, blog.id));
+      setComment("");
+      navigate(`/blogs/${blog.id}`);
+      dispatch(
+        setMessage(`A new comment has been added to blog '${blog.title}'!`, 3)
+      );
+    } else {
+      dispatch(
+        setErrorMessage("Comment needs to be at least 3 characters long!", 3)
+      );
+      return;
+    }
   };
 
   return (
