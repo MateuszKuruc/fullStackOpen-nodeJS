@@ -1,8 +1,6 @@
-// import { useSelector } from "react-redux";
-// import { useParams } from "react-router-dom";
-
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { List, ListItem, ListItemText, Typography } from "@mui/material";
 
 const UserDetails = ({ users }) => {
   const id = useParams().id;
@@ -14,14 +12,19 @@ const UserDetails = ({ users }) => {
 
   return (
     <div>
-      <h2>{user.name}</h2>
-      <ul>
-        {user.blogs.map((blog) => (
-          <li key={blog.id}>
-            <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <Typography variant="h2">{user.name}</Typography>
+      <Typography variant="h5">Blog list:</Typography>
+      <List>
+        <Typography style={{ fontStyle: "italic" }}>
+          {user.blogs.map((blog) => (
+            <ListItem key={blog.id}>
+              <Link to={`/blogs/${blog.id}`}>
+                <ListItemText primary={blog.title} />
+              </Link>
+            </ListItem>
+          ))}
+        </Typography>
+      </List>
     </div>
   );
 };
