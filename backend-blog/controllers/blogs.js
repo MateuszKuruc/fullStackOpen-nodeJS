@@ -57,7 +57,6 @@ blogsRouter.delete("/:id", async (request, response) => {
   }
 
   const blogToDelete = await Blog.findByIdAndRemove(id);
-  console.log("to delete", blogToDelete);
   response.status(204).end();
 });
 
