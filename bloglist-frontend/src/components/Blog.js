@@ -38,7 +38,7 @@ const Blog = ({ blogs }) => {
                 </TableCell>
                 <TableCell>{blog.author}</TableCell>
 
-                <TableCell style={detailsShown} className="moreInfo">
+                <TableCell style={detailsShown}>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
@@ -47,9 +47,7 @@ const Blog = ({ blogs }) => {
                     {blog.url}
                   </a>
                 </TableCell>
-                <TableCell style={detailsShown} className="moreInfo">
-                  {blog.likes}
-                </TableCell>
+                <TableCell style={detailsShown}>{blog.likes}</TableCell>
               </TableRow>
             ))}
           </TableBody>

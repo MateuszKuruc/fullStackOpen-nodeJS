@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { setMessage } from "../reducers/messageReducer";
 import { useNavigate } from "react-router-dom";
 
+import { TextField, Button } from "@mui/material";
+
 const BlogForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -31,38 +33,34 @@ const BlogForm = () => {
 
   return (
     <div>
-      <h2>create a new blog</h2>
+      <h2>Create a new blog</h2>
       <form onSubmit={addBlog}>
         <div>
-          title
-          <input
-            value={title}
-            id="title"
-            placeholder="enter title"
+          <TextField
+            label="Title"
             onChange={({ target }) => setTitle(target.value)}
           />
         </div>
         <div>
-          author
-          <input
-            value={author}
-            id="author"
-            placeholder="enter author"
+          <TextField
+            label="Author"
             onChange={({ target }) => setAuthor(target.value)}
           />
         </div>
         <div>
-          url
-          <input
-            value={url}
-            id="url"
-            placeholder="enter url"
+          <TextField
+            label="URL"
             onChange={({ target }) => setUrl(target.value)}
           />
         </div>
-        <button id="save-button" type="submit">
+        <Button
+          id="save-button"
+          variant="contained"
+          color="primary"
+          type="submit"
+        >
           save
-        </button>
+        </Button>
       </form>
     </div>
   );
