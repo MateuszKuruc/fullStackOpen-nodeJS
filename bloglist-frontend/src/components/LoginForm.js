@@ -21,6 +21,7 @@ const LoginForm = ({
           <TextField
             label="password"
             onChange={handlePasswordChange}
+            style={{ marginBottom: 5 }}
           ></TextField>
         </div>
         <Button id="login-button" type="submit" variant="contained">
