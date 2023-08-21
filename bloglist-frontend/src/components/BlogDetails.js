@@ -81,9 +81,9 @@ const BlogDetails = ({ blogs }) => {
       <div>
         <h3>comments</h3>
 
-        {/* {blog.comments.map((comment) => (
-          <div key={blog.id}>{comment}</div>
-        ))} */}
+        {commentsToDisplay.map((comment) => (
+          <div key={comment.id}>{comment.comment}</div>
+        ))}
       </div>
       <button id="delete-button" onClick={deleteBlog}>
         Remove blog
