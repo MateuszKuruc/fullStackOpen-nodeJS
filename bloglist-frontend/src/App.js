@@ -128,8 +128,8 @@ const App = () => {
             login === null && (
               <Togglable buttonLabel="login">
                 <LoginForm
-                  username={username}
-                  password={password}
+                  // username={username}
+                  // password={password}
                   handleUsernameChange={({ target }) =>
                     setUsername(target.value)
                   }
