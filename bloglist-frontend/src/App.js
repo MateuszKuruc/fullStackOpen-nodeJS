@@ -126,17 +126,24 @@ const App = () => {
           path="/"
           element={
             login === null && (
-              <Togglable buttonLabel="login">
-                <LoginForm
-                  handleUsernameChange={({ target }) =>
-                    setUsername(target.value)
-                  }
-                  handlePasswordChange={({ target }) =>
-                    setPassword(target.value)
-                  }
-                  handleSubmit={handleLogin}
-                />
-              </Togglable>
+              <div>
+                <h2>Welcome to the blog app!</h2>
+                <p>
+                  <i>log in to begin</i>
+                </p>
+
+                <Togglable buttonLabel="login">
+                  <LoginForm
+                    handleUsernameChange={({ target }) =>
+                      setUsername(target.value)
+                    }
+                    handlePasswordChange={({ target }) =>
+                      setPassword(target.value)
+                    }
+                    handleSubmit={handleLogin}
+                  />
+                </Togglable>
+              </div>
             )
           }
         />
