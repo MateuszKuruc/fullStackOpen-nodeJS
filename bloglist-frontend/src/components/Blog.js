@@ -7,6 +7,7 @@ import {
   TableContainer,
   TableRow,
   Paper,
+  Button,
 } from "@mui/material";
 
 const Blog = ({ blogs }) => {
@@ -19,9 +20,9 @@ const Blog = ({ blogs }) => {
 
   return (
     <div>
-      <button onClick={toggleDetails}>
+      <Button onClick={toggleDetails} variant="outlined" color="primary">
         {details ? "Hide all details" : "View all details"}
-      </button>
+      </Button>
       <TableContainer component={Paper}>
         <Table>
           <TableBody>
