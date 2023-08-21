@@ -72,12 +72,9 @@ const BlogDetails = ({ blogs }) => {
     event.preventDefault();
     const newComment = {
       comment: comment,
-      // blog: blog.id,
     };
-    // console.log("new comment", newComment);
     dispatch(createComment(newComment, blog.id));
     setComment("");
-    // console.log("comments after adding comment", comments);
     navigate(`/blogs/${blog.id}`);
   };
 
@@ -104,7 +101,6 @@ const BlogDetails = ({ blogs }) => {
           <div key={comment.id}>{comment.comment}</div>
         ))}
 
-        {/* <button onClick={addComment}>Add comment</button> */}
         <form onSubmit={addComment}>
           <button type="submit">Add comment</button>
           <div>
