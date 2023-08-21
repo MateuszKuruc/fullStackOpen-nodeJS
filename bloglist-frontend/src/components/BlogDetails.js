@@ -29,10 +29,10 @@ const BlogDetails = ({ blogs }) => {
 
   console.log("comments", comments, "blog:", blog);
 
-  const thisBlogComments = comments.filter(
+  const commentsToDisplay = comments.filter(
     (comment) => comment.blog.id === blog.id
   );
-  console.log("this blog comments", thisBlogComments);
+  console.log("this blog comments", commentsToDisplay);
 
   const addLike = () => {
     const updatedBlog = {
