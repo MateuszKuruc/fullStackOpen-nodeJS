@@ -98,7 +98,7 @@ const App = () => {
       <Message />
       <ErrorMessage />
       {login && (
-        <AppBar position="static">
+        <AppBar position="static" style={{ padding: 10, marginBottom: 16 }}>
           <Toolbar>
             <IconButton
               edge="start"
