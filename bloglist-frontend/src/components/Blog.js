@@ -27,15 +27,25 @@ const Blog = ({ blogs }) => {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell>Blog name</TableCell>
-              <TableCell>Author</TableCell>
-              <TableCell style={detailsShown}>Link</TableCell>
-              <TableCell style={detailsShown}>Likes</TableCell>
+              <TableCell>
+                <h3>Blog name</h3>
+              </TableCell>
+              <TableCell>
+                <h3>Author</h3>
+              </TableCell>
+              <TableCell style={detailsShown}>
+                <h3>Link</h3>
+              </TableCell>
+              <TableCell style={detailsShown}>
+                <h3>Likes</h3>
+              </TableCell>
             </TableRow>
             {blogs.map((blog) => (
               <TableRow key={blog.id}>
                 <TableCell>
-                  <Link to={`/blogs/${blog.id}`}>{blog.title}</Link>
+                  <Link to={`/blogs/${blog.id}`}>
+                    <i>{blog.title}</i>
+                  </Link>
                 </TableCell>
                 <TableCell>{blog.author}</TableCell>
 
