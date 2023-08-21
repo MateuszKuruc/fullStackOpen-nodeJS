@@ -12,7 +12,15 @@ import { useSelector } from "react-redux";
 import { createComment } from "../reducers/commentReducer";
 import { useState } from "react";
 
-import { Button, Typography } from "@mui/material";
+import {
+  Button,
+  TableContainer,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+  TextField,
+} from "@mui/material";
 
 const BlogDetails = ({ blogs }) => {
   const navigate = useNavigate();
@@ -88,60 +96,85 @@ const BlogDetails = ({ blogs }) => {
 
   return (
     <div>
-      <Typography>
-        <h2>
-          Blog:{" "}
-          <span style={{ fontStyle: "italic", fontWeight: 300 }}>
-            {blog.title}
-          </span>
-        </h2>
-        <div style={{ marginBottom: 10 }}>
-          Link:{" "}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={"https://" + blog.url}
-          >
-            {blog.url}
-          </a>
-        </div>
-        <div style={{ marginBottom: 10 }}>
-          Likes: {blog.likes}
-          <div>
-            <Button onClick={addLike} variant="contained">
-              like blog
-            </Button>
-          </div>
-        </div>
-        <p>
-          Blog written by{" "}
-          <span style={{ fontStyle: "italic", fontWeight: 900 }}>
-            {blog.author}
-          </span>
-        </p>
-        <Button variant="outlined" id="delete-Button" onClick={deleteBlog}>
-          Remove blog
-        </Button>
+      <h2>
+        Blog:{" "}
+        <span style={{ fontStyle: "italic", fontWeight: 300 }}>
+          {blog.title}
+        </span>
+      </h2>
+      <div style={{ marginBottom: 16 }}>
+        Link:{" "}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={"https://" + blog.url}
+        >
+          {blog.url}
+        </a>
+      </div>
+      <div style={{ marginBottom: 16 }}>
+        <div style={{ marginBottom: 5 }}>Likes: {blog.likes}</div>
         <div>
-          <h3>Comments</h3>
+          <Button onClick={addLike} variant="contained">
+            like blog
+          </Button>
+        </div>
+      </div>
+      <p>
+        Blog written by{" "}
+        <span style={{ fontStyle: "italic", fontWeight: 900 }}>
+          {blog.author}
+        </span>
+      </p>
+      <Button
+        style={{ marginBottom: "3rem" }}
+        variant="outlined"
+        id="delete-Button"
+        onClick={deleteBlog}
+      >
+        Remove blog
+      </Button>
+      <div>
+        <h3>Comments</h3>
 
-          {commentsToDisplay.map((comment) => (
-            <div key={comment.id}>{comment.comment}</div>
-          ))}
-
+        <TableContainer>
+          <Table>
+            <TableBody>
+              {commentsToDisplay.map((comment) => (
+                <TableRow key={comment.id}>
+                  <TableCell>
+                    {comment.comment}{" "}
+                    <span style={{ fontStyle: "italic", fontWeight: 900 }}>
+                      by Anonymous
+                    </span>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <div>
           <form onSubmit={addComment}>
-            <Button type="submit">Add comment</Button>
+            <Button
+              variant="contained"
+              type="submit"
+              style={{ marginBottom: 10, marginTop: 10 }}
+            >
+              Add new comment
+            </Button>
             <div>
-              <input
+              <TextField
                 value={comment}
-                id="comment"
-                placeholder="enter comment"
+                label="comment here..."
+                multiline
+                rows="4"
+                style={{ width: "100%" }}
                 onChange={({ target }) => setComment(target.value)}
-              />
+              ></TextField>
             </div>
           </form>
         </div>
-      </Typography>
+      </div>
     </div>
   );
 };
