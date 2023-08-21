@@ -24,7 +24,7 @@ import { initializeUsers } from "./reducers/usersReducer";
 import UserDetails from "./components/UserDetails";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
-import { Container, Typography } from "@mui/material";
+import { Container, AppBar, IconButton, Button, Toolbar } from "@mui/material";
 
 const App = () => {
   const navigate = useNavigate();
@@ -98,25 +98,31 @@ const App = () => {
       <Message />
       <ErrorMessage />
       {login && (
-        <Typography
-          style={{
-            padding: 0,
-            backgroundColor: "primary",
-            fontWeight: "bold",
-            fontSize: "24px",
-          }}
-        >
-          <Link to="/blogs" style={{ padding: 10 }}>
-            Blogs
-          </Link>
-          <Link to="/users" style={{ padding: 10 }}>
-            Users
-          </Link>
-          <span style={{ padding: 10, fontStyle: "italic" }}>
-            {login.name} logged in
-          </span>
-          <button onClick={handleLogout}>logout</button>
-        </Typography>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+            ></IconButton>
+            <Button color="inherit">
+              <Link to="/blogs" style={{ padding: 10 }}>
+                Blogs
+              </Link>
+            </Button>
+            <Button color="inherit">
+              <Link to="/users" style={{ padding: 10 }}>
+                Users
+              </Link>
+            </Button>
+            <span style={{ padding: 10, fontStyle: "italic" }}>
+              <b>{login.name}</b> logged in
+            </span>
+            <Button color="inherit" onClick={handleLogout}>
+              Logout
+            </Button>
+          </Toolbar>
+        </AppBar>
       )}
 
       <Routes>
