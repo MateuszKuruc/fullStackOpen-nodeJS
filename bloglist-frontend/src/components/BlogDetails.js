@@ -12,6 +12,8 @@ import { useSelector } from "react-redux";
 import { createComment } from "../reducers/commentReducer";
 import { useState } from "react";
 
+import { Button, Typography } from "@mui/material";
+
 const BlogDetails = ({ blogs }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -86,39 +88,60 @@ const BlogDetails = ({ blogs }) => {
 
   return (
     <div>
-      <h2>{blog.title}</h2>
-      <a target="_blank" rel="noopener noreferrer" href={"https://" + blog.url}>
-        {blog.url}
-      </a>
-      <div>
-        <p>
-          likes: {blog.likes}
-          <button onClick={addLike}>like</button>
-        </p>
-      </div>
-      <p>added by {blog.author}</p>
-      <button id="delete-button" onClick={deleteBlog}>
-        Remove blog
-      </button>
-      <div>
-        <h3>comments</h3>
-
-        {commentsToDisplay.map((comment) => (
-          <div key={comment.id}>{comment.comment}</div>
-        ))}
-
-        <form onSubmit={addComment}>
-          <button type="submit">Add comment</button>
+      <Typography>
+        <h2>
+          Blog:{" "}
+          <span style={{ fontStyle: "italic", fontWeight: 300 }}>
+            {blog.title}
+          </span>
+        </h2>
+        <div style={{ marginBottom: 10 }}>
+          Link:{" "}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={"https://" + blog.url}
+          >
+            {blog.url}
+          </a>
+        </div>
+        <div style={{ marginBottom: 10 }}>
+          Likes: {blog.likes}
           <div>
-            <input
-              value={comment}
-              id="comment"
-              placeholder="enter comment"
-              onChange={({ target }) => setComment(target.value)}
-            />
+            <Button onClick={addLike} variant="contained">
+              like blog
+            </Button>
           </div>
-        </form>
-      </div>
+        </div>
+        <p>
+          Blog written by{" "}
+          <span style={{ fontStyle: "italic", fontWeight: 900 }}>
+            {blog.author}
+          </span>
+        </p>
+        <Button variant="outlined" id="delete-Button" onClick={deleteBlog}>
+          Remove blog
+        </Button>
+        <div>
+          <h3>Comments</h3>
+
+          {commentsToDisplay.map((comment) => (
+            <div key={comment.id}>{comment.comment}</div>
+          ))}
+
+          <form onSubmit={addComment}>
+            <Button type="submit">Add comment</Button>
+            <div>
+              <input
+                value={comment}
+                id="comment"
+                placeholder="enter comment"
+                onChange={({ target }) => setComment(target.value)}
+              />
+            </div>
+          </form>
+        </div>
+      </Typography>
     </div>
   );
 };
