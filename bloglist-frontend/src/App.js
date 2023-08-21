@@ -24,7 +24,7 @@ import { initializeUsers } from "./reducers/usersReducer";
 import UserDetails from "./components/UserDetails";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 
 const App = () => {
   const navigate = useNavigate();
@@ -98,14 +98,25 @@ const App = () => {
       <Message />
       <ErrorMessage />
       {login && (
-        <div>
-          <p>
-            <Link to="/blogs">Blogs</Link>
-            <Link to="/users">Users</Link>
-            <i>{login.name} logged in</i>
-            <button onClick={handleLogout}>logout</button>
-          </p>
-        </div>
+        <Typography
+          style={{
+            padding: 0,
+            backgroundColor: "primary",
+            fontWeight: "bold",
+            fontSize: "24px",
+          }}
+        >
+          <Link to="/blogs" style={{ padding: 10 }}>
+            Blogs
+          </Link>
+          <Link to="/users" style={{ padding: 10 }}>
+            Users
+          </Link>
+          <span style={{ padding: 10, fontStyle: "italic" }}>
+            {login.name} logged in
+          </span>
+          <button onClick={handleLogout}>logout</button>
+        </Typography>
       )}
 
       <Routes>
