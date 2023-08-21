@@ -5,6 +5,7 @@ import {
   TableCell,
   TableContainer,
   TableBody,
+  Button,
 } from "@mui/material";
 
 const Users = ({ users }) => {
@@ -24,7 +25,9 @@ const Users = ({ users }) => {
             {users.map((user) => (
               <TableRow key={user.id}>
                 <TableCell>
-                  <Link to={`/users/${user.id}`}>{user.username}</Link>
+                  <Button component={Link} to={`/users/${user.id}`}>
+                    {user.username}
+                  </Button>
                 </TableCell>
                 <TableCell>{user.blogs.length}</TableCell>
               </TableRow>
