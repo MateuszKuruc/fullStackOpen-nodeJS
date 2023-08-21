@@ -127,7 +127,7 @@ const BlogDetails = ({ blogs }) => {
         </span>
       </p>
       <Button
-        style={{ marginBottom: "3rem" }}
+        style={{ marginBottom: "2rem" }}
         variant="outlined"
         id="delete-Button"
         onClick={deleteBlog}
