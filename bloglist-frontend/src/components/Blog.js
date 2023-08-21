@@ -19,8 +19,13 @@ const Blog = ({ blogs }) => {
   };
 
   return (
-    <div>
-      <Button onClick={toggleDetails} variant="outlined" color="primary">
+    <div style={{ marginBottom: 10 }}>
+      <Button
+        onClick={toggleDetails}
+        variant="outlined"
+        color="primary"
+        style={{ marginBottom: 10 }}
+      >
         {details ? "Hide all details" : "View all details"}
       </Button>
       <TableContainer component={Paper}>
