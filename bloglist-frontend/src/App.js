@@ -24,6 +24,16 @@ import { initializeUsers } from "./reducers/usersReducer";
 import UserDetails from "./components/UserDetails";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
+import {
+  Container,
+  // Table,
+  // TableBody,
+  // TableCell,
+  // TableContainer,
+  // TableRow,
+  // Paper,
+} from "@mui/material";
+
 const App = () => {
   const navigate = useNavigate();
 
@@ -92,7 +102,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <Container>
       <Message />
       <ErrorMessage />
       {login && (
@@ -144,7 +154,7 @@ const App = () => {
           }
         />
       </Routes>
-    </div>
+    </Container>
   );
 };
 
