@@ -114,8 +114,6 @@ const App = () => {
   return (
     <ThemeProvider theme={matiTheme}>
       <Container>
-        <Message />
-        <ErrorMessage />
         {login && (
           <AppBar position="static" style={{ padding: 10, marginBottom: 16 }}>
             <Toolbar>
@@ -139,6 +137,8 @@ const App = () => {
             </Toolbar>
           </AppBar>
         )}
+        <Message />
+        <ErrorMessage />
 
         <Routes>
           <Route
