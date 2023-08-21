@@ -23,7 +23,7 @@ commentsRouter.post("/:id/comments", async (request, response) => {
   });
 
   const savedComment = await comment.save();
-  blog.comments = blog.comments.concat(savedComment);
+  blog.comments = blog.comments.concat(savedComment.comment);
 
   await blog.save();
 
