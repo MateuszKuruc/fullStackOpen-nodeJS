@@ -14,4 +14,18 @@ const commentSlice = createSlice({
   },
 });
 
+export const { setComments, appendComment } = commentSlice.actions;
 export default commentSlice.reducer;
+
+export const initializeComments = () => {
+  return async (dispatch) => {
+    const comments = await commentService.getAll();
+    dispatch(setComments(comments));
+  };
+};
+
+// export const createComment = () => {
+//     return async dispatch => {
+//         const
+//     }
+// }

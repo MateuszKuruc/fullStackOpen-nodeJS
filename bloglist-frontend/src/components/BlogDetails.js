@@ -6,9 +6,19 @@ import { removeBlog } from "../reducers/blogReducer";
 import { useNavigate } from "react-router-dom";
 import { setErrorMessage } from "../reducers/errorMessageReducer";
 
+import { useEffect } from "react";
+import { initializeComments } from "../reducers/commentReducer";
+import { useSelector } from "react-redux";
+
 const BlogDetails = ({ blogs }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(initializeComments());
+  }, [dispatch]);
+
+  const comments = useSelector((state) => state.comments);
 
   const id = useParams().id;
   const blog = blogs.find((blog) => blog.id === id);
@@ -16,6 +26,13 @@ const BlogDetails = ({ blogs }) => {
   if (!blog) {
     return null;
   }
+
+  console.log("comments", comments, "blog:", blog);
+
+  const thisBlogComments = comments.filter(
+    (comment) => comment.blog.id === blog.id
+  );
+  console.log("this blog comments", thisBlogComments);
 
   const addLike = () => {
     const updatedBlog = {
