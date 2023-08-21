@@ -14,6 +14,7 @@ const LoginForm = ({
           <TextField
             label="username"
             onChange={handleUsernameChange}
+            style={{ marginBottom: 10 }}
           ></TextField>
         </div>
         <div>
