@@ -19,6 +19,7 @@ const LoginForm = ({
         </div>
         <div>
           <TextField
+            type="password"
             label="password"
             onChange={handlePasswordChange}
             style={{ marginBottom: 5 }}
