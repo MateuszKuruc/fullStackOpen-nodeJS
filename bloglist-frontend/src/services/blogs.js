@@ -1,5 +1,7 @@
 import axios from "axios";
-const baseUrl = "/api/blogs";
+// const baseUrl = "/api/blogs";
+
+const baseUrl = "https://bloglist-backend-t9tb.onrender.com/api/blogs";
 
 let token = null;
 
@@ -17,6 +19,7 @@ const create = async (newObject) => {
     headers: { Authorization: token },
   };
   const response = await axios.post(baseUrl, newObject, config);
+  console.log("response", response, "config:", config);
   return response.data;
 };
 

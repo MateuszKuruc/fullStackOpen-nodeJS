@@ -33,6 +33,7 @@ import {
   createTheme,
   ThemeProvider,
 } from "@mui/material";
+
 const matiTheme = createTheme({
   palette: {
     primary: {

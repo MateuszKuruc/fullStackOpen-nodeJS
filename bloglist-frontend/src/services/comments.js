@@ -1,5 +1,7 @@
 import axios from "axios";
-const baseUrl = "/api/blogs";
+// const baseUrl = "/api/blogs";
+
+const baseUrl = "https://bloglist-backend-t9tb.onrender.com/api/blogs";
 
 const getAll = (id) => {
   const request = axios.get(`${baseUrl}/${id}/comments`);

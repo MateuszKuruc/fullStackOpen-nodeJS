@@ -1,5 +1,7 @@
 import axios from "axios";
-const baseUrl = "/api/login";
+// const baseUrl = "/api/login";
+
+const baseUrl = "https://bloglist-backend-t9tb.onrender.com/api/login";
 
 const login = async (credentials) => {
   console.log("credentials", credentials);
