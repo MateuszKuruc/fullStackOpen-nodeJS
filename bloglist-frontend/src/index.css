@@ -38,3 +38,12 @@
   border-top-right-radius: 0.5rem;
   border-top-left-radius: 0.5rem;
 }
+
+.footerContainer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
