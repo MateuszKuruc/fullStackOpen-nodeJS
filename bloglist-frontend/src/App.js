@@ -41,7 +41,7 @@ const matiTheme = createTheme({
       main: "#FF4081",
     },
     secondary: {
-      main: "#FFAB40",
+      main: "#1976D2",
     },
   },
   typography: {
@@ -74,6 +74,7 @@ const App = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [activeTab, setActiveTab] = useState("blogs");
 
   const blogFormRef = useRef();
 
@@ -133,11 +134,23 @@ const App = () => {
         {login && (
           <AppBar position="static" style={{ padding: 10, marginBottom: 16 }}>
             <Toolbar sx={{ display: "flex", justifyContent: "space-around" }}>
-              <Button color="inherit" component={Link} to="/blogs">
+              <Button
+                color="inherit"
+                component={Link}
+                to="/blogs"
+                sx={{ color: activeTab === "blogs" ? "black" : "" }}
+                onClick={() => setActiveTab("blogs")}
+              >
                 <Typography variant="bold20">Blogs</Typography>
               </Button>
               <Button color="inherit" component={Link} to="/users">
-                <Typography variant="bold20">Users</Typography>
+                <Typography
+                  variant="bold20"
+                  sx={{ color: activeTab === "users" ? "black" : "" }}
+                  onClick={() => setActiveTab("users")}
+                >
+                  Users
+                </Typography>
               </Button>
               <span style={{ fontStyle: "italic" }}>
                 <b>{login.name}</b> logged in
