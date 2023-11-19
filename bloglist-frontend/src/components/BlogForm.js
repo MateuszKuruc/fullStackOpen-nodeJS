@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setMessage } from "../reducers/messageReducer";
 import { useNavigate } from "react-router-dom";
 
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography } from "@mui/material";
 
 const BlogForm = () => {
   const navigate = useNavigate();
@@ -33,13 +33,15 @@ const BlogForm = () => {
 
   return (
     <div>
-      <h2>Create a new blog</h2>
-      <form onSubmit={addBlog}>
+      <Typography variant="bold20">BLOG FORM</Typography>
+
+      <form className="blogForm" onSubmit={addBlog}>
         <div>
           <TextField
             style={{ marginBottom: 10 }}
             label="Title"
             onChange={({ target }) => setTitle(target.value)}
+            className="formField"
           />
         </div>
         <div>
@@ -47,6 +49,7 @@ const BlogForm = () => {
             style={{ marginBottom: 10 }}
             label="Author"
             onChange={({ target }) => setAuthor(target.value)}
+            className="formField"
           />
         </div>
         <div>
@@ -54,6 +57,7 @@ const BlogForm = () => {
             style={{ marginBottom: 5 }}
             label="URL"
             onChange={({ target }) => setUrl(target.value)}
+            className="formField"
           />
         </div>
         <Button
@@ -61,8 +65,9 @@ const BlogForm = () => {
           variant="contained"
           color="primary"
           type="submit"
+          style={{ width: "250px", marginBottom: "0.5rem" }}
         >
-          save
+          <Typography variant="bold16">Save</Typography>
         </Button>
       </form>
     </div>
