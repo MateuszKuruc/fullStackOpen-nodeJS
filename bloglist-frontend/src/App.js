@@ -51,7 +51,13 @@ const matiTheme = createTheme({
       fontSize: 20,
       fontWeight: 700,
     },
-    body1: { lineHeight: 1.6, fontSize: 18, fontWeight: 400 },
+    bold16: {
+      lineHeight: 1.6,
+      fontSize: 16,
+      fontWeight: 700,
+    },
+    body1: { lineHeight: 1.6, fontSize: 20, fontWeight: 400 },
+    body2: { lineHeight: 1.6, fontSize: 18, fontWeight: 400 },
     italic1: {
       lineHeight: 1.6,
       fontSize: 18,

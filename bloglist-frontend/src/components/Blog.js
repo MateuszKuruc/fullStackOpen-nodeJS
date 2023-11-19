@@ -8,6 +8,7 @@ import {
   TableRow,
   Paper,
   Button,
+  Typography,
 } from "@mui/material";
 
 const Blog = ({ blogs }) => {
@@ -23,47 +24,65 @@ const Blog = ({ blogs }) => {
       <Button
         onClick={toggleDetails}
         variant="outlined"
-        color="primary"
+        color="secondary"
         style={{ marginBottom: 10 }}
       >
-        {details ? "Hide all details" : "View all details"}
+        {details ? (
+          <Typography variant="bold16">Hide all details</Typography>
+        ) : (
+          <Typography variant="bold16">View all details</Typography>
+        )}
       </Button>
       <TableContainer component={Paper}>
         <Table>
           <TableBody>
             <TableRow>
               <TableCell>
-                <h3>Blog name</h3>
+                <Typography variant="bold20">Blog name</Typography>
               </TableCell>
               <TableCell>
-                <h3>Author</h3>
+                <Typography variant="bold20">Author</Typography>
               </TableCell>
               <TableCell style={detailsShown}>
-                <h3>Link</h3>
+                <Typography variant="bold20">Link</Typography>
               </TableCell>
               <TableCell style={detailsShown}>
-                <h3>Likes</h3>
+                <Typography variant="bold20">Likes</Typography>
               </TableCell>
             </TableRow>
             {blogs.map((blog) => (
               <TableRow key={blog.id}>
                 <TableCell>
-                  <Link to={`/blogs/${blog.id}`}>
-                    <i>{blog.title}</i>
+                  <Link
+                    to={`/blogs/${blog.id}`}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    <Typography variant="italic1" color="#3b82f6">
+                      {blog.title}
+                    </Typography>
                   </Link>
                 </TableCell>
-                <TableCell>{blog.author}</TableCell>
+                <TableCell>
+                  <Typography variant="body1" color="#3b82f6">
+                    {blog.author}
+                  </Typography>
+                </TableCell>
 
                 <TableCell style={detailsShown}>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
                     href={"https://" + blog.url}
+                    style={{ textDecoration: "none" }}
                   >
-                    {blog.url}
+                    <Typography variant="italic1">{blog.url}</Typography>
                   </a>
                 </TableCell>
-                <TableCell style={detailsShown}>{blog.likes}</TableCell>
+                <TableCell style={detailsShown}>
+                  <Typography variant="bold20" color="#3b82f6">
+                    {blog.likes}
+                  </Typography>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
