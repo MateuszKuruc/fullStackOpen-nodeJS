@@ -130,7 +130,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={matiTheme}>
-      <Container>
+      <Container
+        sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      >
         {login && (
           <AppBar position="static" style={{ padding: 10, marginBottom: 16 }}>
             <Toolbar sx={{ display: "flex", justifyContent: "space-around" }}>
@@ -153,7 +155,9 @@ const App = () => {
                 </Typography>
               </Button>
               <span style={{ fontStyle: "italic" }}>
-                <b>{login.name}</b> logged in
+                <Typography variant="italic1">
+                  <b>{login.name}</b> logged in
+                </Typography>
               </span>
               <Button color="inherit" onClick={handleLogout}>
                 <Typography variant="bold20">Logout</Typography>
@@ -210,6 +214,12 @@ const App = () => {
             }
           />
         </Routes>
+        <div className="footer">
+          <div>
+          <Typography variant="bold20">Mateusz Kuruc 2023</Typography>
+
+          </div>
+        </div>
       </Container>
     </ThemeProvider>
   );
