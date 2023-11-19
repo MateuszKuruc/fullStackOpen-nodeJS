@@ -27,11 +27,12 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import {
   Container,
   AppBar,
-  IconButton,
+  // IconButton,
   Button,
   Toolbar,
   createTheme,
   ThemeProvider,
+  Typography,
 } from "@mui/material";
 
 const matiTheme = createTheme({
@@ -41,6 +42,20 @@ const matiTheme = createTheme({
     },
     secondary: {
       main: "#FFAB40",
+    },
+  },
+  typography: {
+    bold20: {
+      lineHeight: 1.6,
+      fontSize: 20,
+      fontWeight: 700,
+    },
+    body1: { lineHeight: 1.6, fontSize: 18, fontWeight: 400 },
+    italic1: {
+      lineHeight: 1.6,
+      fontSize: 18,
+      fontStyle: "italic",
+      fontWeight: 400,
     },
   },
 });
@@ -117,23 +132,18 @@ const App = () => {
       <Container>
         {login && (
           <AppBar position="static" style={{ padding: 10, marginBottom: 16 }}>
-            <Toolbar>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-              ></IconButton>
+            <Toolbar sx={{ display: "flex", justifyContent: "space-around" }}>
               <Button color="inherit" component={Link} to="/blogs">
-                Blogs
+                <Typography variant="bold20">Blogs</Typography>
               </Button>
               <Button color="inherit" component={Link} to="/users">
-                Users
+                <Typography variant="bold20">Users</Typography>
               </Button>
               <span style={{ fontStyle: "italic" }}>
                 <b>{login.name}</b> logged in
               </span>
               <Button color="inherit" onClick={handleLogout}>
-                Logout
+                <Typography variant="bold20">Logout</Typography>
               </Button>
             </Toolbar>
           </AppBar>

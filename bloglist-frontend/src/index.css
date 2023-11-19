@@ -1,18 +1,32 @@
 .message,
 .error {
-    color: rgb(255, 0, 0);
-    background: lightgrey;
-    font-size: 20px;
-    border-style: solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
+  color: rgb(255, 0, 0);
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .message {
-    color: green;
+  color: green;
 }
 
 .error {
-    color: red;
+  color: red;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navText {
+font-size: 20px;
+}
+
+.navText:hover {
+    font-weight: bold;
 }
