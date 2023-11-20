@@ -6,6 +6,7 @@ import {
   TableContainer,
   TableBody,
   Button,
+  Typography,
 } from "@mui/material";
 
 const Users = ({ users }) => {
@@ -16,17 +17,17 @@ const Users = ({ users }) => {
           <TableBody>
             <TableRow>
               <TableCell>
-                <h3>User name</h3>
+                <Typography variant="bold20">User name</Typography>
               </TableCell>
               <TableCell>
-                <h3>Number of blogs</h3>
+                <Typography variant="bold20">Number of blogs</Typography>
               </TableCell>
             </TableRow>
             {users.map((user) => (
               <TableRow key={user.id}>
                 <TableCell>
                   <Button component={Link} to={`/users/${user.id}`}>
-                    {user.username}
+                    <Typography variant="bold20">{user.username}</Typography>
                   </Button>
                 </TableCell>
                 <TableCell>{user.blogs.length}</TableCell>
