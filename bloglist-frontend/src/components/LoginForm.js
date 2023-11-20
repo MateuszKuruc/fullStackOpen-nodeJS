@@ -38,7 +38,7 @@ const LoginForm = ({
           id="login-button"
           type="submit"
           variant="contained"
-          disabled={loading ? "true" : "false"}
+          disabled={loading ? true : false}
           style={{ marginBottom: "0.5rem", width: "250px" }}
         >
           <Typography variant="bold16">Login</Typography>
