@@ -104,7 +104,14 @@ const BlogDetails = ({ blogs }) => {
             {blog.title}
           </Typography>
         </p>
+
         <div>
+          <Typography variant="body1">
+            Written by{" "}
+            <span style={{ color: "#FF4081", fontWeight: "bold" }}>
+              {blog.author}
+            </span>
+          </Typography>
           <Typography variant="body1">
             Read at{" "}
             <span>
@@ -125,24 +132,22 @@ const BlogDetails = ({ blogs }) => {
         <Typography variant="bold32" color="#1976D2">
           {blog.likes}
         </Typography>
-        <Button onClick={addLike} variant="contained">
+        <Button
+          onClick={addLike}
+          variant="contained"
+          style={{ width: "200px" }}
+        >
           <Typography variant="bold16">like this blog</Typography>
         </Button>
       </div>
 
-      <p>
-        Blog written by{" "}
-        <span style={{ fontStyle: "italic", fontWeight: 900 }}>
-          {blog.author}
-        </span>
-      </p>
       <Button
-        style={{ marginBottom: "2rem" }}
         variant="outlined"
         id="delete-Button"
         onClick={deleteBlog}
+        style={{ width: "200px", marginBottom: "4rem" }}
       >
-        Remove blog
+        <Typography variant="bold16">Delete blog</Typography>
       </Button>
       <div>
         <h3>Comments</h3>
