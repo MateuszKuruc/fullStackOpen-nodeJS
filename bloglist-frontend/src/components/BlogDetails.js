@@ -150,7 +150,7 @@ const BlogDetails = ({ blogs }) => {
         <Typography variant="bold16">Delete blog</Typography>
       </Button>
       <div>
-        <h3>Comments</h3>
+        <Typography variant="bold20">COMMENTS</Typography>
 
         <TableContainer>
           <Table>
@@ -158,10 +158,18 @@ const BlogDetails = ({ blogs }) => {
               {commentsToDisplay.map((comment) => (
                 <TableRow key={comment.id}>
                   <TableCell>
-                    {comment.comment}{" "}
-                    <span style={{ fontStyle: "italic", fontWeight: 900 }}>
-                      by Anonymous
-                    </span>
+                    <Typography variant="body1">
+                      {comment.comment}{" "}
+                      <span
+                        style={{
+                          fontStyle: "italic",
+                          fontWeight: 900,
+                          color: "#1976D2",
+                        }}
+                      >
+                        by Anonymous
+                      </span>
+                    </Typography>
                   </TableCell>
                 </TableRow>
               ))}
