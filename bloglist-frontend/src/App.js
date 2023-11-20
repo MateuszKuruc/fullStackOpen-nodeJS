@@ -206,12 +206,45 @@ const App = () => {
             element={
               login === null && (
                 <div className="loginPage">
-                  <Typography variant="bold32" color="#1976D2">
+                  <Typography variant="bold32" color="#FF4081">
                     Welcome to the Bloglist!
                   </Typography>
+                  <ul
+                    style={{
+                      marginBottom: "5rem",
+                      marginTop: "2rem",
+                      color: "#1976D2",
+                    }}
+                  >
+                    <li>
+                      <Typography variant="italic2">
+                        Add new blogs with title, author and link
+                      </Typography>
+                      <li>
+                        <Typography variant="italic2">
+                          Delete your blogs that you do not like anymore
+                        </Typography>
+                      </li>
+                    </li>
+                    <li>
+                      <Typography variant="italic2">
+                        Push the like button for blogs you enjoy
+                      </Typography>
+                    </li>
+                    <li>
+                      <Typography variant="italic2">
+                        Check how many blogs other users added
+                      </Typography>
+                    </li>
+                    <li>
+                      <Typography variant="italic2">
+                        Add anonymous comments to any blog you want
+                      </Typography>
+                    </li>
+                  </ul>
 
                   <p>
-                    <Typography variant="italic2">log in to begin</Typography>
+                    <Typography variant="italic2">Log in to begin!</Typography>
                   </p>
 
                   <Togglable buttonLabel="login">
