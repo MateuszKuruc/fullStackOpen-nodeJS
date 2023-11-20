@@ -8,7 +8,7 @@ import { setErrorMessage } from "../reducers/errorMessageReducer";
 
 import { useEffect } from "react";
 import { initializeComments } from "../reducers/commentReducer";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { createComment } from "../reducers/commentReducer";
 import { useState } from "react";
 
@@ -16,9 +16,9 @@ import {
   Button,
   TableContainer,
   Table,
-  // TableBody,
-  // TableRow,
-  // TableCell,
+  TableBody,
+  TableRow,
+  TableCell,
   TextField,
   Typography,
 } from "@mui/material";
@@ -32,7 +32,7 @@ const BlogDetails = ({ blogs }) => {
     dispatch(initializeComments());
   }, [dispatch]);
 
-  // const comments = useSelector((state) => state.comments);
+  const comments = useSelector((state) => state.comments);
 
   const id = useParams().id;
   const blog = blogs.find((blog) => blog.id === id);
@@ -40,9 +40,9 @@ const BlogDetails = ({ blogs }) => {
     return null;
   }
 
-  // const commentsToDisplay = comments.filter(
-  //   (comment) => comment.blog.id === blog.id
-  // );
+  const commentsToDisplay = comments.filter(
+    (comment) => comment.blog && comment.blog.id === blog.id
+  );
 
   const addLike = () => {
     const updatedBlog = {
@@ -156,7 +156,7 @@ const BlogDetails = ({ blogs }) => {
 
         <TableContainer>
           <Table>
-            {/* <TableBody>
+            <TableBody>
               {commentsToDisplay.map((comment) => (
                 <TableRow key={comment.id}>
                   <TableCell>
@@ -175,7 +175,7 @@ const BlogDetails = ({ blogs }) => {
                   </TableCell>
                 </TableRow>
               ))}
-            </TableBody> */}
+            </TableBody>
           </Table>
         </TableContainer>
         <div style={{ textAlign: "start" }}>
