@@ -50,3 +50,13 @@
 .formField {
   width: 250px;
 }
+
+.blogLink {
+  text-decoration: none;
+  font-style: italic;
+}
+
+.blogLink:hover {
+  color: #ff4081;
+  transition: 0.3s ease-in-out;
+}

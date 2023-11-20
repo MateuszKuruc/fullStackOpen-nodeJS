@@ -46,6 +46,11 @@ const matiTheme = createTheme({
     },
   },
   typography: {
+    bold32: {
+      lineHeight: 1.6,
+      fontSize: 32,
+      fontWeight: 700,
+    },
     bold20: {
       lineHeight: 1.6,
       fontSize: 20,
@@ -61,6 +66,12 @@ const matiTheme = createTheme({
     italic1: {
       lineHeight: 1.6,
       fontSize: 18,
+      fontStyle: "italic",
+      fontWeight: 400,
+    },
+    italic2: {
+      lineHeight: 1.6,
+      fontSize: 24,
       fontStyle: "italic",
       fontWeight: 400,
     },

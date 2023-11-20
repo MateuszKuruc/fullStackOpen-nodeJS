@@ -20,6 +20,7 @@ import {
   TableRow,
   TableCell,
   TextField,
+  Typography,
 } from "@mui/material";
 
 const BlogDetails = ({ blogs }) => {
@@ -96,22 +97,30 @@ const BlogDetails = ({ blogs }) => {
 
   return (
     <div>
-      <h2>
-        Blog:{" "}
-        <span style={{ fontStyle: "italic", fontWeight: 300 }}>
-          {blog.title}
-        </span>
-      </h2>
-      <div style={{ marginBottom: 16 }}>
-        Link:{" "}
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={"https://" + blog.url}
-        >
-          {blog.url}
-        </a>
+      <Typography variant="bold32">BLOG DETAILS</Typography>
+      <div>
+        <p>
+          <Typography variant="italic2" color="#1976D2">
+            {blog.title}
+          </Typography>
+        </p>
+        <div>
+          <Typography variant="body1">
+            Read at{" "}
+            <span>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={"https://" + blog.url}
+                className="blogLink"
+              >
+                {blog.url}
+              </a>
+            </span>
+          </Typography>
+        </div>
       </div>
+
       <div style={{ marginBottom: 16 }}>
         <div style={{ marginBottom: 5 }}>Likes: {blog.likes}</div>
         <div>
