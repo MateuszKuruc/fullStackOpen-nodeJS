@@ -10,12 +10,14 @@ const LoginForm = ({
   return (
     <div>
       <form onSubmit={handleSubmit} className="blogForm">
-        <div className="loadingLogin">
-          <Typography color="red" variant="body3">
-            First login may take 1-2 minutes before server is running. Please
-            wait and reload page if needed - it will work!
-          </Typography>
-        </div>
+        {loading && (
+          <div className="loadingLogin">
+            <Typography color="red" variant="body3">
+              First login may take 1-2 minutes before server is running. Please
+              wait and reload page if needed - it will work!
+            </Typography>
+          </div>
+        )}
         <div>
           <TextField
             label="username"

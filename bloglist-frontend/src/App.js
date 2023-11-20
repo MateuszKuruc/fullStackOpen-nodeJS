@@ -28,7 +28,6 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import {
   Container,
   AppBar,
-  // IconButton,
   Button,
   Toolbar,
   createTheme,
@@ -93,7 +92,7 @@ const App = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("blogs");
 
   const blogFormRef = useRef();
@@ -134,6 +133,8 @@ const App = () => {
 
       setUsername("");
       setPassword("");
+
+      navigate("/blogs");
 
       dispatch(setMessage(`${loggedUser.name} logged in`, 3));
     } catch (exception) {
