@@ -211,7 +211,7 @@ const App = () => {
                   </Typography>
                   <ul
                     style={{
-                      marginBottom: "5rem",
+                      marginBottom: "2rem",
                       marginTop: "2rem",
                       color: "#1976D2",
                     }}
@@ -243,9 +243,22 @@ const App = () => {
                     </li>
                   </ul>
 
-                  <p>
-                    <Typography variant="italic2">Log in to begin!</Typography>
-                  </p>
+                  <div
+                    style={{
+                      marginBottom: "2rem",
+                      border: "2px solid green",
+                      padding: "1rem",
+                      borderRadius: "0.5rem",
+                      width: "500px",
+                      textAlign: "center",
+                    }}
+                  >
+                    <Typography variant="bold20">Test account:</Typography>
+                    <Typography variant="body2">Username: demo</Typography>
+                    <Typography variant="body2">Password: test123</Typography>
+                  </div>
+
+                  <Typography variant="italic2">Log in to begin!</Typography>
 
                   <Togglable buttonLabel="login">
                     <LoginForm

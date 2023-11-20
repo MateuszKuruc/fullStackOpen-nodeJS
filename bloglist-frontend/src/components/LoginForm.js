@@ -20,7 +20,7 @@ const LoginForm = ({
         )}
         <div>
           <TextField
-            label="username"
+            label="Username"
             onChange={handleUsernameChange}
             style={{ marginBottom: 10 }}
             className="formField"
@@ -29,7 +29,7 @@ const LoginForm = ({
         <div>
           <TextField
             type="password"
-            label="password"
+            label="Password"
             onChange={handlePasswordChange}
             style={{ marginBottom: 5 }}
             className="formField"
