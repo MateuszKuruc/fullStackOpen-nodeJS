@@ -158,15 +158,23 @@ const App = () => {
                 color="inherit"
                 component={Link}
                 to="/blogs"
-                sx={{ color: activeTab === "blogs" ? "black" : "" }}
+                sx={{
+                  backgroundColor: activeTab === "blogs" ? "#1976D2" : "",
+                }}
                 onClick={() => setActiveTab("blogs")}
               >
                 <Typography variant="bold20">Blogs</Typography>
               </Button>
-              <Button color="inherit" component={Link} to="/users">
+              <Button
+                color="inherit"
+                component={Link}
+                to="/users"
+                sx={{
+                  backgroundColor: activeTab === "users" ? "#1976D2" : "",
+                }}
+              >
                 <Typography
                   variant="bold20"
-                  sx={{ color: activeTab === "users" ? "black" : "" }}
                   onClick={() => setActiveTab("users")}
                 >
                   Users
