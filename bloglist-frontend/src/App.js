@@ -9,7 +9,7 @@ import LoginForm from "./components/LoginForm";
 import Togglable from "./components/Togglable";
 import BlogForm from "./components/BlogForm";
 import BlogDetails from "./components/BlogDetails";
-import { FaGithub } from "react-icons/fa";
+import Footer from "./components/Footer";
 
 import { useDispatch } from "react-redux";
 
@@ -232,14 +232,7 @@ const App = () => {
             }
           />
         </Routes>
-        <div className="footer">
-          <div className="footerContainer">
-            <Typography variant="bold20" color="white">
-              Mateusz Kuruc © 2023
-            </Typography>
-            <FaGithub size={30} color="white" />
-          </div>
-        </div>
+        <Footer />
       </Container>
     </ThemeProvider>
   );
