@@ -11,19 +11,20 @@ const UserDetails = ({ users }) => {
   }
 
   return (
-    <div>
-      <Typography variant="h3">{user.name}</Typography>
-      <Typography variant="h5">Blog list:</Typography>
+    <div style={{ textAlign: "center" }}>
+      <Typography variant="bold32" color="#1976D2">
+        {user.name}
+      </Typography>
+
+      <Typography variant="body1">Blogs added by {user.name}</Typography>
       <List>
-        <Typography style={{ fontStyle: "italic" }}>
-          {user.blogs.map((blog) => (
-            <ListItem key={blog.id}>
-              <Link to={`/blogs/${blog.id}`}>
-                <ListItemText primary={blog.title} />
-              </Link>
-            </ListItem>
-          ))}
-        </Typography>
+        {user.blogs.map((blog) => (
+          <ListItem key={blog.id}>
+            <Link to={`/blogs/${blog.id}`}>
+              <ListItemText primary={blog.title} />
+            </Link>
+          </ListItem>
+        ))}
       </List>
     </div>
   );
