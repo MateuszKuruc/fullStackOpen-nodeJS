@@ -63,6 +63,7 @@ const matiTheme = createTheme({
     },
     body1: { lineHeight: 1.6, fontSize: 20, fontWeight: 400 },
     body2: { lineHeight: 1.6, fontSize: 18, fontWeight: 400 },
+    body3: { lineHeight: 1.6, fontSize: 14, fontWeight: 400 },
     italic1: {
       lineHeight: 1.6,
       fontSize: 18,
@@ -92,6 +93,7 @@ const App = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("blogs");
 
   const blogFormRef = useRef();
@@ -117,6 +119,7 @@ const App = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     try {
       const loggedUser = await loginService.login({
@@ -131,11 +134,13 @@ const App = () => {
 
       setUsername("");
       setPassword("");
+
       dispatch(setMessage(`${loggedUser.name} logged in`, 3));
     } catch (exception) {
       console.log("error logging", exception);
       dispatch(setErrorMessage("Wrong credentials", 3));
     }
+    setLoading(false);
   };
 
   const handleLogout = () => {
@@ -208,7 +213,7 @@ const App = () => {
                     <Typography variant="italic2">log in to begin</Typography>
                   </p>
 
-                  <Togglable buttonLabel="login" >
+                  <Togglable buttonLabel="login">
                     <LoginForm
                       handleUsernameChange={({ target }) =>
                         setUsername(target.value)
@@ -217,6 +222,7 @@ const App = () => {
                         setPassword(target.value)
                       }
                       handleSubmit={handleLogin}
+                      loading={loading}
                     />
                   </Togglable>
                 </div>

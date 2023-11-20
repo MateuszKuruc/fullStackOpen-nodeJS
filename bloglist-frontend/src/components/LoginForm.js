@@ -5,14 +5,17 @@ const LoginForm = ({
   handleSubmit,
   handleUsernameChange,
   handlePasswordChange,
+  loading,
 }) => {
   return (
     <div>
-      <form
-        onSubmit={handleSubmit}
-        // style={{ display: "flex", flexDirection: "column" }}
-        className="blogForm"
-      >
+      <form onSubmit={handleSubmit} className="blogForm">
+        <div className="loadingLogin">
+          <Typography color="red" variant="body3">
+            First login may take 1-2 minutes before server is running. Please
+            wait and reload page if needed - it will work!
+          </Typography>
+        </div>
         <div>
           <TextField
             label="username"
@@ -30,11 +33,13 @@ const LoginForm = ({
             className="formField"
           ></TextField>
         </div>
+
         <Button
           id="login-button"
           type="submit"
           variant="contained"
-          style={{ marginBottom: "0.5rem" }}
+          disabled={loading ? "true" : "false"}
+          style={{ marginBottom: "0.5rem", width: "250px" }}
         >
           <Typography variant="bold16">Login</Typography>
         </Button>
