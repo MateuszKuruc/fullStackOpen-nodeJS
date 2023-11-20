@@ -288,7 +288,7 @@ const App = () => {
               login && (
                 <>
                   <Blog blogs={blogList} />
-                  <Togglable buttonLabel="create new blog" ref={blogFormRef}>
+                  <Togglable buttonLabel="add new blog" ref={blogFormRef}>
                     <BlogForm />
                   </Togglable>
                 </>
