@@ -10,7 +10,7 @@ const Message = () => {
 
   if (message !== null) {
     return (
-      <div>
+      <div style={{ marginBottom: "1rem" }}>
         <Alert severity="success">
           <Typography variant="body2">{message}</Typography>
         </Alert>

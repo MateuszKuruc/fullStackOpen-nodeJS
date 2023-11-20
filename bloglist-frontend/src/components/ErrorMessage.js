@@ -9,7 +9,7 @@ const ErrorMessage = () => {
 
   if (errorMessage !== "") {
     return (
-      <div>
+      <div style={{ marginBottom: "1rem" }}>
         <Alert severity="error">
           <Typography variant="body2">{errorMessage}</Typography>
         </Alert>

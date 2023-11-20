@@ -11,7 +11,14 @@ const UserDetails = ({ users }) => {
   }
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div
+      style={{
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <Typography variant="bold32" color="#1976D2">
         {user.name}
       </Typography>
@@ -20,9 +27,22 @@ const UserDetails = ({ users }) => {
       <List>
         {user.blogs.map((blog) => (
           <ListItem key={blog.id}>
-            <Link to={`/blogs/${blog.id}`}>
-              <ListItemText primary={blog.title} />
-            </Link>
+            <div className="userDetailsBlogs">
+              <ListItemText
+                primary={blog.title}
+                className="blogLink"
+                style={{ color: "#1976D2" }}
+              />
+
+              <Link
+                to={`/blogs/${blog.id}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <Typography variant="bold20" className="blogLink">
+                  Show details
+                </Typography>
+              </Link>
+            </div>
           </ListItem>
         ))}
       </List>
