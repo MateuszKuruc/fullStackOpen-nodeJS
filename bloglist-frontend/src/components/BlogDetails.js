@@ -96,7 +96,7 @@ const BlogDetails = ({ blogs }) => {
   };
 
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <Typography variant="bold32">BLOG DETAILS</Typography>
       <div>
         <p>
@@ -120,15 +120,16 @@ const BlogDetails = ({ blogs }) => {
           </Typography>
         </div>
       </div>
-
-      <div style={{ marginBottom: 16 }}>
-        <div style={{ marginBottom: 5 }}>Likes: {blog.likes}</div>
-        <div>
-          <Button onClick={addLike} variant="contained">
-            like blog
-          </Button>
-        </div>
+      <div className="scoreContainer">
+        <Typography variant="bold20">SCORE</Typography>
+        <Typography variant="bold32" color="#1976D2">
+          {blog.likes}
+        </Typography>
+        <Button onClick={addLike} variant="contained">
+          <Typography variant="bold16">like this blog</Typography>
+        </Button>
       </div>
+
       <p>
         Blog written by{" "}
         <span style={{ fontStyle: "italic", fontWeight: 900 }}>
