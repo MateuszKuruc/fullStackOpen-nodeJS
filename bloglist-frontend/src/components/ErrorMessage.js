@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Alert } from "@mui/material";
+import { Alert, Typography } from "@mui/material";
 
 const ErrorMessage = () => {
   const errorMessage = useSelector((state) => state.errorMessage);
@@ -10,7 +10,9 @@ const ErrorMessage = () => {
   if (errorMessage !== "") {
     return (
       <div>
-        <Alert severity="error">{errorMessage}</Alert>
+        <Alert severity="error">
+          <Typography variant="body2">{errorMessage}</Typography>
+        </Alert>
       </div>
     );
   }
