@@ -33,7 +33,7 @@ const Togglable = forwardRef((props, refs) => {
         <Button
           onClick={toggleVisibility}
           variant="outlined"
-          style={{ width: "250px" }}
+          style={{ width: "250px", marginBottom: "2rem" }}
           color="primary"
         >
           <Typography variant="bold16">cancel</Typography>

@@ -25,7 +25,7 @@ const Blog = ({ blogs }) => {
         onClick={toggleDetails}
         variant="outlined"
         color="secondary"
-        style={{ marginBottom: 10 }}
+        style={{ marginBottom: 10, width: "250px" }}
       >
         {details ? (
           <Typography variant="bold16">Hide all details</Typography>
