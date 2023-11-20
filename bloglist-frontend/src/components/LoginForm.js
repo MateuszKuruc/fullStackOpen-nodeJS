@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { TextField, Button, Typography } from "@mui/material";
+import { CircleLoader } from "react-spinners";
 
 const LoginForm = ({
   handleSubmit,
@@ -43,7 +44,22 @@ const LoginForm = ({
           disabled={loading ? true : false}
           style={{ marginBottom: "0.5rem", width: "250px" }}
         >
-          <Typography variant="bold16">Login</Typography>
+          {loading ? (
+            <>
+              <Typography variant="bold16" style={{ marginRight: "0.5rem" }}>
+                Login
+              </Typography>
+              <CircleLoader
+                color="red"
+                loading={loading}
+                size={15}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </>
+          ) : (
+            <Typography variant="bold16">Login</Typography>
+          )}
         </Button>
       </form>
     </div>
