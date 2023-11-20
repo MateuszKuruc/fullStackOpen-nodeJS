@@ -199,13 +199,16 @@ const App = () => {
             path="/"
             element={
               login === null && (
-                <div>
-                  <h2>Welcome to the blog app!</h2>
+                <div className="loginPage">
+                  <Typography variant="bold32" color="#1976D2">
+                    Welcome to the Bloglist!
+                  </Typography>
+
                   <p>
-                    <i>log in to begin</i>
+                    <Typography variant="italic2">log in to begin</Typography>
                   </p>
 
-                  <Togglable buttonLabel="login">
+                  <Togglable buttonLabel="login" >
                     <LoginForm
                       handleUsernameChange={({ target }) =>
                         setUsername(target.value)
