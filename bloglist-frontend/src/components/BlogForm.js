@@ -40,6 +40,7 @@ const BlogForm = () => {
           <TextField
             style={{ marginBottom: 10 }}
             label="Title"
+            value={title}
             onChange={({ target }) => setTitle(target.value)}
             className="formField"
           />
@@ -48,6 +49,7 @@ const BlogForm = () => {
           <TextField
             style={{ marginBottom: 10 }}
             label="Author"
+            value={author}
             onChange={({ target }) => setAuthor(target.value)}
             className="formField"
           />
@@ -56,6 +58,7 @@ const BlogForm = () => {
           <TextField
             style={{ marginBottom: 5 }}
             label="URL"
+            value={url}
             onChange={({ target }) => setUrl(target.value)}
             className="formField"
           />
