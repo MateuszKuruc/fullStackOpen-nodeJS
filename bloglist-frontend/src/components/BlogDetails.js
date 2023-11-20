@@ -176,22 +176,22 @@ const BlogDetails = ({ blogs }) => {
             </TableBody>
           </Table>
         </TableContainer>
-        <div>
+        <div style={{ textAlign: "start" }}>
           <form onSubmit={addComment}>
             <Button
               variant="contained"
               type="submit"
-              style={{ marginBottom: 10, marginTop: 10 }}
+              style={{ marginBottom: "2rem", marginTop: "2rem" }}
             >
-              Add new comment
+              <Typography variant="bold16">Add new comment</Typography>
             </Button>
             <div>
               <TextField
                 value={comment}
-                label="comment here..."
+                label="Comment here..."
                 multiline
                 rows="4"
-                style={{ width: "100%" }}
+                style={{ width: "100%", paddingBottom: "2rem" }}
                 onChange={({ target }) => setComment(target.value)}
               ></TextField>
             </div>
