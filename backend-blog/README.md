@@ -3,4 +3,4 @@
 <p>If you are interested in frontend code and project description, visit:</p>
 
 
-🌐 [Bloglist app](https://github.com/MateuszKuruc/fullStackOpen-nodeJS/tree/main/bloglist-frontend)
+🌐 [Bloglist app code](https://github.com/MateuszKuruc/fullStackOpen-nodeJS/tree/main/bloglist-frontend)
