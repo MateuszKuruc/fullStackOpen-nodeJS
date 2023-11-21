@@ -32,7 +32,7 @@ While writing this app, I have been learning how to setup Cypress and Jest tests
 </ul>
 
 <h3>Visual representation</h3>
-<img width="500px" src="bloglist-frontend/public/bloglist_1.png" alt="bloglist app desktop screen" />
+<img width="500px" src="./public/bloglist_1.png" alt="bloglist app desktop screen" />
 
 <h3>Backend code</h3>
 If you are interested in the backend side code of the application, please visit
