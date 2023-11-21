@@ -6,6 +6,7 @@ The goal is to create an app for saving contacts.
 <h3>Goals</h3>
 <p>This is a fullstack app written with the use of modern web stack. The goal is simple: allow the user to save the name and phone number of a contact and allow them to search for specific person by name.</p>
 <p>This is a project that allowed me to get strong understanding on how the frontend and backend talk to each other, and how further the database is added to the mix.</p>
+<p>Moreover, it was the first application that I fully deployed. Initially, I used the fly.io service and later moved to render.com. The backend and frontend are deployed separately.</p>
 <h3>Technologies</h3>
 <img align="left" alt="React" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" /> 
 <img align="left" alt="Node.js" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
