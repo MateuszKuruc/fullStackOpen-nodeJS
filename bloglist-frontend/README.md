@@ -10,13 +10,16 @@ While writing this app, I have been learning how to setup Cypress and Jest tests
 
   🌐 [Bloglist app live](https://bloglist-frontend-d1wc.onrender.com/)
 
-  <h3>Technologies</h3>
+  <h2>Technologies</h2>
   <img align="left" alt="React" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />    
   <img align="left" alt="Redux" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" />  
   <img align="left" alt="Node.js" width="30px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />    
   <img align="left" alt="Material UI" width="30px"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" />
   <img align="left" alt="MongoDB" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" />
 <img align="left" alt="Express" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />
+
+
+<br/><br/>
 
 <h2>Key features</h2>
 <ul>
