@@ -1,7 +1,7 @@
 # Bloglist app
 A fullstack app focused around the idea of recommending blog posts to other users, voting and commenting on them.
 
-<h3>Goals</h3>
+<h2>Goals</h2>
 <p>Fullstack application with token authentication for login, where users add info on blogs (author, title and link) and can vote for blogs they like.</p> 
 <p>The app also allows users to leave a comment or see how many blogs were added by other users. My first encounter with Material UI as well. 
 While writing this app, I have been learning how to setup Cypress and Jest tests for the app.</p>
@@ -18,7 +18,7 @@ While writing this app, I have been learning how to setup Cypress and Jest tests
   <img align="left" alt="MongoDB" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" />
 <img align="left" alt="Express" width="30px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />
 
-<h3>Key features</h3>
+<h2>Key features</h2>
 <ul>
   <li>Token-based authentication</li>
   <li>React and Redux for state management</li>
@@ -31,10 +31,10 @@ While writing this app, I have been learning how to setup Cypress and Jest tests
   <li>Show all blogs and users in separate tabs</li>
 </ul>
 
-<h3>Visual representation</h3>
+<h2>Visual representation</h2>
 <img width="500px" src="./public/bloglist_1.png" alt="bloglist app desktop screen" />
 
-<h3>Backend code</h3>
+<h2>Backend code</h2>
 If you are interested in the backend side code of the application, please visit
 
 🌐 [Backend repository](https://github.com/MateuszKuruc/fullStackOpen-nodeJS/tree/main/backend-blog)
